@@ -10,6 +10,7 @@ class InvoicesController < ApplicationController
 
   def new
     @invoice = Invoice.new
+    @user = User.find(params[:user_id])
   end
 
   def create
