@@ -1,5 +1,5 @@
 class InvoicesController < ApplicationController
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
   def index
     @invoices = Invoice.all.order(created_at: :desc)
   end
