@@ -10,9 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_28_121809) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_28_123958) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "debtors", force: :cascade do |t|
+    t.string "company_name"
+    t.string "siren"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.string "number"
+    t.float "amount"
+    t.date "emission_date"
+    t.date "payment_date"
+    t.text "comment"
+    t.string "progress"
+    t.bigint "user_id", null: false
+    t.bigint "debtor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["debtor_id"], name: "index_invoices_on_debtor_id"
+    t.index ["user_id"], name: "index_invoices_on_user_id"
+  end
+
+  create_table "reminders", force: :cascade do |t|
+    t.string "reminder_type"
+    t.date "action_date"
+    t.string "answer"
+    t.string "progress"
+    t.bigint "invoice_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invoice_id"], name: "index_reminders_on_invoice_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +55,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_121809) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "company_name"
+    t.string "phone_number"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "invoices", "debtors"
+  add_foreign_key "invoices", "users"
+  add_foreign_key "reminders", "invoices"
 end
