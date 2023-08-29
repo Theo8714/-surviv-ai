@@ -1,1 +1,36 @@
-<h1>coucou</h1>
+<p>Client : <%= @invoice.debtor.company_name %></p>
+<p>Numéro de facture : <strong><%= @invoice.number %> </strong></p>
+<p>Montant de l'encours : <%= @invoice.amount %>€</p>
+<p>Date d'émission:
+  <%= @invoice.emission_date %></p>
+<p>Date de l'échéance :
+  <%= @invoice.payment_date %></p>
+
+
+  <%= link_to "Lists des factures", invoices_path, class: "btn btn-primary" %>
+
+
+<p>-------------------------------------------------------------</p>
+
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="forms col-md-6">
+      <%= simple_form_for [@user, @invoice], html: { class: 'custom-form' } do |f| %>
+        <h2 class="text-center mb-4 title">Ici tu peux modifier ta facture</h2>
+       <div class="d-flex justify-content-evenly">
+        <h5>Débiteur : <%= @invoice.debtor.company_name %></h5>
+       </div>
+        <div class="mt-4">
+            <%= f.input :number, label: 'Numéro de la facture' %>
+            <%= f.input :amount, label: 'Montant de la facture'%>
+            <%= f.input :emission_date, label: "Date d'émission de la facture"%>
+            <%= f.input :payment_date, label: "Date d'échéance de la facture"%>
+            <%= f.input :comment, label: "Commentaires"%>
+          <div class="d-flex justify-content-evenly">
+            <%= f.submit "Valide ta modification", class: "btn btn-blue  btn-medium mt-3 align" %>
+          </div>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>

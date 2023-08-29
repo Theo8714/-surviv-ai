@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Liste des factures</h1>
   <div class="search-bar ">
-    <%= form_with url: user_invoices_path, method: :get, class: "d-flex" do %>
+    <%= form_with url: invoices_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query,
             params[:query],
             class: "form-control",
@@ -22,6 +22,10 @@
               <%= invoice.emission_date %></p>
             <p>Date de l'échéance :
               <%= invoice.payment_date %></p>
+              <div>
+                <%= link_to "Voir plus", invoice_path(invoice), class: "btn btn-primary" %>
+              </div>
+
           </div>
         <% end %>
       </div>

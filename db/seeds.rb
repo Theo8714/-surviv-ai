@@ -53,6 +53,16 @@ debtor3 = Debtor.create!(
   siren: Faker::Company.french_siren_number
 )
 
+debtor4 = Debtor.create!(
+  company_name: Faker::Company.name,
+  siren: Faker::Company.french_siren_number
+)
+
+debtor5 = Debtor.create!(
+  company_name: Faker::Company.name,
+  siren: Faker::Company.french_siren_number
+)
+
 puts "debtors creation done"
 
 def payment_date(date)
@@ -80,6 +90,72 @@ inv2.payment_date = payment_date(inv2.emission_date)
 inv2.user = boris
 inv2.debtor = debtor1
 inv2.save
+
+inv7 = Invoice.new(
+  number: Faker::Invoice.reference,
+  amount: Faker::Number.decimal(l_digits: 2),
+  emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+  progress: "À traiter"
+)
+inv7.payment_date = payment_date(inv7.emission_date)
+inv7.user = boris
+inv7.debtor = debtor2
+inv7.save
+
+inv8 = Invoice.new(
+  number: Faker::Invoice.reference,
+  amount: Faker::Number.decimal(l_digits: 2),
+  emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+  progress: "À traiter"
+)
+inv8.payment_date = payment_date(inv8.emission_date)
+inv8.user = boris
+inv8.debtor = debtor2
+inv8.save
+
+inv9 = Invoice.new(
+  number: Faker::Invoice.reference,
+  amount: Faker::Number.decimal(l_digits: 2),
+  emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+  progress: "Phase amiable"
+)
+inv9.payment_date = payment_date(inv9.emission_date)
+inv9.user = boris
+inv9.debtor = debtor1
+inv9.save
+
+inv10 = Invoice.new(
+  number: Faker::Invoice.reference,
+  amount: Faker::Number.decimal(l_digits: 2),
+  emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+  progress: "À traiter"
+)
+inv10.payment_date = payment_date(inv10.emission_date)
+inv10.user = boris
+inv10.debtor = debtor2
+inv10.save
+
+inv11 = Invoice.new(
+  number: Faker::Invoice.reference,
+  amount: Faker::Number.decimal(l_digits: 2),
+  emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+  progress: "À traiter"
+)
+inv11.payment_date = payment_date(inv11.emission_date)
+inv11.user = boris
+inv11.debtor = debtor3
+inv11.save
+
+inv12 = Invoice.new(
+  number: Faker::Invoice.reference,
+  amount: Faker::Number.decimal(l_digits: 2),
+  emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+  progress: "À traiter"
+)
+inv12.payment_date = payment_date(inv12.emission_date)
+inv12.user = boris
+inv12.debtor = debtor3
+inv12.save
 
 inv3 = Invoice.new(
   number: Faker::Invoice.reference,
@@ -125,6 +201,61 @@ inv6.user = dorian
 inv6.debtor = debtor3
 inv6.save
 
+inv13 = Invoice.new(
+  number: Faker::Invoice.reference,
+  amount: Faker::Number.decimal(l_digits: 2),
+  emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+  progress: "À traiter"
+)
+inv13.payment_date = payment_date(inv13.emission_date)
+inv13.user = jane
+inv13.debtor = debtor3
+inv13.save
+
+inv14 = Invoice.new(
+  number: Faker::Invoice.reference,
+  amount: Faker::Number.decimal(l_digits: 2),
+  emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+  progress: "Phase amiable"
+)
+inv14.payment_date = payment_date(inv14.emission_date)
+inv14.user = boris
+inv14.debtor = debtor3
+inv14.save
+
+inv15 = Invoice.new(
+  number: Faker::Invoice.reference,
+  amount: Faker::Number.decimal(l_digits: 2),
+  emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+  progress: "À traiter"
+)
+inv15.payment_date = payment_date(inv15.emission_date)
+inv15.user = boris
+inv15.debtor = debtor1
+inv15.save
+
+inv16 = Invoice.new(
+  number: Faker::Invoice.reference,
+  amount: Faker::Number.decimal(l_digits: 2),
+  emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+  progress: "À traiter"
+)
+inv16.payment_date = payment_date(inv16.emission_date)
+inv16.user = boris
+inv16.debtor = debtor1
+inv16.save
+
+inv17 = Invoice.new(
+  number: Faker::Invoice.reference,
+  amount: Faker::Number.decimal(l_digits: 2),
+  emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+  progress: "À traiter"
+)
+inv17.payment_date = payment_date(inv17.emission_date)
+inv17.user = boris
+inv17.debtor = debtor3
+inv17.save
+
 puts "invoices creation done"
 
 remind1 = Reminder.new(
@@ -150,5 +281,29 @@ remind3 = Reminder.new(
 )
 remind3.invoice_id = inv5.id
 remind3.save
+
+remind4 = Reminder.new(
+  reminder_type: "email",
+  action_date: '2022-12-31',
+  progress: "En cours"
+)
+remind4.invoice_id = inv9.id
+remind4.save
+
+remind5 = Reminder.new(
+  reminder_type: "email",
+  action_date: '2022-12-31',
+  progress: "En cours"
+)
+remind5.invoice_id = inv14.id
+remind5.save
+
+remind6 = Reminder.new(
+  reminder_type: "téléphone",
+  action_date: '2022-12-31',
+  progress: "Rappel avant échéance"
+)
+remind6.invoice_id = inv14.id
+remind6.save
 
 puts "reminder creation done"
