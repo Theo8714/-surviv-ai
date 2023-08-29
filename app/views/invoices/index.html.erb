@@ -22,6 +22,10 @@
               <%= invoice.emission_date %></p>
             <p>Date de l'échéance :
               <%= invoice.payment_date %></p>
+              <div>
+                <%= link_to "Voir plus", user_invoice_path(current_user, invoice), class: "btn btn-primary" %>
+              </div>
+
           </div>
         <% end %>
       </div>
