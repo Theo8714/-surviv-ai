@@ -8,8 +8,11 @@
       <%= @invoice.emission_date %></p>
     <p>Date de l'échéance :
       <%= @invoice.payment_date %></p>
-
-<%= cl_image_tag @invoice.attached.key, height: 300, width: 400, crop: :fill %>
+      <% if @invoice.files.representable? %>
+        <%= image_tag @invoice.files.representation(resize_to_limit: [100, 100]) %>
+      <% else %>
+        <img src="app/assets/images/PANOPLI 1.pdf" width="150" height="200" alt="">
+      <% end %>
 
       <%= link_to "Lists des factures", invoices_path, class: "btn btn-primary" %>
     </div>
