@@ -38,3 +38,25 @@ padding-bottom: 16px;
 .card-white {
   background-color: #FFFFFF;
   }
+
+
+  @media (min-width: 390px) {
+    .cards {
+        grid-template-columns: 1fr ;}
+    }
+@media (min-width: 600px) {
+  .cards {
+      grid-template-columns: 1fr;}
+  }
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 990px) {
+  .cards {
+      grid-template-columns: 1fr 1fr;}
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 1200px) {
+  .cards {
+      grid-template-columns: 1fr 1fr 1fr;}
+}
