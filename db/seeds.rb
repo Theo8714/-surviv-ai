@@ -39,28 +39,28 @@ dorian = User.create!(
 puts "user creation done"
 
 debtor1 = Debtor.create!(
-  company_name: Faker::Company.name,
-  siren: Faker::Company.french_siren_number
+  company_name: "Anderson, Barrows and Boehm",
+  siren: "559885116"
 )
 
 debtor2 = Debtor.create!(
-  company_name: Faker::Company.name,
-  siren: Faker::Company.french_siren_number
+  company_name: "Mertz Group",
+  siren: "915094916"
 )
 
 debtor3 = Debtor.create!(
-  company_name: Faker::Company.name,
-  siren: Faker::Company.french_siren_number
+  company_name: "Turcotte, Lehner and Labadie",
+  siren: "741426332"
 )
 
 debtor4 = Debtor.create!(
-  company_name: Faker::Company.name,
-  siren: Faker::Company.french_siren_number
+  company_name: "Stark-Renner",
+  siren: "964247357"
 )
 
 debtor5 = Debtor.create!(
-  company_name: Faker::Company.name,
-  siren: Faker::Company.french_siren_number
+  company_name: "Boyer, Johns and Goodwin",
+  siren: "071269476"
 )
 
 puts "debtors creation done"
