@@ -1,7 +1,12 @@
 class InvoicesController < ApplicationController
   # before_action :authenticate_user!
   def index
-    @invoices = Invoice.all.order(created_at: :desc)
+    @invoices = Invoice.all.order(emission_date: :desc)
+    @user = User.find(params[:user_id])
+    if params[:query].present?
+      sql_subquery = "number ILIKE :query "
+      @invoices = @invoices.where(sql_subquery, query: "%#{params[:query]}%")
+    end
   end
 
   def show
