@@ -8,6 +8,7 @@
         <%= f.input :emission_date, label: "Date d'émission de la facture"%>
         <%= f.input :payment_date, label: "Date d'échéance de la facture"%>
         <%= f.input :comment, label: "Commentaires"%>
+        <%= f.input :attached, as: :file %>
         <%= f.submit "Dépose ta facture", class: "btn btn-primary mt-3" %>
       <% end %>
     </div>

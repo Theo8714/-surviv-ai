@@ -9,6 +9,7 @@
     <p>Date de l'échéance :
       <%= @invoice.payment_date %></p>
 
+<%= cl_image_tag @invoice.attached.key, height: 300, width: 400, crop: :fill %>
 
       <%= link_to "Lists des factures", invoices_path, class: "btn btn-primary" %>
     </div>
