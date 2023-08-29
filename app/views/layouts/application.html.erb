@@ -2,19 +2,25 @@
 <html>
   <head>
     <title>SurvivAi</title>
+     <%= favicon_link_tag "logo_top.png", rel: "icon", type: "image/png" %>
+     <script src="https://kit.fontawesome.com/8ccb1e6853.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
   </head>
 
-  <body><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
-
+  <body>
+  <div class="app-show">
+  <div class="sidebar-app">
+  <%= render "shared/navbar" %>
+  </div>
+  <div class="body-app">
+  <%= render "shared/flashes" %>
     <%= yield %>
+  </div>
   </body>
 </html>

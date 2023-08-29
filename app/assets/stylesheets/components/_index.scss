@@ -5,7 +5,19 @@
 @import "navbar";
 @import "button";
 @import "card";
+@import "sidebar";
+@import "font-icons";
+@import "sticky";
+@import "reminder";
 
 body{
   background-color: white;
+}
+
+.app-show {
+
+  display: flex;
+}
+.body-app{
+  width: 100vw;
 }
