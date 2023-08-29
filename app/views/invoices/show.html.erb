@@ -40,14 +40,27 @@
 </div>
 
 <% if @invoice.reminders.exists? %>
-  <div class="mt-5 ms-5">
-    <h3>Les relances sur cette facture</h3>
+  <div class="mt-5 mx-3">
+    <div class="reminders">
+    <h3>Les relances sur cette facture : </h3>
+      <div class="title-reminders">
+      <p><strong>Type de relance : </strong></p>
+      <p><strong>Date de la relance :</strong> </p>
+      <p><strong>État de la relance:</strong></p>
+      </div>
       <% @invoice.reminders.each do |reminder|%>
-        <div class="card-white">
-          <p><b>Type de relance : </b> <%= reminder.reminder_type %></p>
-          <p><b>Date de la relance : </b> <%= reminder.action_date %></p>
-          <p><b>État de la relance: </b> <%= reminder.progress %></p>
+      <div class="info-reminders row">
+        <div class="col-4 text-start">
+              <p> <%= reminder.reminder_type %></p>
         </div>
+        <div class="col-4 text-center">
+              <p><%= reminder.action_date %></p>
+        </div>
+        <div class="col-4 text-end">
+              <p> <%= reminder.progress %></p>
+        </div>
+      </div>
+    </div>
       <% end %>
   </div>
   <% else %>
