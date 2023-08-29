@@ -50,7 +50,7 @@ padding-bottom: 16px;
   }
 
 /* // Medium devices (tablets, 768px and up) */
-@media (min-width: 990px) {
+@media (min-width: 800px) {
   .cards {
       grid-template-columns: 1fr 1fr;}
 }
