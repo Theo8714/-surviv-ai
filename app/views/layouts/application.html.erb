@@ -2,17 +2,22 @@
 <html>
   <head>
     <title>SurvivAi</title>
+     <script src="https://kit.fontawesome.com/8ccb1e6853.js" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
-
+  <body>
+  <div class="app-show">
+  <div class="sidebar-app">
+  <%= render "shared/navbar" %>
+  </div>
+  <div class="body-app">
+  <%= render "shared/flashes" %>
     <%= yield %>
+  </div>
   </body>
 </html>

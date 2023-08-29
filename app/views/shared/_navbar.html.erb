@@ -1,34 +1,44 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "logo_survivai" %>
-    <% end %>
+<div class="sidebar">
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <div class="container-sidebar">
+    <div class="top">
+      <%= link_to "#", class: "navbar-brand" do %>
+        <%= image_tag "logo_survivai" %>
+      <% end %>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item active">
+      <% if user_signed_in? %>
 
-            <%= link_to "Tableau de Bord", user_path(current_user), class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Déposer une facture", new_invoice_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Mes archives", archives_invoices_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Invoices", invoices_path(current_user.id), class: "nav-link" %>
-          </li>
+       <%= link_to user_path(current_user)  do %>
+     <i class="fa-solid fa-house fa-2xl" ></i>
+      <% end %>
 
-          <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-          </a>
+      <%= link_to  invoices_path  do %>
+        <i class="fa-solid fa-file fa-2xl"></i>
+      <% end %>
+
+      <%= link_to new_invoice_path  do %>
+        <i class="fa-solid fa-plus fa-2xl"></i>
+      <% end %>
+
+      <%= link_to  archives_invoices_path do %>
+        <i class="fa-solid fa-box-archive fa-2xl"></i>
+      <% end %>
+
+
+
+
+    </div>
+
+    <div class="bottom">
+
+        <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+        </a>
+
+        <div class="link-navbar-space">
+          <div class="dropdown-navbar" >
+   
+
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Ajouter une facture", new_invoice_path, class: "dropdown-item" %>
               <%= link_to "Mes factures", invoices_path, class: "dropdown-item" %>
@@ -36,13 +46,16 @@
               <%= link_to "Mon tableau de bord", user_path(current_user), class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      </ul>
+          </div>
+        </div>
     </div>
+
+    <% else %>
+
+        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+
+    <% end %>
+
   </div>
+
 </div>
