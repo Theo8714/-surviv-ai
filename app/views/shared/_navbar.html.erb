@@ -13,16 +13,16 @@
         <% if user_signed_in? %>
           <li class="nav-item active">
 
-            <%= link_to "Tableau de Bord", "#", class: "nav-link" %>
+            <%= link_to "Tableau de Bord", user_path(current_user), class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Déposer une facture", new_user_invoice_path, class: "nav-link" %>
+            <%= link_to "Déposer une facture", new_invoice_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Mes archives", archives_user_invoices_path, class: "nav-link" %>
+            <%= link_to "Mes archives", archives_invoices_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Invoices", user_invoices_path(current_user.id), class: "nav-link" %>
+            <%= link_to "Invoices", invoices_path(current_user.id), class: "nav-link" %>
           </li>
 
           <li class="nav-item dropdown">
@@ -30,10 +30,10 @@
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
           </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Ajouter une facture", new_user_invoice_path, class: "dropdown-item" %>
-              <%= link_to "Mes factures", user_invoices_path, class: "dropdown-item" %>
-              <%= link_to "Mes archives", archives_user_invoices_path, class: "dropdown-item" %>
-              <%= link_to "Mon tableau de bord", "#", class: "dropdown-item" %>
+              <%= link_to "Ajouter une facture", new_invoice_path, class: "dropdown-item" %>
+              <%= link_to "Mes factures", invoices_path, class: "dropdown-item" %>
+              <%= link_to "Mes archives", archives_invoices_path, class: "dropdown-item" %>
+              <%= link_to "Mon tableau de bord", user_path(current_user), class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>

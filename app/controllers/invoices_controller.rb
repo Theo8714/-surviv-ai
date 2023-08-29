@@ -10,12 +10,10 @@ class InvoicesController < ApplicationController
 
   def show
     @invoice = Invoice.find(params[:id])
-    @user = User.find(params[:user_id])
   end
 
   def new
     @invoice = Invoice.new
-    @user = User.find(params[:user_id])
   end
 
   def create
@@ -37,7 +35,7 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.find(params[:id])
     @invoice.update(invoice_params)
     if @invoice.save
-      redirect_to user_invoices_path
+      redirect_to invoice_path(@invoice)
     else
       render :edit, status: :unprocessable_entity
     end
