@@ -16,6 +16,7 @@
                     label: "Date d'échéance de la facture",
                     input_html: { data: { controller: "datepicker" } }%>
         <%= f.input :comment, label: "Commentaires"%>
+        <%= f.input :attached, as: :file %>
         <%= f.submit "Dépose ta facture", class: "btn btn-primary mt-3" %>
       <% end %>
     </div>

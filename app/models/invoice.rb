@@ -7,6 +7,7 @@ class Invoice < ApplicationRecord
   has_many :reminders
   validates :number, :amount, :emission_date, :payment_date, presence: true
   validates :progress, inclusion: { in: PROGRESS }
+  has_one_attached :files
   # validates :number, uniqueness: true
 
   def set_progress
