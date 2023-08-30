@@ -22,3 +22,12 @@ body{
 .body-app{
   width: 100vw;
 }
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  }
+  p, a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    text-decoration: none;
+    color: inherit;
+  }
