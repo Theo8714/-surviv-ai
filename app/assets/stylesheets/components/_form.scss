@@ -1,0 +1,54 @@
+.form-control{
+  #board_photos{
+  background-color: black;
+ }
+}
+.forms {
+ .form-control, .ts-control {
+background-color: white;
+border: 1px solid black;
+border-radius: 8px;
+  .text {
+    color: #8195f8;
+  }
+ .board_photos {
+  background-color: black;
+ }
+ }
+}
+
+.search-bar
+{
+  margin-top: 8px;
+  top: 1000px;
+  border: 1px solid black;
+  border-radius: 10px;
+
+
+
+  .btn-blue.btn-blue {
+  background-color: #90CBFE;
+  border: none;
+  border-radius: 10px;
+  width: 150px;
+  padding: 12px 20px;
+  font-size: 16px;
+  transition: background-color 0.2s ease-in-out;
+  margin: 0px;
+}
+ .form-control {
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  color: #90CBFE;
+
+ }
+.btnn:hover{
+  background-color: #D1D4FF;
+}
+
+::placeholder {
+  color: #90CBFE;
+}
+
+}
