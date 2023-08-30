@@ -5,7 +5,7 @@ class Invoice < ApplicationRecord
   belongs_to :user
   belongs_to :debtor
   has_many :reminders
-  validates :number, :amount, :emission_date, :payment_date, presence: true
+  validates :number, :amount, :emission_date, :due_date, presence: true
   validates :progress, inclusion: { in: PROGRESS }
   has_one_attached :file
   # validates :number, uniqueness: true

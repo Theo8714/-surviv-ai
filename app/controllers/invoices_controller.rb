@@ -24,7 +24,6 @@ class InvoicesController < ApplicationController
     @debtor = Debtor.find_by(siren: params[:invoice][:siren])
     @debtor ||= Debtor.create(siren: params[:invoice][:siren], company_name: "to be created")
     @invoice.debtor = @debtor
-    raise
     if @invoice.save
       redirect_to invoices_path
     else
@@ -50,6 +49,6 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:number, :amount, :emission_date, :payment_date, :comment, :progress, :debtor_id, :file)
+    params.require(:invoice).permit(:number, :amount, :emission_date, :due_date, :comment, :progress, :debtor_id, :file)
   end
 end

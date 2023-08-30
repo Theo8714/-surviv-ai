@@ -65,7 +65,7 @@ debtor5 = Debtor.create!(
 
 puts "debtors creation done"
 
-def payment_date(date)
+def due_date(date)
   date + 45
 end
 
@@ -75,7 +75,7 @@ inv1 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "À traiter"
 )
-inv1.payment_date = payment_date(inv1.emission_date)
+inv1.due_date = due_date(inv1.emission_date)
 inv1.user = boris
 inv1.debtor = debtor1
 inv1.save
@@ -86,7 +86,7 @@ inv2 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "À traiter"
 )
-inv2.payment_date = payment_date(inv2.emission_date)
+inv2.due_date = due_date(inv2.emission_date)
 inv2.user = boris
 inv2.debtor = debtor1
 inv2.save
@@ -97,7 +97,7 @@ inv7 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "À traiter"
 )
-inv7.payment_date = payment_date(inv7.emission_date)
+inv7.due_date = due_date(inv7.emission_date)
 inv7.user = boris
 inv7.debtor = debtor2
 inv7.save
@@ -108,7 +108,7 @@ inv8 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "À traiter"
 )
-inv8.payment_date = payment_date(inv8.emission_date)
+inv8.due_date = due_date(inv8.emission_date)
 inv8.user = boris
 inv8.debtor = debtor2
 inv8.save
@@ -119,7 +119,7 @@ inv9 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "Phase amiable"
 )
-inv9.payment_date = payment_date(inv9.emission_date)
+inv9.due_date = due_date(inv9.emission_date)
 inv9.user = boris
 inv9.debtor = debtor1
 inv9.save
@@ -130,7 +130,7 @@ inv10 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "À traiter"
 )
-inv10.payment_date = payment_date(inv10.emission_date)
+inv10.due_date = due_date(inv10.emission_date)
 inv10.user = boris
 inv10.debtor = debtor2
 inv10.save
@@ -141,7 +141,7 @@ inv11 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "À traiter"
 )
-inv11.payment_date = payment_date(inv11.emission_date)
+inv11.due_date = due_date(inv11.emission_date)
 inv11.user = boris
 inv11.debtor = debtor3
 inv11.save
@@ -152,7 +152,7 @@ inv12 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "À traiter"
 )
-inv12.payment_date = payment_date(inv12.emission_date)
+inv12.due_date = due_date(inv12.emission_date)
 inv12.user = boris
 inv12.debtor = debtor3
 inv12.save
@@ -163,7 +163,7 @@ inv3 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "Phase amiable"
 )
-inv3.payment_date = payment_date(inv3.emission_date)
+inv3.due_date = due_date(inv3.emission_date)
 inv3.user = jane
 inv3.debtor = debtor2
 inv3.save
@@ -174,7 +174,7 @@ inv4 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "Avant échéance"
 )
-inv4.payment_date = payment_date(inv4.emission_date)
+inv4.due_date = due_date(inv4.emission_date)
 inv4.user = jane
 inv4.debtor = debtor2
 inv4.save
@@ -185,7 +185,7 @@ inv5 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "Phase amiable"
 )
-inv5.payment_date = payment_date(inv5.emission_date)
+inv5.due_date = due_date(inv5.emission_date)
 inv5.user = dorian
 inv5.debtor = debtor3
 inv5.save
@@ -196,7 +196,7 @@ inv6 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "Juridique"
 )
-inv6.payment_date = payment_date(inv6.emission_date)
+inv6.due_date = due_date(inv6.emission_date)
 inv6.user = dorian
 inv6.debtor = debtor3
 inv6.save
@@ -207,7 +207,7 @@ inv13 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "À traiter"
 )
-inv13.payment_date = payment_date(inv13.emission_date)
+inv13.due_date = due_date(inv13.emission_date)
 inv13.user = jane
 inv13.debtor = debtor3
 inv13.save
@@ -218,7 +218,7 @@ inv14 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "Phase amiable"
 )
-inv14.payment_date = payment_date(inv14.emission_date)
+inv14.due_date = due_date(inv14.emission_date)
 inv14.user = boris
 inv14.debtor = debtor3
 inv14.save
@@ -229,7 +229,7 @@ inv15 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "À traiter"
 )
-inv15.payment_date = payment_date(inv15.emission_date)
+inv15.due_date = due_date(inv15.emission_date)
 inv15.user = boris
 inv15.debtor = debtor1
 inv15.save
@@ -240,7 +240,7 @@ inv16 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "À traiter"
 )
-inv16.payment_date = payment_date(inv16.emission_date)
+inv16.due_date = due_date(inv16.emission_date)
 inv16.user = boris
 inv16.debtor = debtor1
 inv16.save
@@ -251,7 +251,7 @@ inv17 = Invoice.new(
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
   progress: "À traiter"
 )
-inv17.payment_date = payment_date(inv17.emission_date)
+inv17.due_date = due_date(inv17.emission_date)
 inv17.user = boris
 inv17.debtor = debtor3
 inv17.save

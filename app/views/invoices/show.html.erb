@@ -7,7 +7,7 @@
     <p>Date d'émission:
       <%= @invoice.emission_date %></p>
     <p>Date de l'échéance :
-      <%= @invoice.payment_date %></p>
+      <%= @invoice.due_date %></p>
       <%= cl_image_tag(@invoice.file.key, :format => :png) %>
       <% if @invoice.file.representable? %>
         <%= image_tag @invoice.file.representation(resize_to_limit: [100, 100]) %>
@@ -31,7 +31,7 @@
                 <%= f.input :number, label: 'Numéro de la facture' %>
                 <%= f.input :amount, label: 'Montant de la facture'%>
                 <%= f.input :emission_date, label: "Date d'émission de la facture"%>
-                <%= f.input :payment_date, label: "Date d'échéance de la facture"%>
+                <%= f.input :due_date, label: "Date d'échéance de la facture"%>
                 <%= f.input :comment, label: "Commentaires"%>
               <div class="d-flex justify-content-evenly">
                 <%= f.submit "Valide ta modification", class: "btn btn-blue  btn-medium mt-3 align" %>
