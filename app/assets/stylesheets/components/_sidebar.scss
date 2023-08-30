@@ -45,7 +45,7 @@
 }
 
 .custom-tooltip:hover::after {
-  content: attr(title);
+  content: attr(data-title);
   z-index: 1000;
   background-color: #E5EEFE;
   color: black;
@@ -53,6 +53,8 @@
   padding: 8px;
   border-radius: 3px;
   position: absolute;
+  top: -30%;
+  left: 140%;
   text-align: center;
 
 }
