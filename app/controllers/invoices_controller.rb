@@ -9,6 +9,7 @@ class InvoicesController < ApplicationController
   end
 
   def show
+    @show_invoice = true
     @invoice = Invoice.find(params[:id])
   end
 
