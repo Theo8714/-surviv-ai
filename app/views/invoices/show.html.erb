@@ -9,11 +9,11 @@
     <p>Date de l'échéance :
       <%= @invoice.due_date %></p>
       <%= cl_image_tag(@invoice.file.key, :format => :png) %>
-      <% if @invoice.file.representable? %>
-        <%= image_tag @invoice.file.representation(resize_to_limit: [100, 100]) %>
-      <% else %>
-        <img src="app/assets/images/PANOPLI 1.pdf" width="150" height="200" alt="">
-      <% end %>
+      <%# if @invoice.file.representable? %>
+        <%#= image_tag @invoice.file.representation(resize_to_limit: [100, 100]) %>
+      <%# else %>
+        <%# <img src="app/assets/images/PANOPLI 1.pdf" width="150" height="200" alt=""> %>
+      <%#end %>
 
       <%= link_to "Lists des factures", invoices_path, class: "btn btn-primary" %>
     </div>

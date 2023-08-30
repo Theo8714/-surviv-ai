@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :invoices
   has_many :relationships
+  has_many :debtors, through: :invoices
+
   # validates :company_name, :phone_number, :first_name, :last_name, presence: true
   # validates :company_name, uniqueness: true
   devise :database_authenticatable, :registerable,
