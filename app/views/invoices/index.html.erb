@@ -10,11 +10,32 @@
       <%= submit_tag "Filtrer", name: "", class: "btn btn-primary" %>
     <% end %>
     </div>
-  <div class="row justify-content-center">
-    <div class="col-sm-12 my-3">
+    <div class="row justify-content-start"
+         data-controller="progress-search">
+      <div class="col-sm-1 my-3 d-flex-column">
+        <button class="btn btn-blue my-2"
+                style="width: 140px"
+                data-action="click->progress-search#searchTraiter"
+                >A traiter</button>
+        <button class="btn btn-success text-white my-2"
+                style="width: 140px"
+                data-action="click->progress-search#searchEcheance">
+                Avant échéance</button>
+        <button class="btn btn-beige my-2"
+                style="width: 140px"
+                data-action="click->progress-search#searchAmiable">
+                Phase amiable</button>
+        <button class="btn btn-purple my-2"
+                style="width: 140px"
+                data-action="click->progress-search#searchJuridique">
+                Juridique</button>
+      </div>
+
+    <div class="col-sm-11 my-3">
       <div class="cards">
         <% @invoices.each do |invoice|%>
-          <div class="card card-beige">
+          <div class="card card-beige"
+               data-progress-search-target="progress">
             <p>Client : <%= invoice.debtor.company_name %></p>
             <p>Numéro de facture : <strong><%= invoice.number %> </strong></p>
             <p>Montant de l'encours : <%= invoice.amount %>€</p>

@@ -23,7 +23,7 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new(invoice_params)
     @invoice.user = current_user
     @debtor = Debtor.find_by(siren: params[:invoice][:siren])
-    @debtor ||= Debtor.create(siren: params[:invoice][:siren], company_name: "to be created")
+    @debtor ||= Debtor.create(siren: params[:invoice][:siren], company_name: "Entreprise à créer")
     @invoice.debtor = @debtor
     if @invoice.save
       redirect_to invoices_path
