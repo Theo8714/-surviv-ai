@@ -16,3 +16,4 @@ class Invoice < ApplicationRecord
     self.progress = "À traiter"
   end
 end
+
