@@ -8,19 +8,19 @@
 
       <% if user_signed_in? %>
 
-       <%= link_to user_path(current_user)  do %>
+       <%= link_to user_path(current_user), data:{:title => "Mon dashboard"}, class: "custom-tooltip position-relative"   do %>
      <i class="fa-solid fa-house fa-2xl" ></i>
       <% end %>
 
-      <%= link_to  invoices_path  do %>
+      <%= link_to  invoices_path,  data:{:title => "Mes factures"}, class: "custom-tooltip position-relative"   do %>
         <i class="fa-solid fa-file fa-2xl"></i>
       <% end %>
 
-      <%= link_to new_invoice_path  do %>
+      <%= link_to new_invoice_path,  data:{:title => "Ajouter une facture"}, class: "custom-tooltip position-relative"   do %>
         <i class="fa-solid fa-plus fa-2xl"></i>
       <% end %>
 
-      <%= link_to  archives_invoices_path do %>
+      <%= link_to  archives_invoices_path,  data:{:title => "Mes archives"}, class: "custom-tooltip position-relative" do %>
         <i class="fa-solid fa-box-archive fa-2xl"></i>
       <% end %>
 
