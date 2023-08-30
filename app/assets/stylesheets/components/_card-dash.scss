@@ -62,7 +62,12 @@ width: 600px;
 
 .stat {
   background-color: #E5EEFE;
-  padding: 4px;
+  padding: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
   border-radius: 16px;
   color: #90CBFE;
+  i {
+    transform: rotate(310deg);
+  }
 }
