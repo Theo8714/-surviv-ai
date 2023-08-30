@@ -8,6 +8,7 @@
   margin-top: 8px;
   margin-bottom: 8px;
   text-align: center;
+  border: none;
 }
 .btn-blue {
 background-color: #90CBFE;
@@ -26,7 +27,6 @@ color: white;
    &:hover {
     background-color: #E5EEFE;
     transition: 1s;
-
    }
   }
 
@@ -73,8 +73,20 @@ color: white;
   width: 25em;
 }
 
-.btn-purple-click {
-  background-color: $purple;
+.btn-select-index {
+  background-color: purple !important;
   color: white;
-  border-radius: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.btnn-index {
+  text-decoration: none;
+  background-color: white;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  text-align: center;
+  border: none;
+  text-align: start;
 }

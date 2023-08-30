@@ -44,7 +44,15 @@ export default class extends Controller {
     this.buttonTargets.forEach((button) => {
       const buttonStatus = button.dataset.status;
       const shouldShow = this.filter.includes(buttonStatus);
-      button.classList.toggle("btn-purple-click", shouldShow);
+      button.classList.toggle("btn-select-index", shouldShow);
+    })
+  }
+
+  filterAllButtons() {
+    this.buttonTargets.forEach((button) => {
+      const buttonStatus = button.dataset.status;
+      const shouldShow = this.filter.includes(buttonStatus);
+      button.classList.toggle("btn-select-index", shouldShow);
     })
   }
 
