@@ -5,7 +5,7 @@
       <div class="col-6 d-flex align-items-center justify-content-center">
         <div class="card-show card-blue">
           <div class="display-info">
-            <h4><strong> <%= @invoice.debtor.company_name %> </strong></h4>
+            <h4 class="mb-3"><strong> <%= @invoice.debtor.company_name %> </strong></h4>
           </div>
           <div class="display-info row">
             <p><div class="col-6 text-start">Numéro de facture : <strong></div><div class="col-6 text-end "><%= @invoice.number %> </strong></div></p>
@@ -21,7 +21,7 @@
             <p><div class="col-6 text-start">Date de l'échéance : <strong></div><div class="col-6 text-end "><%= @invoice.due_date %> </strong></div></p>
           </div>
 
-          <div class="bottom-cards-show">
+          <div class="bottom-cards-show ">
               <div class="show-img">
                 <%= cl_image_tag(@invoice.file.key, :format => :png) %>
               </div>
