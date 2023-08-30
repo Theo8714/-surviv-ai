@@ -7,8 +7,7 @@ class CreateInvoices < ActiveRecord::Migration[7.0]
       t.date :payment_date
       t.text :comment
       t.string :progress
-      t.references :user, null: false, foreign_key: true
-      t.references :debtor, null: false, foreign_key: true
+      t.references :relationship, null: false, foreign_key: true
 
       t.timestamps
     end
