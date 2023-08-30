@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_30_091215) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_30_085727) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,13 +56,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_091215) do
     t.date "payment_date"
     t.text "comment"
     t.string "progress"
-    t.bigint "user_id", null: false
-    t.bigint "debtor_id", null: false
+    t.bigint "relationship_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "due_date"
-    t.index ["debtor_id"], name: "index_invoices_on_debtor_id"
-    t.index ["user_id"], name: "index_invoices_on_user_id"
+    t.index ["relationship_id"], name: "index_invoices_on_relationship_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -105,8 +103,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_091215) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "invoices", "debtors"
-  add_foreign_key "invoices", "users"
+  add_foreign_key "invoices", "relationships"
   add_foreign_key "relationships", "debtors"
   add_foreign_key "relationships", "users"
   add_foreign_key "reminders", "invoices"
