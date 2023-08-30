@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["card", "button"]
+  static targets = ["card", "button", "icon"]
 
   filter = []
 
@@ -44,7 +44,7 @@ export default class extends Controller {
     this.buttonTargets.forEach((button) => {
       const buttonStatus = button.dataset.status;
       const shouldShow = this.filter.includes(buttonStatus);
-      button.classList.toggle("btn-purple", shouldShow);
+      button.classList.toggle("btn-purple-click", shouldShow);
     })
   }
 
