@@ -45,14 +45,8 @@ export default class extends Controller {
       const buttonStatus = button.dataset.status;
       const shouldShow = this.filter.includes(buttonStatus);
       button.classList.toggle("btn-select-index", shouldShow);
-    })
-  }
-
-  filterAllButtons() {
-    this.buttonTargets.forEach((button) => {
-      const buttonStatus = button.dataset.status;
-      const shouldShow = this.filter.includes(buttonStatus);
-      button.classList.toggle("btn-select-index", shouldShow);
+      const icon = button.querySelector("[data-progress-search-target='icon']");
+            icon.classList.toggle("d-none", !shouldShow);
     })
   }
 
