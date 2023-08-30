@@ -1,25 +1,48 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="progress-search"
 export default class extends Controller {
-  static targets = ["progress"]
+  static targets = ["card"]
 
   connect() {
+    this.filters = []
   }
 
   searchTraiter() {
-    console.log("a traiter");
+    // ajouter le statut cliqué dans l'array this.filter ou l'enlever si présent
+    // jouer la methode filterAllCards
+    this.filterCards("a-traiter");
   }
 
   searchEcheance() {
-    console.log("echeance");
+    this.filterCards("avant-echeance");
   }
 
   searchAmiable() {
-    console.log("amiable");
+    this.filterCards("phase-amiable");
   }
 
   searchJuridique() {
-    console.log("juridique");
+    this.filterCards("juridique");
+  }
+
+  filterAllCards() {
+    // forEach card
+    // vérifier si cardStatus === un élément de l'array this.filter
+    // si c'est le cas class remove d.none
+    // sinon add d-none
+  }
+
+  filterCards(status) {
+    this.cardTargets.forEach((card) => {
+      const cardStatus = card.dataset.status;
+      console.log(cardStatus === status || status === "Tous");
+      console.log(cardStatus);
+      console.log(status);
+      if (cardStatus === status ) {
+        card.classList.remove("d-none");
+      } else {
+        card.classList.add("d-none");
+      }
+    });
   }
 }

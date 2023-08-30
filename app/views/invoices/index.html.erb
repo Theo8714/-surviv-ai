@@ -35,7 +35,8 @@
       <div class="cards">
         <% @invoices.each do |invoice|%>
           <div class="card card-beige"
-               data-progress-search-target="progress">
+               data-progress-search-target="card"
+               data-status="<%= invoice.progress.parameterize %>">
             <p>Client : <%= invoice.debtor.company_name %></p>
             <p>Numéro de facture : <strong><%= invoice.number %> </strong></p>
             <p>Montant de l'encours : <%= invoice.amount %>€</p>
