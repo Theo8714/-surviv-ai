@@ -1,0 +1,15 @@
+<% case rating %>
+<% when 5 %>
+  <strong> A </strong>
+<% when 4 %>
+  <strong> B </strong>
+<% when 3 %>
+  <strong> C </strong>
+<% when 2 %>
+  <strong> D </strong>
+<% when 1 %>
+  <strong> E </strong>
+<% else %>
+  <!-- Gérer le cas où la note n'est pas dans la plage valide -->
+  <strong> En cours d'analyse par l'agence</strong>
+<% end %>

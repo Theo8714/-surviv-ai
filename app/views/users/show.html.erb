@@ -6,6 +6,17 @@
     <div class="card mb-4">
       <div class="card-body">
         <h5 class="card-title">Analyses pour <%= debtor_analyzer.debtor.company_name %></h5>
+          <p class='card-text'>Note calculée par l'équipe Surviv.Ai :
+              <%= render "shared/ratings", rating: debtor_analyzer.relationship.rating %>
+          </p>
+          <p class="card-text">
+            Montant moyen des factures : <strong><%= debtor_analyzer.average %> EUR</strong>
+            <i class="fas fa-coins ml-2"></i>
+          </p>
+          <p class="card-text">
+            Montant total des factures impayées : <strong><%= debtor_analyzer.unpaid_amount %> EUR</strong>
+          <i class="fas fa-exclamation-triangle ml-2"></i>
+          </p>
          <p class="card-text">
           Montant total des factures : <strong><%= debtor_analyzer.total_invoices_amount %> EUR</strong>
           <i class="fas fa-coins ml-2"></i>
