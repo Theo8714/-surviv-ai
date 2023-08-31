@@ -45,6 +45,7 @@
 }
 
 .custom-tooltip:hover::after {
+  display: block;
   content: attr(data-title);
   z-index: 1000;
   background-color: #E5EEFE;
@@ -56,8 +57,4 @@
   top: -30%;
   left: 140%;
   text-align: center;
-
-}
-.custom-tooltip:hover::after {
-  display: block;
 }
