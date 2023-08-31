@@ -17,14 +17,18 @@ class InvoicesController < ApplicationController
     @user = current_user
     @invoice = Invoice.new
     @debtor = Debtor.new
+    @relationship = Relationship.new
   end
 
   def create
     @invoice = Invoice.new(invoice_params)
-    @invoice.user = current_user
+    @relationship = Relationship.new
+    @relationship.user = current_user
     @debtor = Debtor.find_by(siren: params[:invoice][:siren])
     @debtor ||= Debtor.create(siren: params[:invoice][:siren], company_name: "Entreprise à créer")
-    @invoice.debtor = @debtor
+    @relationship.debtor = @debtor
+    @relationship.save
+    @invoice.relationship = @relationship
     if @invoice.save
       redirect_to invoices_path
     else
@@ -50,6 +54,7 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:number, :amount, :emission_date, :due_date, :comment, :progress, :debtor_id, :file)
+    params.require(:invoice).permit(:number, :amount, :emission_date, :due_date, :comment,
+                                    :progress, :relationship_id, :file)
   end
 end
