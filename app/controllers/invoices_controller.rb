@@ -32,14 +32,10 @@ class InvoicesController < ApplicationController
     if @invoice.save
       redirect_to invoices_path
     else
+      raise
       render :new, status: :unprocessable_entity
     end
   end
-
-  # def edit
-  #   @invoice = Invoice.find(params[:id])
-  #   @user = User.find(params[:user_id])
-  # end
 
   def update
     @invoice = Invoice.find(params[:id])
@@ -54,7 +50,6 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:number, :amount, :emission_date, :due_date, :comment,
-                                    :progress, :relationship_id, :file)
+    params.require(:invoice).permit(:number, :amount, :emission_date, :due_date, :comment, :progress, :relationship_id, :file)
   end
 end
