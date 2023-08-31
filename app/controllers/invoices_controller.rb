@@ -1,12 +1,5 @@
 class InvoicesController < ApplicationController
   # before_action :authenticate_user!
-  # def index
-  #   @invoices = current_user.invoices.order(emission_date: :desc)
-  #   if params[:query].present?
-  #     sql_subquery = "number ILIKE :query "
-  #     @invoices = @invoices.where(sql_subquery, query: "%#{params[:query]}%")
-  #   end
-  # end
   def index
     @invoices = current_user.invoices.order(emission_date: :desc)
     if params[:query].present?
@@ -39,7 +32,6 @@ class InvoicesController < ApplicationController
     if @invoice.save
       redirect_to invoices_path
     else
-      raise
       render :new, status: :unprocessable_entity
     end
   end
