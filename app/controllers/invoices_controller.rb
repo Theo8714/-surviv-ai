@@ -47,11 +47,18 @@ class InvoicesController < ApplicationController
   def update
     @invoice = Invoice.find(params[:id])
     @invoice.update(invoice_params)
+    @invoice.payment_date? @invoice.progress = "Payée"
     if @invoice.save
       redirect_to invoice_path(@invoice)
     else
+      raise
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def archives
+    @invoices = current_user.invoices.order(emission_date: :desc)
+    @invoices_paid = @invoices.where(progress: "Payée")
   end
 
   private
