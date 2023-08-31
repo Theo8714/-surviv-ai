@@ -1,20 +1,56 @@
 <h1>Tableau de bord</h1>
 
 <div class="container mt-4">
-  <h2>Analyses des débiteurs</h2>x
+  <h2>Analyses des débiteurs</h2>
   <% @debtor_analyzers.each do |debtor_analyzer| %>
     <div class="card mb-4">
       <div class="card-body">
         <h5 class="card-title">Analyses pour <%= debtor_analyzer.debtor.company_name %></h5>
-        <p class="card-text">
-          Montant moyen des factures : <strong><%= debtor_analyzer.average %> EUR</strong>
+         <p class="card-text">
+          Montant total des factures : <strong><%= debtor_analyzer.total_invoices_amount %> EUR</strong>
           <i class="fas fa-coins ml-2"></i>
         </p>
         <p class="card-text">
           Montant total des factures impayées : <strong><%= debtor_analyzer.unpaid_amount %> EUR</strong>
           <i class="fas fa-exclamation-triangle ml-2"></i>
         </p>
+        <p class="card-text">
+          Nombre de facture en retard de paiement : <strong><%= debtor_analyzer.overdue_invoices_count %></strong>
+          <i class="fas fa-exclamation-triangle ml-2"></i>
+        </p>
+        <p class="card-text">
+          Nombre total de rappels envoyés: <strong><%= debtor_analyzer.reminders_sent %></strong>
+          <i class="fas fa-exclamation-triangle ml-2"></i>
+        </p>
       </div>
     </div>
   <% end %>
+</div>
+
+
+
+<div class="container mt-4">
+  <h2>Analyses des débiteurs</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Entreprise</th>
+        <th>Montant total des factures</th>
+        <th>Montant total des factures impayées</th>
+        <th>Nombre de factures en retard</th>
+        <th>Nombre total de rappels envoyés</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @debtor_analyzers.each do |debtor_analyzer| %>
+        <tr>
+          <td><%= debtor_analyzer.debtor.company_name %></td>
+          <td><%= debtor_analyzer.total_invoices_amount %> EUR</td>
+          <td><%= debtor_analyzer.unpaid_amount %> EUR</td>
+          <td><%= debtor_analyzer.overdue_invoices_count %></td>
+          <td><%= debtor_analyzer.reminders_sent %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
