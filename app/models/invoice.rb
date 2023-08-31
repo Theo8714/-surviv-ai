@@ -13,7 +13,6 @@ class Invoice < ApplicationRecord
   # validates :number, uniqueness: true
 
   def set_progress
-    self.progress = "À traiter"
+    self.progress == "" ? self.progress = "À traiter" : self.progress
   end
 end
-
