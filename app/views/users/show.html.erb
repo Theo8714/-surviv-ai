@@ -7,22 +7,7 @@
       <div class="card-body">
         <h5 class="card-title">Analyses pour <%= debtor_analyzer.debtor.company_name %></h5>
           <p class='card-text'>Note calculée par l'équipe Surviv.Ai :
-              <% rating = debtor_analyzer.relationship.rating %>
-              <% case rating %>
-              <% when 5 %>
-                <strong> A </strong>
-              <% when 4 %>
-                <strong> B </strong>
-              <% when 3 %>
-                <strong> C </strong>
-              <% when 2 %>
-                <strong> D </strong>
-              <% when 1 %>
-                <strong> E </strong>
-              <% else %>
-                <!-- Gérer le cas où la note n'est pas dans la plage valide -->
-                <strong> En cours d'analyse par l'agence</strong>
-              <% end %>
+              <%= render "shared/ratings", rating: debtor_analyzer.relationship.rating %>
           </p>
           <p class="card-text">
             Montant moyen des factures : <strong><%= debtor_analyzer.average %> EUR</strong>
