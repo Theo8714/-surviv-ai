@@ -1,5 +1,6 @@
 class Invoice < ApplicationRecord
   before_validation :set_progress, on: :create
+  attr_reader :siren
 
   PROGRESS = ["À traiter", "Avant échéance", "Phase amiable", "Juridique", "Payé"]
   belongs_to :relationship
@@ -13,7 +14,7 @@ class Invoice < ApplicationRecord
   # validates :number, uniqueness: true
 
   def set_progress
-    if self.progress.empty?
+    if self.progress.nil?
       self.progress = "À traiter"
     end
   end

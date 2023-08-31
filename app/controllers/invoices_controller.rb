@@ -22,17 +22,14 @@ class InvoicesController < ApplicationController
 
   def create
     @invoice = Invoice.new(invoice_params)
-    @relationship = Relationship.new
-    @relationship.user = current_user
     @debtor = Debtor.find_by(siren: params[:invoice][:siren])
     @debtor ||= Debtor.create(siren: params[:invoice][:siren], company_name: "Entreprise à créer")
-    @relationship.debtor = @debtor
+    @relationship = Relationship.find_or_initialize_by(debtor: @debtor, user: current_user)
     @relationship.save
     @invoice.relationship = @relationship
     if @invoice.save
       redirect_to invoices_path
     else
-      raise
       render :new, status: :unprocessable_entity
     end
   end
