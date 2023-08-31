@@ -162,12 +162,11 @@ require 'faker'
 # puts "reminder creation done"
 
 puts "delete all"
-
 Reminder.destroy_all
 Invoice.destroy_all
+Relationship.destroy_all
 Debtor.destroy_all
 User.destroy_all
-Relationship.destroy_all
 
 puts "creation ongoing"
 
@@ -216,11 +215,31 @@ inv2 = Invoice.new(
   number: Faker::Invoice.reference,
   amount: 100,
   emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
-  progress: "Phase Amiable"
+  progress: "Phase amiable"
 )
 inv2.due_date = due_date(inv2.emission_date)
 inv2.relationship = re1
 inv2.save
+
+inv3 = Invoice.new(
+  number: Faker::Invoice.reference,
+  amount: 200,
+  emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+  progress: "Juridique"
+)
+inv3.due_date = due_date(inv3.emission_date)
+inv3.relationship = re1
+inv3.save
+
+inv4 = Invoice.new(
+  number: Faker::Invoice.reference,
+  amount: 100,
+  emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+  progress: "Avant échéance"
+)
+inv4.due_date = due_date(inv4.emission_date)
+inv4.relationship = re1
+inv4.save
 
 puts "invoices creation done"
 
