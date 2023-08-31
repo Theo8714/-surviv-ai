@@ -186,14 +186,26 @@ debtor1 = Debtor.create!(
   siren: "000000000"
 )
 
+debtor2 = Debtor.create!(
+  company_name: "BTP Group Paris",
+  siren: "111111111"
+)
+
 puts "debtors creation done"
 
 re1 = Relationship.new(
-  rating: 3
+  rating: 4
 )
 re1.user = boris
 re1.debtor = debtor1
 re1.save
+
+re2 = Relationship.new(
+  rating: 2
+)
+re2.user = boris
+re2.debtor = debtor2
+re2.save
 
 puts "relationships creation done"
 
@@ -218,7 +230,7 @@ inv2 = Invoice.new(
   progress: "Phase amiable"
 )
 inv2.due_date = due_date(inv2.emission_date)
-inv2.relationship = re1
+inv2.relationship = re2
 inv2.save
 
 inv3 = Invoice.new(
@@ -228,7 +240,7 @@ inv3 = Invoice.new(
   progress: "Juridique"
 )
 inv3.due_date = due_date(inv3.emission_date)
-inv3.relationship = re1
+inv3.relationship = re2
 inv3.save
 
 inv4 = Invoice.new(
@@ -240,6 +252,17 @@ inv4 = Invoice.new(
 inv4.due_date = due_date(inv4.emission_date)
 inv4.relationship = re1
 inv4.save
+
+
+inv5 = Invoice.new(
+  number: Faker::Invoice.reference,
+  amount: 100,
+  emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+  progress: "Payé"
+)
+inv5.due_date = due_date(inv5.emission_date)
+inv5.relationship = re1
+inv5.save
 
 puts "invoices creation done"
 
