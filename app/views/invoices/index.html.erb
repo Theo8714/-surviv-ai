@@ -1,15 +1,16 @@
 <div class="container">
   <h1 class="my-3">Liste des factures</h1>
-  <div class="search-bar ">
+  <div class="search-bar">
     <%= form_with url: invoices_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query,
             params[:query],
             class: "form-control",
-            placeholder: "Filtre par numéro de facture"
+            placeholder: "Filtre par numéro de facture ou par nom d'entreprise"
         %>
-      <%= submit_tag "Filtrer", name: "", class: "btnn btn-blue" %>
+      <%= submit_tag "Filtrer", name: "", class: "btnn btn-blue ml-2" %>
     <% end %>
-    </div>
+  </div>
+</div>
     <div class="row justify-content-start "
          data-controller="progress-search">
 
