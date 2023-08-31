@@ -7,7 +7,7 @@
  .form-control, .ts-control {
 background-color: white;
 border: 1px solid black;
-border-radius: 8px;
+border-radius: 0px;
   .text {
     color: #8195f8;
   }
@@ -16,14 +16,19 @@ border-radius: 8px;
  }
  }
 }
+.bg-white{
+  background-color: white;
+  border-radius: 10px;
+}
 
 .search-bar
 {
+  margin-left: 20px;
   margin-top: 8px;
   top: 1000px;
   border: 1px solid black;
   border-radius: 10px;
-
+  width: 1140px;
 
 
   .btn-blue.btn-blue {
@@ -39,6 +44,7 @@ border-radius: 8px;
  .form-control {
   border: none;
   border-radius: 10px;
+
   background-color: white;
   color: #90CBFE;
 
