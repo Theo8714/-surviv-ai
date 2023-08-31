@@ -7,5 +7,29 @@ class UsersController < ApplicationController
       deb_analyze.perform
       deb_analyze
     end
+    # Dans votre action show
+    @chart_data = {
+      labels: @debtor_analyzers.map { |analyzer| analyzer.debtor.company_name },
+      datasets: [{
+        label: 'Montant total des factures',
+        backgroundColor: '#3B82F6',
+        data: @debtor_analyzers.map(&:total_invoices_amount)
+      },
+      {
+        label: 'Montant total des factures impayées',
+        backgroundColor: '#EF4444',
+        data: @debtor_analyzers.map(&:unpaid_amount)
+      }]
+    }
+
+    @chart_options = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
   end
 end

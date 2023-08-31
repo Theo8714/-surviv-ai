@@ -1,5 +1,4 @@
 class DebtorAnalyzer
-
   attr_reader :debtor, :unpaid_amount, :total_invoices_amount, :overdue_invoices_count, :reminders_sent, :average, :relationship
 
   def initialize(relationship)
@@ -33,7 +32,7 @@ class DebtorAnalyzer
     unpaid_invoices = @invoices.where(progress: ["Phase amiable", "Juridique"])
     @unpaid_amount = unpaid_invoices.sum(:amount)
   end
-  
+
   def calculate_average_days_late
     total_days = 0
     @invoices.each do |invoice|
@@ -61,7 +60,7 @@ class DebtorAnalyzer
               end
     @relationship.save
   end
-  
+
   def calculate_overdue_invoices_count
     @overdue_invoices_count = @invoices.where("due_date < ? AND progress = ?", Date.today, "Phase amiable").count
   end
