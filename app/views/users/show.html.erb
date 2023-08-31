@@ -1,19 +1,37 @@
 <h1>Tableau de bord</h1>
 
 <div class="container mt-4">
-  <h2>Analyses des débiteurs</h2>x
+  <h2>Analyses des débiteurs</h2>
   <% @debtor_analyzers.each do |debtor_analyzer| %>
     <div class="card mb-4">
       <div class="card-body">
         <h5 class="card-title">Analyses pour <%= debtor_analyzer.debtor.company_name %></h5>
-        <p class="card-text">
-          Montant moyen des factures : <strong><%= debtor_analyzer.average %> EUR</strong>
-          <i class="fas fa-coins ml-2"></i>
-        </p>
-        <p class="card-text">
-          Montant total des factures impayées : <strong><%= debtor_analyzer.unpaid_amount %> EUR</strong>
+          <p class='card-text'>Note calculée par l'équipe Surviv.Ai :
+              <% rating = debtor_analyzer.relationship.rating %>
+              <% case rating %>
+              <% when 5 %>
+                <strong> A </strong>
+              <% when 4 %>
+                <strong> B </strong>
+              <% when 3 %>
+                <strong> C </strong>
+              <% when 2 %>
+                <strong> D </strong>
+              <% when 1 %>
+                <strong> E </strong>
+              <% else %>
+                <!-- Gérer le cas où la note n'est pas dans la plage valide -->
+                <strong> En cours d'analyse par l'agence</strong>
+              <% end %>
+          </p>
+          <p class="card-text">
+            Montant moyen des factures : <strong><%= debtor_analyzer.average %> EUR</strong>
+            <i class="fas fa-coins ml-2"></i>
+          </p>
+          <p class="card-text">
+            Montant total des factures impayées : <strong><%= debtor_analyzer.unpaid_amount %> EUR</strong>
           <i class="fas fa-exclamation-triangle ml-2"></i>
-        </p>
+          </p>
       </div>
     </div>
   <% end %>

@@ -253,16 +253,27 @@ inv4.due_date = due_date(inv4.emission_date)
 inv4.relationship = re1
 inv4.save
 
-
 inv5 = Invoice.new(
   number: Faker::Invoice.reference,
   amount: 100,
-  emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+  emission_date: '2023-07-23',
+  payment_date: '2023-10-30',
   progress: "Payé"
 )
 inv5.due_date = due_date(inv5.emission_date)
-inv5.relationship = re1
+inv5.relationship = re2
 inv5.save
+
+inv6 = Invoice.new(
+  number: Faker::Invoice.reference,
+  amount: 400,
+  emission_date: '2023-05-23',
+  payment_date: '2023-06-30',
+  progress: "Payé"
+)
+inv6.due_date = due_date(inv6.emission_date)
+inv6.relationship = re1
+inv6.save
 
 puts "invoices creation done"
 
