@@ -48,11 +48,13 @@
   display: block;
   content: attr(data-title);
   z-index: 1000;
-  background-color: #E5EEFE;
-  color: black;
+  background-color: #081325;
+  color: white;
   width:max-content;
   padding: 8px;
   border-radius: 3px;
+  //border: 1px solid black;
+  //box-shadow: 3px 3px 1px #D1D4FF;
   position: absolute;
   top: -30%;
   left: 140%;
