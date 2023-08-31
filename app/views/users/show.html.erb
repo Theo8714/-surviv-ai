@@ -1,38 +1,40 @@
 <h1>Tableau de bord</h1>
 
-<div class="container mt-4">
+<div class="container mt-2">
   <h2>Analyses des débiteurs</h2>
   <% @debtor_analyzers.each do |debtor_analyzer| %>
-    <div class="card mb-4">
+    <div class="card-show-user mb-4">
       <div class="card-body">
         <h5 class="card-title">Analyses pour <%= debtor_analyzer.debtor.company_name %></h5>
-          <p class='card-text'>Note calculée par l'équipe Surviv.Ai :
-              <%= render "shared/ratings", rating: debtor_analyzer.relationship.rating %>
-          </p>
-          <p class="card-text">
-            Montant moyen des factures : <strong><%= debtor_analyzer.average %> EUR</strong>
-            <i class="fas fa-coins ml-2"></i>
-          </p>
-          <p class="card-text">
-            Montant total des factures impayées : <strong><%= debtor_analyzer.unpaid_amount %> EUR</strong>
+
+          <p class="mb-1">Note calculée par l'équipe Surviv.Ai :</p>
+           <%= render "shared/ratings", rating: debtor_analyzer.relationship.rating %>
+            <i class="fa-regular fa-star fa-solid"></i>
+          <p class="mb-1">
+            Montant total des factures impayées : </p>
+            <strong><%= debtor_analyzer.unpaid_amount %> EUR</strong>
           <i class="fas fa-exclamation-triangle ml-2"></i>
-          </p>
-         <p class="card-text">
-          Montant total des factures : <strong><%= debtor_analyzer.total_invoices_amount %> EUR</strong>
+
+          <p class="mb-1">
+            Montant total des factures : </p>
+            <strong><%= debtor_analyzer.total_invoices_amount %> EUR</strong>
           <i class="fas fa-coins ml-2"></i>
-        </p>
-        <p class="card-text">
-          Montant total des factures impayées : <strong><%= debtor_analyzer.unpaid_amount %> EUR</strong>
+
+        <p class="mb-1">
+          Montant total des factures impayées : </p>
+          <strong><%= debtor_analyzer.unpaid_amount %> EUR</strong>
           <i class="fas fa-exclamation-triangle ml-2"></i>
-        </p>
-        <p class="card-text">
-          Nombre de facture en retard de paiement : <strong><%= debtor_analyzer.overdue_invoices_count %></strong>
+
+        <p class="mb-1">
+          Nombre de facture en retard de paiement : </p>
+          <strong><%= debtor_analyzer.overdue_invoices_count %></strong>
           <i class="fas fa-exclamation-triangle ml-2"></i>
-        </p>
-        <p class="card-text">
-          Nombre total de rappels envoyés: <strong><%= debtor_analyzer.reminders_sent %></strong>
+
+        <p class="mb-1">
+          Nombre total de rappels envoyés: </p>
+          <strong><%= debtor_analyzer.reminders_sent %></strong>
           <i class="fas fa-exclamation-triangle ml-2"></i>
-        </p>
+
       </div>
     </div>
   <% end %>
