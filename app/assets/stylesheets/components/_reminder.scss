@@ -1,13 +1,22 @@
-.info-reminders{
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid rgb(0, 0, 0);
-  max-width: 1075px;
-  margin: 0px;
+.reminders {
+  border: 1px solid #ddd; /* Ajoutez une bordure autour de la section des rappels */
+  padding: 10px; /* Ajoutez de l'espacement intérieur pour améliorer la lisibilité */
 }
 
 .title-reminders {
   display: flex;
   justify-content: space-between;
-  border-bottom: 1px solid black;
+  background-color: #f0f0f0; /* Ajoutez un fond gris pour les titres des colonnes */
+  padding: 5px 0; /* Ajoutez un peu d'espacement vertical pour les titres */
+  font-weight: bold; /* Rendez les titres en gras */
+  border-bottom: 1px solid #ddd; /* Ajoutez une bordure en bas des titres */
 }
+
+.info-reminders {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0; /* Ajoutez de l'espacement vertical entre les éléments de rappel */
+  border-bottom: 1px solid #ddd; /* Ajoutez une bordure en bas de chaque élément de rappel */
+}
+
+/* Vous pouvez personnaliser davantage le style selon vos préférences */
