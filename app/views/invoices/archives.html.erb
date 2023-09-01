@@ -1,3 +1,17 @@
+<div class="col-sm-11 my-3">
+      <div class="search-bar my-2">
+          <%= form_with url: invoices_path, method: :get, class: "d-flex" do %>
+            <%= text_field_tag :query,
+                  params[:query],
+                  class: "form-control",
+                  placeholder: "Filtre par numéro de facture ou par nom d'entreprise"
+              %>
+            <%= submit_tag "Filtrer", name: "", class: "btnn btn-blue ml-2" %>
+          <% end %>
+        </div>
+
+
+
 <div class="body-show">
   <div class="container">
     <h1 class="my-3">Liste des factures archivées</h1>
