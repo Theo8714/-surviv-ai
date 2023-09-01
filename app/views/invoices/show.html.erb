@@ -49,12 +49,12 @@
   <div class="mt-5 mx-3">
     <div class="reminders">
       <h3>Relances :</h3>
-      <div class="title-reminders">
-        <div class="row">
-          <div class="col-4"><strong>Type de relance :</strong></div>
-          <div class="col-4 text-center"><strong>Date de la relance :</strong></div>
-          <div class="col-4 text-end"><strong>État de la relance :</strong></div>
-        </div>
+      <div class="title-reminders d-flex justify-content-between">
+
+          <div class=""><strong>Type de relance :</strong></div>
+          <div class=" text-center"><strong>Date de la relance :</strong></div>
+          <div class=" text-end"><strong>État de la relance :</strong></div>
+
       </div>
       <% @invoice.reminders.each do |reminder| %>
         <div class="info-reminders d-flex justify-content-between">
