@@ -20,6 +20,7 @@
 .table {
   width: 97% !important;
   border-radius: 50px 50px 50px 50px !important;
+ margin-bottom: 16px !important;
   tr td {
 
   background-color: white !important;}
@@ -39,4 +40,20 @@
 
 .table-rounded {
   border-radius: 10px; /* Modifiez la valeur selon vos préférences */
+}
+
+tr:last-child {
+  td:first-child {
+    border-radius: 0px 0px 0px 8px;
+  }
+  td:last-child {
+    border-radius: 0px 0px 8px 0px;
+  }
+}
+
+.border-radius-left {
+  border-radius: 8px 0px 0px 0px;
+}
+.border-radius-right {
+  border-radius: 0px 8px 0px 0px;
 }
