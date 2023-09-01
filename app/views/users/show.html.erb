@@ -18,33 +18,33 @@
 
               <!-- Note calculée par l'équipe Surviv.Ai -->
               <div class="d-flex justify-content-between align-items-center px-3 text-blue">
-                <strong><p class="mb-1">Note calculée par l'équipe Surviv.Ai :</p></strong>
+                <strong><p class="mb-1"><strong>Note calculée par l'équipe Surviv.Ai :</strong></p></strong>
                 <p><%= render "shared/ratings", rating: debtor_analyzer.relationship.rating %>
                 <i class="fa-regular fa-star fa-solid"></i></p>
               </div>
               <!-- Montant total des factures -->
               <div class="d-flex justify-content-between align-items-center text-green px-3">
-                <strong><p class="mb-1">Montant total des factures :</p></strong>
+                <p class="mb-1"><strong>Montant total des factures :</strong></p>
                 <p><strong><%= debtor_analyzer.total_invoices_amount %> EUR</strong>
                 <i class="fas fa-coins ml-2"></i></p>
               </div>
               <!-- Montant total des factures impayées -->
               <div class="d-flex justify-content-between align-items-center px-3 text-red">
-                <strong><p class="mb-1">Montant total des factures impayées :</p></strong>
+                <strong><p class="mb-1"><strong>Montant total des factures impayées :</strong></p></strong>
                 <p><strong><%= debtor_analyzer.unpaid_amount %> EUR</strong>
                 <i class="fas fa-exclamation-triangle ml-2"></i></p>
               </div>
               <!-- Nombre de factures en retard de paiement -->
               <div class="d-flex justify-content-between align-items-center px-3 text-red">
-                <strong><p class="mb-1">Nombre de facture en retard de paiement :</p></strong>
+                <strong><p class="mb-1"><strong>Nombre de facture en retard de paiement :</strong></p></strong>
                 <p><strong><%= debtor_analyzer.overdue_invoices_count %></strong>
                 <i class="fas fa-exclamation-triangle ml-2"></i></p>
               </div>
               <!-- Nombre total de rappels envoyés -->
-              <div class="d-flex justify-content-between align-items-center text-warning px-3">
-                <strong><p class="mb-1">Nombre total de rappels envoyés:</p></strong>
+              <div class="d-flex justify-content-between align-items-center text-warning px-3 text-bold">
+                <p class="mb-1"><strong>Nombre total de rappels envoyés:</strong></p>
                   <p><strong><%= debtor_analyzer.reminders_sent %></strong>
-                <i class="fas fa-exclamation-triangle ml-2"></i></p>
+               </p>
               </div>
             </div>
           </div>
@@ -55,7 +55,7 @@
 
 <!-- Section Graphique -->
 <div class="graph-container container mt-4">
-  <h2>Graphique récapitulatif</h2>
+  <h2 class="mt-2 mb-4">Graphique récapitulatif</h2>
   <!-- Graphique -->
   <canvas
     class="graph-chart"
@@ -67,16 +67,17 @@
 
 <!-- Section Analyses récapitulatives des débiteurs -->
 <div class="container mt-4">
-  <h2>Analyses récapitulatives des débiteurs</h2>
+  <h2 class="my-4">Analyses récapitulatives des débiteurs</h2>
   <!-- Tableau récapitulatif -->
-  <table class="table">
+  <div class="container-table" >
+  <table class="table table-rounded">
     <thead>
       <tr>
-        <th>Entreprise</th>
+        <th class="border-radius-left">Entreprise</th>
         <th>Montant total des factures</th>
         <th>Montant total des factures impayées</th>
         <th>Nombre de factures en retard</th>
-        <th>Nombre total de rappels envoyés</th>
+        <th class="border-radius-right">Nombre total de rappels envoyés</th>
       </tr>
     </thead>
     <tbody>
@@ -91,4 +92,5 @@
       <% end %>
     </tbody>
   </table>
+  </div>
 </div>
