@@ -1,71 +1,50 @@
 
 
-<div class="container">
+<div class="container" data-controller="toggle">
   <div class="row">
-    <div class="col-6 d-flex align-items-center justify-content-center">
-      <div class="card-show card-grey">
-        <div class="display-info">
-          <h4 class="mb-3"><strong> <%= @invoice.debtor.company_name %> </strong></h4>
-        </div>
-        <div class="display-info row">
-          <p><div class="col-6 text-start"><strong>Numéro de facture : </strong></div><div class="col-6 text-end "><%= @invoice.number %> </strong></div></p>
-        </div>
-        <div class="display-info row">
-          <p><div class="col-6 text-start"><strong> Montant de l'encours : </strong></div><div class="col-6 text-end "><%= @invoice.amount %>€ </strong></div></p>
-        </div>
-        <div class="row display-info ">
-
-          <p> <div class="col-6 text-start"><strong>Date d'émission: </strong></div><div class="col-6 text-end "> <%= @invoice.emission_date %></strong></div></p>
-        </div>
-        <div class="display-info row">
-          <p><div class="col-6 text-start"><strong>Date de l'échéance :</strong> </div><div class="col-6 text-end "><%= @invoice.due_date %> </strong></div></p>
-        </div>
-        <div class="display-info row">
-          <p><div class="col-6 text-start"><strong>Statut de la facture :</strong> </div><div class="col-6 text-end "><%= @invoice.progress %> </strong></div></p>
-        </div>
-
-        <div class="bottom-cards-show ">
-          <% if @invoice.file.attached? %>
-              <div class="show-img">
-                <%= cl_image_tag(@invoice.file.key, :format => :png) %>
+      <div class="col-12 d-flex align-items-center justify-content-center">
+          <div class="card-show card-grey">
+              <div class="display-info">
+                <h4 class="mb-3"><strong> <%= @invoice.debtor.company_name %> </strong></h4>
               </div>
-          <% end %>
-            <div class="button-container">
-              <%= link_to "Edit ta facture", invoices_path, class: "btnn btn-round btn-medium btn-purple " %>
-              <%= link_to "Liste des factures", invoices_path, class: "btnn btn-round btn-medium btn-beige" %>
-            </div>
-        </div>
-      </div>
-   </div>
-    <div class="col-6 ">
-      <div class="container my-4">
-        <div class="row justify-content-center">
-          <div class="forms col-md-6">
-            <%= simple_form_for [@user, @invoice], html: { class: 'custom-form' } do |f| %>
-              <h2 class="text-center mb-4 title">Ici tu peux modifier ta facture</h2>
-            <div class="d-flex justify-content-evenly">
-              <h5>Débiteur : <%= @invoice.debtor.company_name %></h5>
-            </div>
-              <div class="mt-4">
-                  <%= f.input :number, label: 'Numéro de la facture' %>
-                  <%= f.input :amount, label: 'Montant de la facture'%>
-                  <%= f.input :emission_date, as: :string, label: "Date d'émission de la facture",
-                              input_html: { data: { controller: "datepicker" } }%>
-                  <%= f.input :due_date, as: :string, label: "Date d'échéance de la facture",
-                              input_html: { data: { controller: "datepicker" } }%>
-                  <%= f.input :comment, label: "Commentaires" %>
-                  <%= f.input :payment_date, as: :string, label: "Date de paiement de la facture",
-                              input_html: { data: { controller: "datepicker" } }%>
-                <div class="d-flex justify-content-evenly">
-                  <%= f.submit "Valide ta modification", class: "btn btn-blue  btn-medium mt-3 align" %>
+              <div class="display-info row">
+                <p><div class="col-6 text-start"><strong>Numéro de facture : </strong></div><div class="col-6 text-end "><%= @invoice.number %> </strong></div></p>
+              </div>
+              <div class="display-info row">
+                <p><div class="col-6 text-start"><strong> Montant de l'encours : </strong></div><div class="col-6 text-end "><%= @invoice.amount %>€ </strong></div></p>
+              </div>
+              <div class="row display-info ">
+                <p><div class="col-6 text-start"><strong>Date d'émission: </strong></div><div class="col-6 text-end "> <%= @invoice.emission_date %></strong></div></p>
+              </div>
+              <div class="display-info row">
+                <p><div class="col-6 text-start"><strong>Date de l'échéance :</strong> </div><div class="col-6 text-end "><%= @invoice.due_date %> </strong></div></p>
+              </div>
+              <div class="bottom-cards-show ">
+                <div class="show-img">
+                  <%= cl_image_tag(@invoice.file.key, :format => :png) %>
                 </div>
-                <% end %>
+                <div class="button-container">
+                  <button data-action="" class="btnn btn-round btn-medium btn-purple " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" >Edit ta facture </button>
+                  <%= link_to "Liste des factures", invoices_path, class: "btnn btn-round btn-medium btn-beige" %>
+                </div>
               </div>
           </div>
-        </div>
-      </div>
-    </div>
+       </div>
   </div>
+
+  <div class="offcanvas offcanvas-end canva-blue" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+
+  <div class="my-3 d-flex justify-content-center " >
+        <div data-toggle-target="togglableElement" class="">
+          <%= render 'form', user: @user, invoice: @invoice %>
+        </div>
+  </div>
+  </div>
+</div>
 
   <% if @invoice.reminders.exists? %>
     <div class="mt-5 mx-3">
