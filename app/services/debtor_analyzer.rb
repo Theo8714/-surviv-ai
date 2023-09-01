@@ -11,7 +11,6 @@ class DebtorAnalyzer
   def perform
     # calculate_average_invoice_amount
     calculate_total_unpaid_amount
-    calculate_average_days_late
     calculate_total_invoices_amount
     calculate_overdue_invoices_count
     total_reminders_sent
