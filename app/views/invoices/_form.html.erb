@@ -14,6 +14,8 @@
                   <%= f.input :due_date, as: :string, label: "Date d'échéance de la facture",
                               input_html: { data: { controller: "datepicker" } }%>
                   <%= f.input :comment, label: "Commentaires"%>
+                  <%= f.input :payment_date, as: :string, label: "Date de paiement de la facture",
+                              input_html: { data: { controller: "datepicker" } }%>
                 <div class="d-flex justify-content-evenly">
                   <%= f.submit "Valide ta modification", class: "btn btn-blue btn-square btn-medium mt-3 align" %>
                 </div>
