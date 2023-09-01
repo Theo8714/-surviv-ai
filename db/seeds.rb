@@ -245,7 +245,7 @@ end
 
 10.times do
   invoice = Invoice.new(
-    number: Faker::Invoice.reference,
+    number: Faker::Number.between(from: 100000, to: 9999999),
     amount: Faker::Number.between(from: 50, to: 500),
     emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
     progress: ["À traiter", "Phase amiable", "Juridique", "Avant échéance"].sample
@@ -257,12 +257,13 @@ end
 
 5.times do
   invoice = Invoice.new(
-    number: Faker::Invoice.reference,
+    number: Faker::Number.between(from: 100000, to: 9999999),
     amount: Faker::Number.between(from: 50, to: 500),
     emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
     progress: "Payé"
   )
   invoice.due_date = due_date(invoice.emission_date)
+  invoice.payment_date = invoice.due_date + rand(0..30)
   invoice.relationship = Relationship.all.sample
   invoice.save
 end
