@@ -5,13 +5,13 @@ class Relationship < ApplicationRecord
 
   def calculate_average_rating(average_days)
     case average_days
-      when 0
+      when 0..3
         self.rating = 5
-      when 1..4
+      when 4..9
         self.rating = 4
-      when 5..13
+      when 10..19
         self.rating = 3
-      when 14..29
+      when 20..29
         self.rating = 2
       else
         self.rating = 1
