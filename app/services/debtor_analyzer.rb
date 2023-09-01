@@ -41,6 +41,8 @@ class DebtorAnalyzer
         total_days += days_until_paid if days_until_paid.positive?
       end
       average_days = @invoices.count.positive? ? total_days.to_f / @invoices.count : 0
+      average_days = @relationship.payment_days
+      @relationship.save
       calculate_average_rating(average_days)
     end
   end
