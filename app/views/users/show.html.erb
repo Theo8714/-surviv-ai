@@ -5,40 +5,64 @@
 
 <!-- Section Analyses des débiteurs -->
 <div class="container mt-2">
-  <h2>Analyses des débiteurs</h2>
-  <% @debtor_analyzers.each do |debtor_analyzer| %>
-    <!-- Card avec les analyses pour chaque débiteur -->
-    <div class="card-show-user mb-4">
-      <div class="card-body">
-        <h5 class="card-title">Analyses pour <%= debtor_analyzer.debtor.company_name %></h5>
+  <h2 class="my-3 ">Analyses des débiteurs</h2>
+    <div class="row">
+      <% @debtor_analyzers.each do |debtor_analyzer| %>
+        <!-- Card avec les analyses pour chaque débiteur -->
+        <div class="col-6 my-3">
+          <h5 class="card-title ms-3">Analyses pour <%= debtor_analyzer.debtor.company_name %> :</h5>
 
-        <!-- Note calculée par l'équipe Surviv.Ai -->
-        <p class="mb-1">Note calculée par l'équipe Surviv.Ai :</p>
-        <%= render "shared/ratings", rating: debtor_analyzer.relationship.rating %>
-        <i class="fa-regular fa-star fa-solid"></i>
+          <div class="card-show-user card-large mb-4">
 
-        <!-- Montant total des factures impayées -->
-        <p class="mb-1">Montant total des factures impayées :</p>
-        <strong><%= debtor_analyzer.unpaid_amount %> EUR</strong>
-        <i class="fas fa-exclamation-triangle ml-2"></i>
+            <div class="card-body d-flex flex-column justify-content-center w-100">
 
-        <!-- Montant total des factures -->
-        <p class="mb-1">Montant total des factures :</p>
-        <strong><%= debtor_analyzer.total_invoices_amount %> EUR</strong>
-        <i class="fas fa-coins ml-2"></i>
-
-        <!-- Nombre de factures en retard de paiement -->
-        <p class="mb-1">Nombre de facture en retard de paiement :</p>
-        <strong><%= debtor_analyzer.overdue_invoices_count %></strong>
-        <i class="fas fa-exclamation-triangle ml-2"></i>
-
-        <!-- Nombre total de rappels envoyés -->
-        <p class="mb-1">Nombre total de rappels envoyés:</p>
-        <strong><%= debtor_analyzer.reminders_sent %></strong>
-        <i class="fas fa-exclamation-triangle ml-2"></i>
-      </div>
+              <!-- Note calculée par l'équipe Surviv.Ai -->
+              <div class="d-flex justify-content-between align-items-center px-3 text-blue">
+                <strong><p class="mb-1">Note calculée par l'équipe Surviv.Ai :</p></strong>
+                <p><%= render "shared/ratings", rating: debtor_analyzer.relationship.rating %>
+                <i class="fa-regular fa-star fa-solid"></i></p>
+              </div>
+              <!-- Montant total des factures -->
+              <div class="d-flex justify-content-between align-items-center text-green px-3">
+                <strong><p class="mb-1">Montant total des factures :</p></strong>
+                <p><strong><%= debtor_analyzer.total_invoices_amount %> EUR</strong>
+                <i class="fas fa-coins ml-2"></i></p>
+              </div>
+              <!-- Montant total des factures impayées -->
+              <div class="d-flex justify-content-between align-items-center px-3 text-red">
+                <strong><p class="mb-1">Montant total des factures impayées :</p></strong>
+                <p><strong><%= debtor_analyzer.unpaid_amount %> EUR</strong>
+                <i class="fas fa-exclamation-triangle ml-2"></i></p>
+              </div>
+              <!-- Nombre de factures en retard de paiement -->
+              <div class="d-flex justify-content-between align-items-center px-3 text-red">
+                <strong><p class="mb-1">Nombre de facture en retard de paiement :</p></strong>
+                <p><strong><%= debtor_analyzer.overdue_invoices_count %></strong>
+                <i class="fas fa-exclamation-triangle ml-2"></i></p>
+              </div>
+              <!-- Nombre total de rappels envoyés -->
+              <div class="d-flex justify-content-between align-items-center text-warning px-3">
+                <strong><p class="mb-1">Nombre total de rappels envoyés:</p></strong>
+                  <p><strong><%= debtor_analyzer.reminders_sent %></strong>
+                <i class="fas fa-exclamation-triangle ml-2"></i></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
+</div>
+
+<!-- Section Graphique -->
+<div class="graph-container container mt-4">
+  <h2>Graphique récapitulatif</h2>
+  <!-- Graphique -->
+  <canvas
+    class="graph-chart"
+    data-controller="chart"
+    data-chart-type-value="bar"
+    data-chart-data-value="<%= @chart_data.to_json %>"
+  ></canvas>
 </div>
 
 <!-- Section Analyses récapitulatives des débiteurs -->
@@ -67,16 +91,4 @@
       <% end %>
     </tbody>
   </table>
-</div>
-
-<!-- Section Graphique -->
-<div class="graph-container container mt-4">
-  <h2>Graphique récapitulatif</h2>
-  <!-- Graphique -->
-  <canvas
-    class="graph-chart"
-    data-controller="chart"
-    data-chart-type-value="bar"
-    data-chart-data-value="<%= @chart_data.to_json %>"
-  ></canvas>
 </div>
