@@ -1,5 +1,5 @@
 .reminders {
-  border: 1px solid #ddd; /* Ajoutez une bordure autour de la section des rappels */
+  /* Ajoutez une bordure autour de la section des rappels */
   padding: 10px; /* Ajoutez de l'espacement intérieur pour améliorer la lisibilité */
 }
 
@@ -7,7 +7,7 @@
   display: flex;
   justify-content: space-between;
   background-color: #f0f0f0; /* Ajoutez un fond gris pour les titres des colonnes */
-  padding: 5px 0; /* Ajoutez un peu d'espacement vertical pour les titres */
+  padding: 5px 5px; /* Ajoutez un peu d'espacement vertical pour les titres */
   font-weight: bold; /* Rendez les titres en gras */
   border-bottom: 1px solid #ddd; /* Ajoutez une bordure en bas des titres */
 }
