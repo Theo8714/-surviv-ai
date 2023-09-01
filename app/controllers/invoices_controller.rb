@@ -2,11 +2,15 @@ class InvoicesController < ApplicationController
   # before_action :authenticate_user!
   def index
     @invoices = current_user.invoices.order(emission_date: :desc)
+    # if params[:query].present?
+    #   sql_subquery_number = "number ILIKE :query"
+    #   sql_subquery_company = "debtors.company_name ILIKE :query"
+    #   search_column = params[:search_by] == 'number' ? sql_subquery_number : sql_subquery_company
+    #   @invoices = @invoices.joins(relationship: :debtor).where(search_column, query: "%#{params[:query]}%")
+    # end
     if params[:query].present?
-      sql_subquery_number = "number ILIKE :query"
-      sql_subquery_company = "debtors.company_name ILIKE :query"
-      search_column = params[:search_by] == 'number' ? sql_subquery_number : sql_subquery_company
-      @invoices = @invoices.joins(relationship: :debtor).where(search_column, query: "%#{params[:query]}%")
+      search_query = "%#{params[:query]}%"
+      @invoices = @invoices.joins(relationship: :debtor).where("number ILIKE :query OR debtors.company_name ILIKE :query", query: search_query)
     end
   end
 
