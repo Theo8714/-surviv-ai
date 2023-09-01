@@ -20,9 +20,11 @@
                 <p><div class="col-6 text-start"><strong>Date de l'échéance :</strong> </div><div class="col-6 text-end "><%= @invoice.due_date %> </strong></div></p>
               </div>
               <div class="bottom-cards-show ">
+                <% if @invoice.file.attached? %>
                 <div class="show-img">
                   <%= cl_image_tag(@invoice.file.key, :format => :png) %>
                 </div>
+                <% end %>
                 <div class="button-container">
                   <button data-action="" class="btnn btn-round btn-medium btn-purple " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" >Edit ta facture </button>
                   <%= link_to "Liste des factures", invoices_path, class: "btnn btn-round btn-medium btn-beige" %>

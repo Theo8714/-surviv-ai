@@ -1,5 +1,5 @@
 class DebtorAnalyzer
-  attr_reader :debtor, :unpaid_amount, :total_invoices_amount, :overdue_invoices_count, :reminders_sent, :average, :relationship
+  attr_reader :debtor, :unpaid_amount, :total_invoices_amount, :overdue_invoices_count, :reminders_sent, :average, :relationship, :average_days
 
   def initialize(relationship)
     @debtor = relationship.debtor
@@ -33,19 +33,6 @@ class DebtorAnalyzer
     @unpaid_amount = unpaid_invoices.sum(:amount)
   end
 
-  def calculate_average_days_late
-    total_days = 0
-    @invoices.each do |invoice|
-      unless invoice.payment_date.nil?
-        days_until_paid = (invoice.payment_date - invoice.due_date)
-        total_days += days_until_paid if days_until_paid.positive?
-      end
-      average_days = @invoices.count.positive? ? total_days.to_f / @invoices.count : 0
-      average_days = @relationship.payment_days
-      @relationship.save
-      calculate_average_rating(average_days)
-    end
-  end
 
   def calculate_average_rating(average_days)
     @rating = case average_days

@@ -55,6 +55,9 @@ class InvoicesController < ApplicationController
   def archives
     @invoices = current_user.invoices.order(emission_date: :desc)
     @invoices_paid = @invoices.where(progress: "Payé")
+    @invoices_paid.each do |invoice|
+      invoice.calculate_average_days_late
+    end
   end
 
   private
