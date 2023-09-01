@@ -20,10 +20,10 @@ require 'faker'
 
 # puts "user done"
 
-debtor1 = Debtor.create!(
-  company_name: "Anderson, Barrows and Boehm",
-  siren: "000000000"
-)
+# debtor1 = Debtor.create!(
+#   company_name: "Anderson, Barrows and Boehm",
+#   siren: "000000000"
+# )
 
 # # debtor2 = Debtor.create!(
 # #   company_name: "BTP Group Paris",
@@ -208,6 +208,11 @@ boris = User.create!(
 
 puts "user done"
 
+debtor1 = Debtor.create!(
+  company_name: "Anderson, Barrows and Boehm",
+  siren: "000000000"
+)
+
 5.times do
   debtor = Debtor.new(
     company_name: Faker::Company.name,
@@ -218,12 +223,17 @@ end
 
 puts "debtors creation done"
 
-10.times do
-  relationship = Relationship.new(
-    rating: rand(1..5)
-  )
-  relationship.user = User.all.sample
-  relationship.debtor = Debtor.all.sample
+# 10.times do
+#   relationship = Relationship.new(
+#     rating: rand(1..5)
+#   )
+#   relationship.user = boris
+
+Debtor.all.each do |debtor|
+  relationship = Relationship.new
+  relationship.rating = rand(1..5)
+  relationship.user = boris
+  relationship.debtor = debtor
   relationship.save
 end
 
@@ -239,6 +249,18 @@ end
     amount: Faker::Number.between(from: 50, to: 500),
     emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
     progress: ["À traiter", "Phase amiable", "Juridique", "Avant échéance"].sample
+  )
+  invoice.due_date = due_date(invoice.emission_date)
+  invoice.relationship = Relationship.all.sample
+  invoice.save
+end
+
+5.times do
+  invoice = Invoice.new(
+    number: Faker::Invoice.reference,
+    amount: Faker::Number.between(from: 50, to: 500),
+    emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+    progress: "Payé"
   )
   invoice.due_date = due_date(invoice.emission_date)
   invoice.relationship = Relationship.all.sample
