@@ -1,5 +1,13 @@
-<div class="col-sm-11 my-3">
-      <div class="search-bar my-2">
+
+
+
+
+<div class="body-show">
+  <div class="container">
+    <h1 class="my-4">Liste des factures archivées</h1>
+
+    <div class="col-sm-11 my-3">
+      <div class="search-bar my-2 ms-5">
           <%= form_with url: invoices_path, method: :get, class: "d-flex" do %>
             <%= text_field_tag :query,
                   params[:query],
@@ -9,12 +17,6 @@
             <%= submit_tag "Filtrer", name: "", class: "btnn btn-blue ml-2" %>
           <% end %>
         </div>
-
-
-
-<div class="body-show">
-  <div class="container">
-    <h1 class="my-3">Liste des factures archivées</h1>
       <div class="cards my-3">
         <% @invoices_paid.each do |invoice|%>
           <div class="card card-white">
