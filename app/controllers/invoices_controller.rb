@@ -2,11 +2,15 @@ class InvoicesController < ApplicationController
   # before_action :authenticate_user!
   def index
     @invoices = current_user.invoices.order(emission_date: :desc)
+    # if params[:query].present?
+    #   sql_subquery_number = "number ILIKE :query"
+    #   sql_subquery_company = "debtors.company_name ILIKE :query"
+    #   search_column = params[:search_by] == 'number' ? sql_subquery_number : sql_subquery_company
+    #   @invoices = @invoices.joins(relationship: :debtor).where(search_column, query: "%#{params[:query]}%")
+    # end
     if params[:query].present?
-      sql_subquery_number = "number ILIKE :query"
-      sql_subquery_company = "debtors.company_name ILIKE :query"
-      search_column = params[:search_by] == 'number' ? sql_subquery_number : sql_subquery_company
-      @invoices = @invoices.joins(relationship: :debtor).where(search_column, query: "%#{params[:query]}%")
+      search_query = "%#{params[:query]}%"
+      @invoices = @invoices.joins(relationship: :debtor).where("number ILIKE :query OR debtors.company_name ILIKE :query", query: search_query)
     end
   end
 
@@ -39,16 +43,23 @@ class InvoicesController < ApplicationController
   def update
     @invoice = Invoice.find(params[:id])
     @invoice.update(invoice_params)
+    @invoice.progress = "Payé" if @invoice.payment_date?
     if @invoice.save
-      redirect_to invoice_path(@invoice)
+      flash[:notice] = "La facture a bien été modifiée en payée"
+      redirect_to archives_invoices_path
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
+  def archives
+    @invoices = current_user.invoices.order(emission_date: :desc)
+    @invoices_paid = @invoices.where(progress: "Payé")
+  end
+
   private
 
   def invoice_params
-    params.require(:invoice).permit(:number, :amount, :emission_date, :due_date, :comment, :progress, :relationship_id, :file)
+    params.require(:invoice).permit(:number, :amount, :emission_date, :due_date, :comment, :progress, :relationship_id, :file, :payment_date)
   end
 end

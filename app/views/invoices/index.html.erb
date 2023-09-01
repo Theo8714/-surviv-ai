@@ -55,6 +55,7 @@
 
       <div class="cards my-3">
         <% @invoices.each do |invoice|%>
+          <% if invoice.progress != "Payé" %>
           <div class="card card-white "
                data-progress-search-target="card"
                data-status="<%= invoice.progress.parameterize %>">
@@ -83,8 +84,8 @@
 
                 <%= link_to "Voir plus", invoice_path(invoice), class: "btnn btn-round btn-purple btn-small" %>
 
-
           </div>
+        <% end %>
         <% end %>
       </div>
     </div>
