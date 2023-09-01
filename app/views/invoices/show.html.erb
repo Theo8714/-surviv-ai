@@ -33,22 +33,22 @@
   </div>
 
   <div class="offcanvas offcanvas-end canva-blue" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-  <div class="offcanvas-header">
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
+    <div class="offcanvas-header">
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
 
-  <div class="my-3 d-flex justify-content-center " >
-        <div data-toggle-target="togglableElement" class="">
-          <%= render 'form', user: @user, invoice: @invoice %>
-        </div>
+    <div class="offcanvas-body">
+      <div class="my-3 d-flex justify-content-center " >
+            <div data-toggle-target="togglableElement" class="">
+              <%= render 'form', user: @user, invoice: @invoice %>
+            </div>
+      </div>
+    </div>
   </div>
-  </div>
-</div>
   <% if @invoice.reminders.exists? %>
   <div class="mt-5 mx-3">
     <div class="reminders">
-      <h3>Les relances sur cette facture :</h3>
+      <h3>Relances :</h3>
       <div class="title-reminders">
         <div class="row">
           <div class="col-4"><strong>Type de relance :</strong></div>
@@ -57,7 +57,7 @@
         </div>
       </div>
       <% @invoice.reminders.each do |reminder| %>
-        <div class="info-reminders row">
+        <div class="info-reminders d-flex justify-content-between">
           <div class="col-4 text-start">
             <p><%= reminder.reminder_type %></p>
           </div>
