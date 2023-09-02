@@ -8,8 +8,8 @@
 
       <% if user_signed_in? %>
 
-       <%= link_to user_path(current_user), data:{:title => "Tableau de bord"}, class: "custom-tooltip position-relative"   do %>
-     <i class="fa-solid fa-house fa-2xl" ></i>
+      <%= link_to user_path(current_user), data:{:title => "Tableau de bord"}, class: "custom-tooltip position-relative"   do %>
+        <i class="fa-solid fa-house fa-2xl" ></i>
       <% end %>
 
       <%= link_to  invoices_path,  data:{:title => "Mes factures"}, class: "custom-tooltip position-relative"   do %>
