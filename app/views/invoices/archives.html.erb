@@ -1,13 +1,9 @@
-
-
-
-
 <div class="body-show">
   <div class="container">
     <h1 class="my-4">Liste des factures archivées</h1>
 
     <div class="col-sm-11 my-3">
-      <div class="search-bar my-2 ms-5">
+      <div class="search-bar my-2 ms-4">
           <%= form_with url: invoices_path, method: :get, class: "d-flex" do %>
             <%= text_field_tag :query,
                   params[:query],
@@ -21,7 +17,7 @@
         <% @invoices_paid.each do |invoice|%>
           <div class="card card-white">
             <div class="top-card">
-              <p class="text-blue"><strong><%= invoice.debtor.company_name %> </strong> </p>
+              <p class="text-blue-light"><strong><%= invoice.debtor.company_name %> </strong> </p>
             </div>
             <div class="middle-card">
               <div class="d-flex justify-content-between w-100">

@@ -3,12 +3,10 @@
   <h1 class="my-3">Liste des factures</h1>
 
 
-    <div class="row justify-content-start  "
-         data-controller="progress-search">
-
+    <div class="row justify-content-start  " data-controller="progress-search">
       <div class="col-sm-1 marge-filter d-flex-column">
         <div class="sticky-filter">
-        <P><STROng>Filtrer par</STROng></P>
+          <P><STROng>Filtrer par</STROng></P>
         <button class="btnn-index my-2 border-bottom"
                 style="width: 200"
                 data-action="click->progress-search#searchTraiter"
@@ -60,7 +58,7 @@
                data-progress-search-target="card"
                data-status="<%= invoice.progress.parameterize %>">
             <div class="top-card">
-              <p class="text-blue"><strong><%= invoice.debtor.company_name %> </strong> </p>
+              <p class="text-blue-light"><strong><%= invoice.debtor.company_name %> </strong> </p>
             </div>
             <div class="middle-card">
 
