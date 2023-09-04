@@ -1,92 +1,147 @@
-<div class="body-show">
-<div class="container">
-  <h1 class="my-3">Liste des factures</h1>
-
-
-    <div class="row justify-content-start  " data-controller="progress-search">
-      <div class="col-sm-1 marge-filter d-flex-column">
-        <div class="sticky-filter">
-          <P><STROng>Filtrer par</STROng></P>
-        <button class="btnn-index my-2 border-bottom"
-                style="width: 200"
-                data-action="click->progress-search#searchTraiter"
-                data-progress-search-target="button"
-                data-status="a-traiter">
-                <i class="fa-solid fa-check d-none" data-progress-search-target="icon"></i>
-                A traiter</button>
-        <button class="btnn-index my-2 border-bottom"
-                style="width: 200"
-                data-action="click->progress-search#searchEcheance"
-                data-progress-search-target="button"
-                data-status="avant-echeance">
-                <i class="fa-solid fa-check d-none" data-progress-search-target="icon"></i>
-                Avant échéance</button>
-        <button class="btnn-index my-2 border-bottom"
-                style="width: 200"
-                data-action="click->progress-search#searchAmiable"
-                data-progress-search-target="button"
-                data-status="phase-amiable">
-                <i class="fa-solid fa-check d-none" data-progress-search-target="icon"></i>
-                Phase amiable</button>
-        <button class="btnn-index my-2 border-bottom"
-                style="width: 200"
-                data-action="click->progress-search#searchJuridique"
-                data-progress-search-target="button"
-                data-status="juridique">
-                <i class="fa-solid fa-check d-none" data-progress-search-target="icon"></i>
-                Juridique</button>
-        </div>
-      </div>
-
-<div class="col-sm-11 my-3">
-      <div class="search-bar my-2">
-          <%= form_with url: invoices_path, method: :get, class: "d-flex bg-white" do %>
-            <%= text_field_tag :query,
-                  params[:query],
-                  class: "form-control",
-                  placeholder: "Filtre par numéro de facture ou par nom d'entreprise"
-              %>
-            <%= submit_tag "Filtrer", name: "", class: "btnn btn-square-filter btn-blue ml-2" %>
-          <% end %>
-        </div>
-
-
-      <div class="cards my-3">
-        <% @invoices.each do |invoice|%>
-          <% if invoice.progress != "Payé" %>
-          <div class="card card-white "
-               data-progress-search-target="card"
-               data-status="<%= invoice.progress.parameterize %>">
-            <div class="top-card">
-              <p class="text-blue-light"><strong><%= invoice.debtor.company_name %> </strong> </p>
+<div data-controller="toggle">
+  <div class="body-show">
+    <div class="container">
+      <h1 class="my-3">Liste des factures</h1>
+          <div class="view-choice row">
+            <div class="col-6 clicked center" data-toggle-target="toggableCl">
+              <button><i class="fa-solid fa-table-cells-large fa-lg" style="color: #071425;" data-action="click->toggle#fire" ></i></button>
             </div>
-            <div class="middle-card">
-
-              <div class="d-flex justify-content-between w-100">
-                  <p><strong>Numéro de facture :</strong> </p>
-                  <p><%= invoice.number %> </p>
-              </div>
-              <div class="d-flex justify-content-between w-100">
-                  <p><strong>Montant de l'encours :</strong></p>
-                  <p><%= number_with_precision(invoice.amount, precision: 2, separator: ',') %>€</p>
-              </div>
-              <div class="d-flex justify-content-between w-100">
-                  <p><strong>Date d'émission:</strong></p>
-                  <p><%= invoice.emission_date.strftime("%d/%m/%y") %></p>
-              </div>
-              <div class="d-flex justify-content-between w-100">
-                  <p><strong>Date de l'échéance :</strong></p>
-                  <p><%= invoice.due_date.strftime("%d/%m/%y") %></p>
-              </div>
+            <div class="col-6 center"  data-toggle-target="toggableClass">
+              <button><i class="fa-solid fa-list fa-lg" style="color: #071425;" class="" data-action="click->toggle#fire" ></i></button>
             </div>
-
-                <%= link_to "Voir plus", invoice_path(invoice), class: "btnn btn-round btn-purple btn-small" %>
-
           </div>
-        <% end %>
-        <% end %>
-      </div>
+          <div class="row justify-content-start  " data-controller="progress-search">
+            <div class="col-sm-1 marge-filter d-flex-column">
+              <div class="sticky-filter">
+                <P><STROng>Filtrer par</STROng></P>
+                  <button class="btnn-index my-2 border-bottom"
+                          style="width: 200"
+                          data-action="click->progress-search#searchTraiter"
+                          data-progress-search-target="button"
+                          data-status="a-traiter">
+                          <i class="fa-solid fa-check d-none" data-progress-search-target="icon"></i>
+                          A traiter</button>
+                  <button class="btnn-index my-2 border-bottom"
+                          style="width: 200"
+                          data-action="click->progress-search#searchEcheance"
+                          data-progress-search-target="button"
+                          data-status="avant-echeance">
+                          <i class="fa-solid fa-check d-none" data-progress-search-target="icon"></i>
+                          Avant échéance</button>
+                  <button class="btnn-index my-2 border-bottom"
+                          style="width: 200"
+                          data-action="click->progress-search#searchAmiable"
+                          data-progress-search-target="button"
+                          data-status="phase-amiable">
+                          <i class="fa-solid fa-check d-none" data-progress-search-target="icon"></i>
+                          Phase amiable</button>
+                  <button class="btnn-index my-2 border-bottom"
+                          style="width: 200"
+                          data-action="click->progress-search#searchJuridique"
+                          data-progress-search-target="button"
+                          data-status="juridique">
+                          <i class="fa-solid fa-check d-none" data-progress-search-target="icon"></i>
+                          Juridique</button>
+              </div>
+            </div>
+            <div class="col-sm-11 my-3">
+                  <div class="search-bar my-2">
+                      <%= form_with url: invoices_path, method: :get, class: "d-flex bg-white" do %>
+                        <%= text_field_tag :query,
+                              params[:query],
+                              class: "form-control",
+                              placeholder: "Filtre par numéro de facture ou par nom d'entreprise"
+                          %>
+                        <%= submit_tag "Filtrer", name: "", class: "btnn btn-square-filter btn-blue ml-2" %>
+                      <% end %>
+                  </div>
+
+
+            <div class="cards my-3" data-toggle-target="togglableElem" >
+              <% @invoices.each do |invoice|%>
+                <% if invoice.progress != "Payé" %>
+                  <div class="card card-white "
+                      data-progress-search-target="card"
+                      data-status="<%= invoice.progress.parameterize %>">
+                    <div class="top-card">
+                      <p class="text-blue-light"><strong><%= invoice.debtor.company_name %> </strong> </p>
+                    </div>
+                    <div class="border-blue-light">
+                    </div>
+                      <div class="middle-card">
+
+                        <div class="d-flex justify-content-between w-100">
+                            <p><strong>Numéro de facture :</strong> </p>
+                            <p><%= invoice.number %> </p>
+                        </div>
+                        <div class="d-flex justify-content-between w-100">
+                            <p><strong>Montant de l'encours :</strong></p>
+                            <p><%= number_with_precision(invoice.amount, precision: 2, separator: ',') %>€</p>
+                        </div>
+                        <div class="d-flex justify-content-between w-100">
+                            <p><strong>Date d'émission:</strong></p>
+                            <p><%= invoice.emission_date.strftime("%d/%m/%y") %></p>
+                        </div>
+                        <div class="d-flex justify-content-between w-100">
+                            <p><strong>Date de l'échéance :</strong></p>
+                            <p><%= invoice.due_date.strftime("%d/%m/%y") %></p>
+                        </div>
+                      </div>
+                          <%= link_to "Voir plus", invoice_path(invoice), class: "btnn btn-square btn-blue btn-small" %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+
+            <div data-toggle-target="togglableElement"  class="row-container d-none">
+            <div class="row row-header sticky-row">
+                <div class="col-3">
+                  <p><strong>Nom de l'entreprise :</strong> </p>
+                </div>
+                <div class="col-8 d-flex justify-content-between text-end">
+                  <p><strong>Numéro de facture :</strong> </p>
+                  <p><strong>Montant de l'encours :</strong></p>
+                  <p><strong>Date d'émission:</strong></p>
+                  <p><strong>Date de l'échéance :</strong></p>
+                </div>
+              </div>
+              <div class="col-1">
+              </div>
+            <div class="row">
+              <% @invoices.each do |invoice|%>
+                <% if invoice.progress != "Payé" %>
+                    <div class="d-flex justify-content-between row-content text-aligns-center"
+                      data-progress-search-target="card"
+                      data-status="<%= invoice.progress.parameterize %>">
+                    <div class="top-card col-3">
+                      <p class="text-blue-light"><strong><%= invoice.debtor.company_name %> </strong> </p>
+                    </div>
+                    <div class="middle-row col-8 d-flex justify-content-between text-end ">
+                      <div class="w-100">
+                          <p><%= invoice.number %> </p>
+                      </div>
+                      <div class="w-100">
+                          <p><%= number_with_precision(invoice.amount, precision: 2, separator: ',') %>€</p>
+                      </div>
+                      <div class="w-100">
+                          <p><%= invoice.emission_date.strftime("%d/%m/%y") %></p>
+                      </div>
+                      <div class="w-100">
+                          <p><%= invoice.due_date.strftime("%d/%m/%y") %></p>
+                      </div>
+                    </div>
+                    <div class="col-1 bottom">
+                        <%= link_to  invoice_path(invoice), data:{:title => "Voir plus"}, class: "custom-tooltip-row position-relative"   do %>
+                          <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #071425;"></i>
+                        <% end %>
+
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+                </div>
+            </div>
+          </div>
     </div>
   </div>
-</div>
 </div>

@@ -1,0 +1,37 @@
+.view-choice{
+border: 1px solid black;
+border-radius: 8px;
+width: 70px;
+
+  button{
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
+  .clicked{
+
+    background-size: contain;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+  }
+}
+
+.center {
+
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  display: flex;
+  justify-content: center;
+
+}
+.sticky-row{
+  position: sticky;
+  top: 0%;
+}
