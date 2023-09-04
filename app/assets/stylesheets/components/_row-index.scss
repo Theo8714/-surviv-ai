@@ -1,0 +1,40 @@
+.row-header{
+  background-color: black;
+  position: sticky;
+  color: white;
+  box-shadow: 1px 1px 5px #081325;
+  margin-bottom: 2px;
+}
+.row-container{
+  margin-top: 32px;
+  box-shadow: 1px 3px 5px #081325;
+}
+
+.row-content {
+  border-bottom: 1px solid black;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  background-color: white;
+}
+
+.bottom {
+  display: flex;
+  justify-content: end;
+}
+
+.custom-tooltip-row:hover::after {
+  display: block;
+  content: attr(data-title);
+  z-index: 1000;
+  background-color: #081325;
+  color: white;
+  width:max-content;
+  padding: 8px;
+  border-radius: 3px;
+  //border: 1px solid black;
+  //box-shadow: 3px 3px 1px #D1D4FF;
+  position: absolute;
+  top: 40%;
+  left: -150%;
+  text-align: center;
+}
