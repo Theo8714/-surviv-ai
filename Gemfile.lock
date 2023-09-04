@@ -292,7 +292,6 @@ DEPENDENCIES
   dotenv-rails
   faker
   font-awesome-sass (~> 6.1)
-  i18n
   importmap-rails
   jbuilder
   pg (~> 1.1)
