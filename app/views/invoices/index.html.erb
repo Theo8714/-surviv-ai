@@ -77,22 +77,7 @@
                         </div>
                       </div>
                 </div>
-                <div class="card card-white "
-                  data-progress-search-target="card"
-                  data-status="<%= invoice.progress.parameterize %>">
-                <div class="top-card d-flex row justify-content-center" style="width:100%">
-                    <div class="d-flex justify-content-around col-8">
-                      <p class="text-blue-light align-items-center"><strong><%= invoice.debtor.company_name %> </strong> </p>
-                      <div class="col-2 icon-manual bg-color-<%= invoice.progress === "À traiter"? 'black' :
-                                    invoice.progress === "Avant échéance"? 'blue' :
-                                    invoice.progress === "Phase amiable"? 'yellow' :
-                                    invoice.progress === "Juridique"? 'red' : ''
-                                %>">
-                        <div class="icon-manual col-2">
-                        </div>
-                      </div>
-                    </div>
-                </div>
+
                       <div class="middle-card">
 
                         <div class="d-flex justify-content-between w-100">
@@ -114,6 +99,7 @@
                       </div>
                           <%= link_to "Voir plus", invoice_path(invoice), class: "btnn btn-square btn-blue btn-small" %>
                   </div>
+
                 <% end %>
               <% end %>
             </div>
