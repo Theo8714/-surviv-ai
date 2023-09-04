@@ -10,6 +10,7 @@
 background-color: white;
 border: 1px solid black;
 border-radius: 0px;
+width: 120%;
   .text {
     color: #8195f8;
   }
@@ -18,6 +19,11 @@ border-radius: 0px;
  }
  }
 }
+.btn-square-filter {
+  margin: 8px;
+  border-radius: 0px 10px 10px 0px !important;
+}
+
 .bg-white{
   background-color: white;
   border-radius: 10px;
