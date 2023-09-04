@@ -7,7 +7,6 @@ class UsersController < ApplicationController
       deb_analyze.perform
       deb_analyze
     end
-    # Dans votre action show
     @chart_data = {
       labels: @debtor_analyzers.map { |analyzer| analyzer.debtor.company_name },
       datasets: [{
@@ -23,6 +22,25 @@ class UsersController < ApplicationController
     }
 
     @chart_options = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+
+    @chart_data1 = {
+      labels: @debtor_analyzers.map { |analyzer| analyzer.debtor.company_name },
+      datasets: [{
+        label: 'Moyenne des Jours de Paiement',
+        backgroundColor: '#3B82F6',
+        data: @debtor_analyzers.map { |analyzer| analyzer.relationship.payment_days.to_i }
+      }]
+    }
+
+    @chart_options1 = {
       scales: {
         yAxes: [{
           ticks: {

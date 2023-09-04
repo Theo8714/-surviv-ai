@@ -16,10 +16,23 @@
         <i class="fa-solid fa-file fa-2xl"></i>
       <% end %>
 
-      <%= link_to new_invoice_path,  data:{:title => "Ajouter une facture"}, class: "custom-tooltip position-relative"   do %>
+      <%= link_to new_invoice_path, data: { title: "Ajouter une facture", bs_toggle:"offcanvas", bs_target: "#offcanvasnew" }, class: "custom-tooltip position-relative", aria: {controls: "offcanvasExample"} do %>
         <i class="fa-solid fa-plus fa-2xl"></i>
       <% end %>
 
+  <div class="offcanvas offcanvas-end canva-blue canva-size" tabindex="-1" id="offcanvasnew" aria-labelledby="offcanvasnew">
+
+      <button type="button" class="btn-close ps-3 pt-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+
+
+    <div class="offcanvas-body">
+      <div class="my-3 d-flex justify-content-center " >
+            <div data-toggle-target="togglableElement" class="size-form">
+              <%= render 'invoices/form_new', invoice: Invoice.new %>
+            </div>
+      </div>
+    </div>
+  </div>
       <%= link_to  archives_invoices_path,  data:{:title => "Mes archives"}, class: "custom-tooltip position-relative" do %>
         <i class="fa-solid fa-box-archive fa-2xl"></i>
       <% end %>

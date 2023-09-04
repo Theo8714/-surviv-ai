@@ -1,0 +1,26 @@
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <div class="forms">
+      <%= simple_form_for [invoice], html: { class: 'custom-form' } do |f| %>
+        <h1 class="text-center mb-4 ">Dépose une facture</h1>
+
+        <%= f.input :siren, label: 'SIREN du client', input_html: { value: '' } %>
+        <%= f.input :number, label: 'Numéro de la facture' %>
+        <%= f.input :amount, label: 'Montant de la facture'%>
+        <%= f.input :emission_date,
+                    as: :string,
+                    label: "Date d'émission de la facture",
+                    input_html: { data: { controller: "datepicker" } }%>
+        <%= f.input :due_date,
+                    as: :string,
+                    label: "Date d'échéance de la facture",
+                    input_html: { data: { controller: "datepicker" } }%>
+        <%= f.input :comment, label: "Commentaires"%>
+        <%= f.input :file, as: :file %>
+        <div class="d-flex justify-content-center">
+        <%= f.submit "Dépose ta facture", class: "btnn btn-square btn-medium  btn-purple my-3 " %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

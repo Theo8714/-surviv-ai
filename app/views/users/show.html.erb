@@ -93,7 +93,8 @@
           <th>Montant total des factures</th>
           <th>Montant total des factures impayées</th>
           <th>Nombre de factures en retard</th>
-          <th class="border-radius-right">Nombre total de rappels envoyés</th>
+          <th >Nombre total de rappels envoyés</th>
+          <th class="border-radius-right">DSO moyen</th>
         </tr>
       </thead>
       <tbody>
@@ -104,6 +105,7 @@
             <td><%= number_with_precision(debtor_analyzer.unpaid_amount, precision: 2, separator: ',') %> EUR</td>
             <td><%= debtor_analyzer.overdue_invoices_count %></td>
             <td><%= debtor_analyzer.reminders_sent %></td>
+            <td><%= debtor_analyzer.relationship.payment_days.to_i %>j</td>
           </tr>
         <% end %>
       </tbody>
@@ -111,3 +113,15 @@
     </div>
   </div>
 </div>
+
+
+<div class="graph-container container mt-4">
+    <h2 class="mt-2 mb-4">Graphique récapitulatif</h2>
+    <!-- Graphique -->
+    <canvas
+      class="graph-chart"
+      data-controller="chart"
+      data-chart-type-value="bar"
+      data-chart-data-value="<%= @chart_data1.to_json %>"
+    ></canvas>
+  </div>
