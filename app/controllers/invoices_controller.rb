@@ -45,15 +45,16 @@ class InvoicesController < ApplicationController
     @invoice.update(invoice_params)
     @invoice.progress = "Payé" if @invoice.payment_date?
     if @invoice.save
-      flash[:notice] = "La facture a bien été modifiée"
+      flash[:notice] = "La facture a bien été modifiée en payée"
       redirect_to archives_invoices_path
     else
       render :edit, status: :unprocessable_entity
     end
+    @invoice.relationship.calculate_payment_days
   end
 
   def archives
-    @invoices = current_user.invoices.order(payment_date: :desc)
+    @invoices = current_user.invoices.order(emission_date: :desc)
     @invoices_paid = @invoices.where(progress: "Payé")
     @invoices_paid.each do |invoice|
       invoice.calculate_average_days_late

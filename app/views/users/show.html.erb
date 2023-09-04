@@ -16,24 +16,10 @@
 
             <div class="card-show-user card-large mb-4">
 
-              <div class="card-body d-flex flex-column justify-content-center w-100">
-                <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                  var rating = <%= debtor_analyzer.relationship.rating %>;
-                  var textElement = document.querySelector(".text-color");
-
-                  if (rating = 1 ) {
-                    textElement.classList.add("text-green");
-                  } else if (rating = 2) {
-                    textElement.classList.add("text-blue");
-                  } else {
-                    textElement.classList.add("text-red");
-                  }
-                });
-              </script>
+              <div class="card-body d-flex flex-column justify-content-center w-100" data-controller="rating" data-rating="<%= debtor_analyzer.relationship.rating %>">
 
                 <!-- Note calculée par l'équipe Surviv.Ai -->
-                <div class = "text-color">
+                <div class = "text-color" data-target="rating.text" data-action="changeTextColor->rating#changeTextColor">
                   <div class="d-flex justify-content-between align-items-center px-3">
                     <strong><p class="mb-1"><strong>Note calculée par l'équipe Surviv.Ai :</strong></p></strong>
                     <p><%= render "shared/ratings", rating: debtor_analyzer.relationship.rating %>
@@ -42,7 +28,7 @@
                   <!-- Nombre de jours moyens de retard -->
                   <div class="d-flex justify-content-between align-items-center px-3">
                     <p><strong>Jours de retard moyens :</strong></p>
-                    <p><strong><%= debtor_analyzer.days %></strong></p>
+                    <p><strong><%= debtor_analyzer.relationship.payment_days.to_i %></strong></p>
                   </div>
                 </div>
                 <!-- Montant total des factures -->

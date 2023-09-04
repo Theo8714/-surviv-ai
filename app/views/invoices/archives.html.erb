@@ -20,10 +20,10 @@
               <p class="text-blue-light"><strong><%= invoice.debtor.company_name %> </strong> </p>
             </div>
             <div class="middle-card">
-              <div class="d-flex justify-content-between w-100">
+              <%# <div class="d-flex justify-content-between w-100">
                   <p><strong>Note calculée par Surviv.Ai :</strong></p>
                   <%= render "shared/ratings", rating: invoice.relationship.rating %>
-              </div>
+              <%# </div> %>
               <div class="d-flex justify-content-between w-100">
                   <p><strong>Numéro de facture :</strong> </p>
                   <p><%= invoice.number %> </p>
