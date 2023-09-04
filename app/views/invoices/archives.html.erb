@@ -20,26 +20,32 @@
               <p class="text-blue-light"><strong><%= invoice.debtor.company_name %> </strong> </p>
             </div>
             <div class="middle-card">
-              <div class="d-flex justify-content-between w-100">
+              <%# <div class="d-flex justify-content-between w-100">
                   <p><strong>Note calculée par Surviv.Ai :</strong></p>
                   <%= render "shared/ratings", rating: invoice.relationship.rating %>
-              </div>
+              <%# </div> %>
               <div class="d-flex justify-content-between w-100">
                   <p><strong>Numéro de facture :</strong> </p>
                   <p><%= invoice.number %> </p>
               </div>
               <div class="d-flex justify-content-between w-100">
                   <p><strong>Montant de facture :</strong></p>
-                  <p><%= invoice.amount %>€</p>
+                  <p><%= number_with_precision(invoice.amount, precision: 2, separator: ',') %>€</p>
               </div>
-
+              <div class="d-flex justify-content-between w-100">
+                  <p><strong>Jours de retard :</strong></p>
+                  <% unless invoice.payment_date.nil? %>
+                  <% days_until_paid = (invoice.payment_date - invoice.due_date)%>
+                  <p><%= days_until_paid.to_i %></p>
+                  <% end %>
+              </div>
               <div class="d-flex justify-content-between w-100">
                   <p><strong>Jours de retard moyen du client :</strong></p>
                   <%= invoice.relationship.payment_days %>
               </div>
               <div class="d-flex justify-content-between w-100">
                   <p><strong>Date de paiement :</strong></p>
-                  <p><%= invoice.payment_date %></p>
+                  <p><%= invoice.payment_date&.strftime("%d/%m/%y") %></p>
               </div>
             </div>
 

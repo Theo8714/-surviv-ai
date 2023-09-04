@@ -7,7 +7,6 @@ class UsersController < ApplicationController
       deb_analyze.perform
       deb_analyze
     end
-    # Dans votre action show
     @chart_data = {
       labels: @debtor_analyzers.map { |analyzer| analyzer.debtor.company_name },
       datasets: [{

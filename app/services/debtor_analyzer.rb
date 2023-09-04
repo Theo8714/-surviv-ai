@@ -1,5 +1,5 @@
 class DebtorAnalyzer
-  attr_reader :debtor, :unpaid_amount, :total_invoices_amount, :overdue_invoices_count, :reminders_sent, :average, :relationship, :average_days
+  attr_reader :debtor, :unpaid_amount, :total_invoices_amount, :overdue_invoices_count, :reminders_sent, :average, :relationship, :average_days, :days
 
   def initialize(relationship)
     @debtor = relationship.debtor
@@ -14,6 +14,7 @@ class DebtorAnalyzer
     calculate_total_invoices_amount
     calculate_overdue_invoices_count
     total_reminders_sent
+    average_days_late
   end
 
   private
@@ -55,5 +56,14 @@ class DebtorAnalyzer
 
   def total_reminders_sent
     @reminders_sent = @invoices.joins(:reminders).count
+  end
+
+  def average_days_late
+    # total_days = 0
+    # valid_invoices_count = 0
+    @relationship.calculate_payment_days
+    # @invoices.each do |invoice|
+    #   @days = invoice.relationship.payment_days
+    # end
   end
 end
