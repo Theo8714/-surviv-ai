@@ -48,13 +48,13 @@
                 <!-- Montant total des factures -->
                 <div class="d-flex justify-content-between align-items-center text-green px-3">
                   <p class="mb-1"><strong>Montant total des factures :</strong></p>
-                  <p><strong><%= debtor_analyzer.total_invoices_amount %> EUR</strong>
+                  <p><strong><%= number_with_precision(debtor_analyzer.total_invoices_amount, precision: 2, separator: ',') %> EUR</strong>
                   <i class="fas fa-coins ml-2"></i></p>
                 </div>
                 <!-- Montant total des factures impayées -->
                 <div class="d-flex justify-content-between align-items-center px-3 text-red">
                   <strong><p class="mb-1"><strong>Montant total des factures impayées :</strong></p></strong>
-                  <p><strong><%= debtor_analyzer.unpaid_amount %> EUR</strong>
+                  <p><strong><%= number_with_precision(debtor_analyzer.unpaid_amount, precision: 2, separator: ',') %> EUR</strong>
                   <i class="fas fa-exclamation-triangle ml-2"></i></p>
                 </div>
                 <!-- Nombre de factures en retard de paiement -->
@@ -110,8 +110,8 @@
         <% @debtor_analyzers.each do |debtor_analyzer| %>
           <tr>
             <td><%= debtor_analyzer.debtor.company_name %></td>
-            <td><%= debtor_analyzer.total_invoices_amount %> EUR</td>
-            <td><%= debtor_analyzer.unpaid_amount %> EUR</td>
+            <td><%= number_with_precision(debtor_analyzer.total_invoices_amount, precision: 2, separator: ',') %> EUR</td>
+            <td><%= number_with_precision(debtor_analyzer.unpaid_amount, precision: 2, separator: ',') %> EUR</td>
             <td><%= debtor_analyzer.overdue_invoices_count %></td>
             <td><%= debtor_analyzer.reminders_sent %></td>
           </tr>

@@ -11,7 +11,7 @@
                 <p><div class="col-6 text-start"><strong>Numéro de facture : </strong></div><div class="col-6 text-end "><%= @invoice.number %> </strong></div></p>
               </div>
               <div class="display-info row">
-                <p><div class="col-6 text-start"><strong> Montant de l'encours : </strong></div><div class="col-6 text-end "><%= @invoice.amount %>€ </strong></div></p>
+                <p><div class="col-6 text-start"><strong> Montant de l'encours : </strong></div><div class="col-6 text-end "><%= number_with_precision(@invoice.amount, precision: 2, separator: ',') %>€ </strong></div></p>
               </div>
               <div class="row display-info ">
                 <p><div class="col-6 text-start"><strong>Date d'émission: </strong></div><div class="col-6 text-end "> <%= @invoice.emission_date %></strong></div></p>
