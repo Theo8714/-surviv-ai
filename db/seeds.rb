@@ -268,6 +268,19 @@ end
   invoice.save
 end
 
+# Relationship.all.each do |relation|
+#   total_days = 0
+#   valid_invoices_count = 0
+#   relation.invoices.each do |invoice|
+#     days_late = invoice.payment_date - invoice.due_date)
+#     total_days += days_late
+#     valid_invoices_count += 1
+#   end
+#   average_days = valid_invoices_count.positive? ? total_days.to_f / valid_invoices_count : 0
+#   relation.payment_days = average_days
+#   relation.save
+# end
+
 puts "invoices creation done"
 
 50.times do

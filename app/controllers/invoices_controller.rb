@@ -45,7 +45,7 @@ class InvoicesController < ApplicationController
     @invoice.update(invoice_params)
     @invoice.progress = "Payé" if @invoice.payment_date?
     if @invoice.save
-      flash[:notice] = "La facture a bien été modifiée en payée"
+      flash[:notice] = "La facture a bien été modifiée"
       redirect_to archives_invoices_path
     else
       render :edit, status: :unprocessable_entity
