@@ -30,8 +30,6 @@ class Invoice < ApplicationRecord
       end
     end
     average_days = valid_invoices_count.positive? ? total_days.to_f / valid_invoices_count : 0
-    self.relationship.payment_days = average_days
-    self.relationship.save
     self.relationship.calculate_average_rating(average_days)
   end
 end
