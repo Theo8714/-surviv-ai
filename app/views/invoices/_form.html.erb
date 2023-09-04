@@ -10,9 +10,9 @@
                   <%= f.input :number, label: 'Numéro de la facture' %>
                   <%= f.input :amount, label: 'Montant de la facture'%>
                   <%= f.input :emission_date, as: :string, label: "Date d'émission de la facture",
-                              input_html: { data: { controller: "datepicker" } }%>
+                              input_html: { value: @invoice.emission_date.strftime("%d/%m/%y"), data: { controller: "datepicker" } }%>
                   <%= f.input :due_date, as: :string, label: "Date d'échéance de la facture",
-                              input_html: { data: { controller: "datepicker" } }%>
+                              input_html: { value: @invoice.due_date.strftime("%d/%m/%y"), data: { controller: "datepicker" } }%>
                   <%= f.input :comment, label: "Commentaires"%>
                   <%= f.input :payment_date, as: :string, label: "Date de paiement de la facture",
                               input_html: { data: { controller: "datepicker" } }%>

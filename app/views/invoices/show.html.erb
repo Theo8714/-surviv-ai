@@ -14,10 +14,10 @@
                 <p><div class="col-6 text-start"><strong> Montant de l'encours : </strong></div><div class="col-6 text-end "><%= @invoice.amount %>€ </strong></div></p>
               </div>
               <div class="row display-info ">
-                <p><div class="col-6 text-start"><strong>Date d'émission: </strong></div><div class="col-6 text-end "> <%= @invoice.emission_date %></strong></div></p>
+                <p><div class="col-6 text-start"><strong>Date d'émission: </strong></div><div class="col-6 text-end "> <%= @invoice.emission_date.strftime("%d/%m/%y") %></strong></div></p>
               </div>
               <div class="display-info row">
-                <p><div class="col-6 text-start"><strong>Date de l'échéance :</strong> </div><div class="col-6 text-end "><%= @invoice.due_date %> </strong></div></p>
+                <p><div class="col-6 text-start"><strong>Date de l'échéance :</strong> </div><div class="col-6 text-end "><%= @invoice.due_date.strftime("%d/%m/%y") %> </strong></div></p>
               </div>
               <div class="bottom-cards-show ">
                 <% if @invoice.file.attached? %>
@@ -64,7 +64,7 @@
             <p><%= reminder.reminder_type %></p>
           </div>
           <div class="col-4 text-center">
-            <p><%= reminder.action_date %></p>
+            <p><%= reminder.action_date.strftime("%d/%m/%y") %></p>
           </div>
           <div class="col-4 text-end">
             <p><%= reminder.progress %></p>
