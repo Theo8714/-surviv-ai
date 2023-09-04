@@ -3,42 +3,42 @@
     <h1 class="my-3">Liste des factures</h1>
 
 
-      <div class="row justify-content-start  " data-controller="progress-search">
-        <div class="col-sm-1 marge-filter d-flex-column">
-          <div class="sticky-filter">
-            <P><STROng>Filtrer par</STROng></P>
-          <button class="btnn-index my-2 border-bottom"
-                  style="width: 200"
-                  data-action="click->progress-search#searchTraiter"
-                  data-progress-search-target="button"
-                  data-status="a-traiter">
-                  <i class="fa-solid fa-check d-none" data-progress-search-target="icon"></i>
-                  A traiter</button>
-          <button class="btnn-index my-2 border-bottom"
-                  style="width: 200"
-                  data-action="click->progress-search#searchEcheance"
-                  data-progress-search-target="button"
-                  data-status="avant-echeance">
-                  <i class="fa-solid fa-check d-none" data-progress-search-target="icon"></i>
-                  Avant échéance</button>
-          <button class="btnn-index my-2 border-bottom"
-                  style="width: 200"
-                  data-action="click->progress-search#searchAmiable"
-                  data-progress-search-target="button"
-                  data-status="phase-amiable">
-                  <i class="fa-solid fa-check d-none" data-progress-search-target="icon"></i>
-                  Phase amiable</button>
-          <button class="btnn-index my-2 border-bottom"
-                  style="width: 200"
-                  data-action="click->progress-search#searchJuridique"
-                  data-progress-search-target="button"
-                  data-status="juridique">
-                  <i class="fa-solid fa-check d-none" data-progress-search-target="icon"></i>
-                  Juridique</button>
-          </div>
+    <div class="row justify-content-start  " data-controller="progress-search">
+      <div class="col-sm-1 marge-filter d-flex-column">
+        <div class="sticky-filter">
+          <P><STROng>Filtrer par</STROng></P>
+        <button class="btnn-index my-2 border-bottom"
+                style="width: 200"
+                data-action="click->progress-search#searchTraiter"
+                data-progress-search-target="button"
+                data-status="a-traiter">
+                <i class="fa-solid fa-check d-none" data-progress-search-target="icon"></i>
+                A traiter</button>
+        <button class="btnn-index my-2 border-bottom"
+                style="width: 200"
+                data-action="click->progress-search#searchEcheance"
+                data-progress-search-target="button"
+                data-status="avant-echeance">
+                <i class="fa-solid fa-check d-none" data-progress-search-target="icon"></i>
+                Avant échéance</button>
+        <button class="btnn-index my-2 border-bottom"
+                style="width: 200"
+                data-action="click->progress-search#searchAmiable"
+                data-progress-search-target="button"
+                data-status="phase-amiable">
+                <i class="fa-solid fa-check d-none" data-progress-search-target="icon"></i>
+                Phase amiable</button>
+        <button class="btnn-index my-2 border-bottom"
+                style="width: 200"
+                data-action="click->progress-search#searchJuridique"
+                data-progress-search-target="button"
+                data-status="juridique">
+                <i class="fa-solid fa-check d-none" data-progress-search-target="icon"></i>
+                Juridique</button>
         </div>
+      </div>
 
-  <div class="col-sm-11 my-3">
+      <div class="col-sm-11 my-3">
         <div class="search-bar my-2">
             <%= form_with url: invoices_path, method: :get, class: "d-flex" do %>
               <%= text_field_tag :query,
@@ -48,46 +48,50 @@
                 %>
               <%= submit_tag "Filtrer", name: "", class: "btnn btn-blue ml-2" %>
             <% end %>
-          </div>
+        </div>
+          <div class="cards my-3">
+            <% @invoices.each do |invoice|%>
+              <% if invoice.progress != "Payé" %>
+              <div class="card card-white "
+                  data-progress-search-target="card"
+                  data-status="<%= invoice.progress.parameterize %>">
+                <div class="top-card d-flex row justify-content-center" style="width:100%">
+                    <div class="d-flex justify-content-around col-8">
+                      <p class="text-blue-light align-items-center"><strong><%= invoice.debtor.company_name %> </strong> </p>
+                      <div class="col-2 icon-manual bg-color-<%= invoice.progress === "À traiter"? 'black' :
+                                    invoice.progress === "Avant échéance"? 'blue' :
+                                    invoice.progress === "Phase amiable"? 'yellow' :
+                                    invoice.progress === "Juridique"? 'red' : ''
+                                %>">
+                        <div class="icon-manual col-2">
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="middle-card">
 
-
-        <div class="cards my-3">
-          <% @invoices.each do |invoice|%>
-            <% if invoice.progress != "Payé" %>
-            <div class="card card-white "
-                data-progress-search-target="card"
-                data-status="<%= invoice.progress.parameterize %>">
-              <div class="top-card">
-                <p class="text-blue-light"><strong><%= invoice.debtor.company_name %> </strong> </p>
+                  <div class="d-flex justify-content-between w-100">
+                      <p><strong>Numéro de facture :</strong> </p>
+                      <p><%= invoice.number %> </p>
+                  </div>
+                  <div class="d-flex justify-content-between w-100">
+                      <p><strong>Montant de l'encours :</strong></p>
+                      <p><%= number_with_precision(invoice.amount, precision: 2, separator: ',') %>€</p>
+                  </div>
+                  <div class="d-flex justify-content-between w-100">
+                      <p><strong>Date d'émission:</strong></p>
+                      <p><%= invoice.emission_date.strftime("%d/%m/%y") %></p>
+                  </div>
+                  <div class="d-flex justify-content-between w-100">
+                      <p><strong>Date de l'échéance :</strong></p>
+                      <p><%= invoice.due_date.strftime("%d/%m/%y") %></p>
+                  </div>
               </div>
-              <div class="<%= invoice.progress === "À traiter"? 'background-color-black' : invoice.progress === "Avant échéance"? 'background-color-blue' : '' %>">
-              <i class="fa-sharp fa-regular fa-circle"></i>
-              </div>
-              <div class="middle-card">
 
-                <div class="d-flex justify-content-between w-100">
-                    <p><strong>Numéro de facture :</strong> </p>
-                    <p><%= invoice.number %> </p>
-                </div>
-                <div class="d-flex justify-content-between w-100">
-                    <p><strong>Montant de l'encours :</strong></p>
-                    <p><%= number_with_precision(invoice.amount, precision: 2, separator: ',') %>€</p>
-                </div>
-                <div class="d-flex justify-content-between w-100">
-                    <p><strong>Date d'émission:</strong></p>
-                    <p><%= invoice.emission_date.strftime("%d/%m/%y") %></p>
-                </div>
-                <div class="d-flex justify-content-between w-100">
-                    <p><strong>Date de l'échéance :</strong></p>
-                    <p><%= invoice.due_date.strftime("%d/%m/%y") %></p>
-                </div>
-              </div>
-
-                  <%= link_to "Voir plus", invoice_path(invoice), class: "btnn btn-round btn-purple btn-small" %>
-
+                    <%= link_to "Voir plus", invoice_path(invoice), class: "btnn btn-round btn-purple btn-small" %>
             </div>
-          <% end %>
-          <% end %>
+              <% end %>
+            <% end %>
         </div>
       </div>
     </div>
