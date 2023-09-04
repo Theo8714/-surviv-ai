@@ -6,7 +6,7 @@ class Relationship < ApplicationRecord
   def calculate_payment_days
     total_days = 0
     valid_invoices_count = 0
-    self.invoices each do |invoice|
+    self.invoices.each do |invoice|
       unless invoice.payment_date.nil?
         days_until_paid = (invoice.payment_date - invoice.due_date)
         if days_until_paid.positive?
