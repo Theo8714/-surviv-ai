@@ -59,11 +59,11 @@ class DebtorAnalyzer
   end
 
   def average_days_late
-    total_days = 0
-    valid_invoices_count = 0
+    # total_days = 0
+    # valid_invoices_count = 0
     @relationship.calculate_payment_days
-    @invoices.each do |invoice|
-      @days = invoice.relationship.payment_days
-    end
+    # @invoices.each do |invoice|
+    #   @days = invoice.relationship.payment_days
+    # end
   end
 end
