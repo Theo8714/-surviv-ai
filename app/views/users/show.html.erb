@@ -21,17 +21,17 @@
                 <!-- Note calculée par l'équipe Surviv.Ai -->
                 <div class="text-color">
                   <div class="d-flex justify-content-between align-items-center px-3">
-                    <strong><p class="mb-1 <%= debtor_analyzer.relationship.rating.to_i === 5 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 4 ? 'text-blue' : 'text-warning' %>">
+                    <strong><p class="mb-1 <%= debtor_analyzer.relationship.rating.to_i >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
                     <strong>Note calculée par l'équipe Surviv.Ai :</strong></p></strong>
-                    <p class= "<%= debtor_analyzer.relationship.rating.to_i === 5 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 4 ? 'text-blue' : 'text-warning' %>">
+                    <p class= "<%= debtor_analyzer.relationship.rating.to_i >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
                     <%= render "shared/ratings", rating: debtor_analyzer.relationship.rating %>
                     <i class="fa-regular fa-star fa-solid"></i></p>
                   </div>
                   <!-- Nombre de jours moyens de retard -->
-                  <div class="d-flex justify-content-between align-items-center px-3 <%= debtor_analyzer.relationship.rating.to_i === 5 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 4 ? 'text-blue' : 'text-warning' %>">
-                    <p class="<%= debtor_analyzer.relationship.rating === 5 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 4 ? 'text-blue' : 'text-warning' %>">
+                  <div class="d-flex justify-content-between align-items-center px-3 <%= debtor_analyzer.relationship.rating.to_i >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                    <p class="<%= debtor_analyzer.relationship.rating >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
                     <strong>Jours de retard moyens :</strong></p>
-                    <p class="<%= debtor_analyzer.relationship.rating === 5 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 4 ? 'text-blue' : 'text-warning' %>">
+                    <p class="<%= debtor_analyzer.relationship.rating >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
                     <strong><%= debtor_analyzer.relationship.payment_days %></strong></p>
                   </div>
                 </div>
