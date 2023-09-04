@@ -17,23 +17,44 @@
             <div class="card-show-user card-large mb-4">
 
               <div class="card-body d-flex flex-column justify-content-center w-100">
+                <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                  var rating = <%= debtor_analyzer.relationship.rating %>;
+                  var textElement = document.querySelector(".text-color");
+
+                  if (rating = 1 ) {
+                    textElement.classList.add("text-green");
+                  } else if (rating = 2) {
+                    textElement.classList.add("text-blue");
+                  } else {
+                    textElement.classList.add("text-red");
+                  }
+                });
+              </script>
 
                 <!-- Note calculée par l'équipe Surviv.Ai -->
-                <div class="d-flex justify-content-between align-items-center px-3 text-blue">
-                  <strong><p class="mb-1"><strong>Note calculée par l'équipe Surviv.Ai :</strong></p></strong>
-                  <p><%= render "shared/ratings", rating: debtor_analyzer.relationship.rating %>
-                  <i class="fa-regular fa-star fa-solid"></i></p>
+                <div class = "text-color">
+                  <div class="d-flex justify-content-between align-items-center px-3">
+                    <strong><p class="mb-1"><strong>Note calculée par l'équipe Surviv.Ai :</strong></p></strong>
+                    <p><%= render "shared/ratings", rating: debtor_analyzer.relationship.rating %>
+                    <i class="fa-regular fa-star fa-solid"></i></p>
+                  </div>
+                  <!-- Nombre de jours moyens de retard -->
+                  <div class="d-flex justify-content-between align-items-center px-3">
+                    <p><strong>Jours de retard moyens :</strong></p>
+                    <p><strong><%= debtor_analyzer.days %></strong></p>
+                  </div>
                 </div>
                 <!-- Montant total des factures -->
                 <div class="d-flex justify-content-between align-items-center text-green px-3">
                   <p class="mb-1"><strong>Montant total des factures :</strong></p>
-                  <p><strong><%= debtor_analyzer.total_invoices_amount %> EUR</strong>
+                  <p><strong><%= number_with_precision(debtor_analyzer.total_invoices_amount, precision: 2, separator: ',') %> EUR</strong>
                   <i class="fas fa-coins ml-2"></i></p>
                 </div>
                 <!-- Montant total des factures impayées -->
                 <div class="d-flex justify-content-between align-items-center px-3 text-red">
                   <strong><p class="mb-1"><strong>Montant total des factures impayées :</strong></p></strong>
-                  <p><strong><%= debtor_analyzer.unpaid_amount %> EUR</strong>
+                  <p><strong><%= number_with_precision(debtor_analyzer.unpaid_amount, precision: 2, separator: ',') %> EUR</strong>
                   <i class="fas fa-exclamation-triangle ml-2"></i></p>
                 </div>
                 <!-- Nombre de factures en retard de paiement -->
@@ -89,8 +110,8 @@
         <% @debtor_analyzers.each do |debtor_analyzer| %>
           <tr>
             <td><%= debtor_analyzer.debtor.company_name %></td>
-            <td><%= debtor_analyzer.total_invoices_amount %> EUR</td>
-            <td><%= debtor_analyzer.unpaid_amount %> EUR</td>
+            <td><%= number_with_precision(debtor_analyzer.total_invoices_amount, precision: 2, separator: ',') %> EUR</td>
+            <td><%= number_with_precision(debtor_analyzer.unpaid_amount, precision: 2, separator: ',') %> EUR</td>
             <td><%= debtor_analyzer.overdue_invoices_count %></td>
             <td><%= debtor_analyzer.reminders_sent %></td>
           </tr>

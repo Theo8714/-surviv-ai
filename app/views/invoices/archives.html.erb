@@ -30,9 +30,15 @@
               </div>
               <div class="d-flex justify-content-between w-100">
                   <p><strong>Montant de facture :</strong></p>
-                  <p><%= invoice.amount %>€</p>
+                  <p><%= number_with_precision(invoice.amount, precision: 2, separator: ',') %>€</p>
               </div>
-
+              <div class="d-flex justify-content-between w-100">
+                  <p><strong>Jours de retard :</strong></p>
+                  <% unless invoice.payment_date.nil? %>
+                  <% days_until_paid = (invoice.payment_date - invoice.due_date)%>
+                  <p><%= days_until_paid.to_i %></p>
+                  <% end %>
+              </div>
               <div class="d-flex justify-content-between w-100">
                   <p><strong>Jours de retard moyen du client :</strong></p>
                   <%= invoice.relationship.payment_days %>

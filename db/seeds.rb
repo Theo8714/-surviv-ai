@@ -245,9 +245,9 @@ end
 
 10.times do
   invoice = Invoice.new(
-    number: Faker::Number.between(from: 100000, to: 9999999),
-    amount: Faker::Number.between(from: 50, to: 500),
-    emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+    number: Faker::Number.between(from: 100000, to: 999999),
+    amount: Faker::Number.between(from: 200, to: 1000),
+    emission_date: Faker::Date.between(from: '2022-09-23', to: '2023-09-05'),
     progress: ["À traiter", "Phase amiable", "Juridique", "Avant échéance"].sample
   )
   invoice.due_date = due_date(invoice.emission_date)
@@ -255,11 +255,11 @@ end
   invoice.save
 end
 
-5.times do
+7.times do
   invoice = Invoice.new(
     number: Faker::Number.between(from: 100000, to: 9999999),
     amount: Faker::Number.between(from: 50, to: 500),
-    emission_date: Faker::Date.between(from: '2021-09-23', to: '2023-09-05'),
+    emission_date: Faker::Date.between(from: '2022-09-23', to: '2023-09-05'),
     progress: "Payé"
   )
   invoice.due_date = due_date(invoice.emission_date)
@@ -267,6 +267,19 @@ end
   invoice.relationship = Relationship.all.sample
   invoice.save
 end
+
+# Relationship.all.each do |relation|
+#   total_days = 0
+#   valid_invoices_count = 0
+#   relation.invoices.each do |invoice|
+#     days_late = invoice.payment_date - invoice.due_date)
+#     total_days += days_late
+#     valid_invoices_count += 1
+#   end
+#   average_days = valid_invoices_count.positive? ? total_days.to_f / valid_invoices_count : 0
+#   relation.payment_days = average_days
+#   relation.save
+# end
 
 puts "invoices creation done"
 

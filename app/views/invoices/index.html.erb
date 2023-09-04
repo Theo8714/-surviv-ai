@@ -68,7 +68,7 @@
               </div>
               <div class="d-flex justify-content-between w-100">
                   <p><strong>Montant de l'encours :</strong></p>
-                  <p><%= invoice.amount %>€</p>
+                  <p><%= number_with_precision(invoice.amount, precision: 2, separator: ',') %>€</p>
               </div>
               <div class="d-flex justify-content-between w-100">
                   <p><strong>Date d'émission:</strong></p>
