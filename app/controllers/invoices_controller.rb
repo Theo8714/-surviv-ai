@@ -31,9 +31,14 @@ class InvoicesController < ApplicationController
   end
 
   def create
-    @mindee = MindeeExtractor.new
+    @mindee = MindeeExtractor.new(params[:invoice][:file].tempfile.path)
     @mindee.perform
     extractor_hash = @mindee.extractor_hash
+
+    @debtor = Debtor.find_by(company_name: extractor_hash[:company_name])
+    @debtor ||= Debtor.create(company_name: extractor_hash[:company_name])
+    @relationship = Relationship.find_or_initialize_by(debtor: @debtor, user: current_user)
+    @relationship.save
 
     @invoice = Invoice.new(
       number: extractor_hash[:number],
@@ -43,12 +48,7 @@ class InvoicesController < ApplicationController
       progress: "À traiter"
     )
 
-    @debtor = Debtor.find_by(siren: '000000000')
-    @debtor ||= Debtor.create(siren: params[:invoice][:siren], company_name: "Entreprise à créer")
-
-    @relationship = Relationship.find_or_initialize_by(debtor: @debtor, user: current_user)
-    @relationship.save
-
+    @invoice.file = invoice_params[:file]
     @invoice.relationship = @relationship
 
     if @invoice.save

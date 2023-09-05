@@ -2,6 +2,10 @@ class MindeeExtractor
   attr_reader :extractor_hash
   # :invoice_number_f, :total_amount, :invoice_emission_date, :invoice_due, :invoice_company_name
 
+  def initialize(filepath)
+    @filepath = filepath
+  end
+
   def perform
     call_api
     invoice_number
@@ -16,7 +20,7 @@ class MindeeExtractor
 
   def call_api
     mindee_client = Mindee::Client.new(api_key: ENV["MINDEE_URL"])
-    input_source = mindee_client.source_from_path("/Users/maxime/Desktop/PANOPLI 2.pdf")
+    input_source = mindee_client.source_from_path(@filepath)
     @result = mindee_client.parse(
       input_source,
       Mindee::Product::Invoice::InvoiceV4

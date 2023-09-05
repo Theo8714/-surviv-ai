@@ -4,7 +4,7 @@ class Debtor < ApplicationRecord
   has_many :users, through: :relationships
   has_many :reminders, through: :invoices
 
-  validates :company_name, :siren, presence: true
-  validates :siren, uniqueness: true
-  validates :siren, length: { is: 9 }
+  validates :company_name, presence: true
+  # validates :siren, uniqueness: true
+  # validates :siren, length: { is: 9 }
 end
