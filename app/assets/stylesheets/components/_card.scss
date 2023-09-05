@@ -15,12 +15,32 @@ width: 350px;
 height: 350px;
 margin: 16px;
 text-align: center;
-padding: 8px;
+padding-left: 16px;
+padding-right: 16px;
 padding-top: 0px;
 padding-bottom: 16px;
 z-index: 1;
 overflow: hidden;
 }
+
+.card-invoice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 3px;
+  width: 350px;
+  height: 350px;
+  margin: 16px;
+  text-align: center;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 0px;
+  padding-bottom: 16px;
+  z-index: 1;
+  overflow: hidden;
+  position: relative;
+  }
 
 .card-grey {
   background-color: #F0F1F1;
@@ -126,6 +146,12 @@ overflow: hidden;
   border-radius: 50px 1px 3px 0px;
   right: 0%;
   border: none;
+  width: 140px;
+  height: 30px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &:hover{
     background-color: #071425;
 
@@ -133,4 +159,11 @@ overflow: hidden;
 }
 .top-card {
   z-index: 100;
+}
+.encour-size{
+  font-size: 22px;
+}
+
+.retard {
+  display: flex ;
 }

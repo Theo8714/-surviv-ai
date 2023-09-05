@@ -50,7 +50,7 @@ class InvoicesController < ApplicationController
 
     @invoice.file = invoice_params[:file]
     @invoice.relationship = @relationship
-
+    
     if @invoice.save
       redirect_to invoices_path
     else
@@ -85,10 +85,4 @@ class InvoicesController < ApplicationController
     params.require(:invoice).permit(:number, :amount, :emission_date, :siren, :due_date, :comment, :progress, :relationship_id, :file, :payment_date)
   end
 
-  def mindee_data_present?
-    @mindee.extractor_hash[:number].present? &&
-      @mindee.extractor_hash[:amount].present? &&
-      @mindee.extractor_hash[:emission_date].present? &&
-      @mindee.extractor_hash[:due_date].present?
-  end
 end

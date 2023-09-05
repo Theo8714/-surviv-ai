@@ -1,6 +1,5 @@
 class MindeeExtractor
   attr_reader :extractor_hash
-  # :invoice_number_f, :total_amount, :invoice_emission_date, :invoice_due, :invoice_company_name
 
   def initialize(filepath)
     @filepath = filepath

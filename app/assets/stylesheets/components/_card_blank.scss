@@ -1,0 +1,118 @@
+.card-blank {
+
+  height: 200px;
+  padding: 20px;
+  border-radius: 3px;
+  margin-bottom: 32px;
+  p{
+    font-size: 13px;
+    margin: 0px;
+    padding-bottom: 6px;
+  }
+  button{
+    font-size: 13px;
+    width: 160px;
+    padding: 4px;
+    padding-left: 4px !important;
+    padding-right: 4px;
+    border: none;
+  }
+}
+.card-blue {
+  color: white;
+}
+.card-blue-strong {
+  background-color: #1C2536;
+  color: white;
+}
+
+.transform-up{
+
+  transform: rotate(300deg);
+}
+.statistiques{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  background-color: #E5EEFE;
+  border-radius: 16px;
+  p{
+    padding: 0px;
+  }
+}
+
+.card-blank-statistique {
+
+
+    height: 200px;
+    padding: 20px;
+    padding-top: 0px;
+    border-radius: 3px;
+    margin-bottom: 32px;
+    p{
+      font-size: 13px;
+      margin: 0px;
+      padding-bottom: 6px;
+    }
+    button{
+      font-size: 13px;
+      width: 160px;
+      padding: 4px;
+      padding-left: 4px !important;
+      padding-right: 4px;
+      border: none;
+
+  }
+
+}
+
+.card-blank-statistique-big {
+
+
+  height: 400px;
+  padding: 20px;
+  padding-top: 0px;
+  border-radius: 3px;
+  margin-bottom: 32px;
+  p{
+    font-size: 13px;
+    margin: 0px;
+    padding-bottom: 6px;
+  }
+  button{
+    font-size: 13px;
+    width: 160px;
+    padding: 4px;
+    padding-left: 4px !important;
+    padding-right: 4px;
+    border: none;
+
+}
+
+}
+
+.card-blank-show-big{
+
+  height: 820px;
+  padding: 20px;
+  padding-top: 0px;
+  border-radius: 3px;
+  margin-bottom: 32px;
+  overflow: scroll;
+  p{
+    font-size: 13px;
+    margin: 0px;
+    padding-bottom: 6px;
+  }
+  button{
+    font-size: 13px;
+    width: 160px;
+    padding: 4px;
+    padding-left: 4px !important;
+    padding-right: 4px;
+    border: none;
+
+}
+
+}
