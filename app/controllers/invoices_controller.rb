@@ -27,27 +27,30 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new
     @debtor = Debtor.new
     @relationship = Relationship.new
-
-    if @invoice.file.attached?
-      # Init a new client
-      mindee_client = Mindee::Client.new(api_key: ENV["MINDEE_URL"])
-      # Load a file from disk
-      input_source = mindee_client.source_from_path("/Users/maxime/Desktop/ICONO 1.pdf")
-      @result = mindee_client.parse(
-        input_source,
-        Mindee::Product::Invoice::InvoiceV4
-      )
-
-    end
+    @mindee = MindeeExtractor.new
   end
 
   def create
-    @invoice = Invoice.new(invoice_params)
-    @debtor = Debtor.find_by(siren: params[:invoice][:siren])
+    @mindee = MindeeExtractor.new
+    @mindee.perform
+    extractor_hash = @mindee.extractor_hash
+
+    @invoice = Invoice.new(
+      number: extractor_hash[:number],
+      amount: extractor_hash[:amount],
+      emission_date: extractor_hash[:emission_date],
+      due_date: extractor_hash[:due_date],
+      progress: "À traiter"
+    )
+
+    @debtor = Debtor.find_by(siren: '000000000')
     @debtor ||= Debtor.create(siren: params[:invoice][:siren], company_name: "Entreprise à créer")
+
     @relationship = Relationship.find_or_initialize_by(debtor: @debtor, user: current_user)
     @relationship.save
+
     @invoice.relationship = @relationship
+
     if @invoice.save
       redirect_to invoices_path
     else
@@ -79,6 +82,13 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:number, :amount, :emission_date, :due_date, :comment, :progress, :relationship_id, :file, :payment_date)
+    params.require(:invoice).permit(:number, :amount, :emission_date, :siren, :due_date, :comment, :progress, :relationship_id, :file, :payment_date)
+  end
+
+  def mindee_data_present?
+    @mindee.extractor_hash[:number].present? &&
+      @mindee.extractor_hash[:amount].present? &&
+      @mindee.extractor_hash[:emission_date].present? &&
+      @mindee.extractor_hash[:due_date].present?
   end
 end
