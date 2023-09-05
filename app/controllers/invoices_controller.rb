@@ -23,29 +23,18 @@ class InvoicesController < ApplicationController
   end
 
   def new
-    @user = current_user
-    @invoice = Invoice.new
-    @debtor = Debtor.new
-    @relationship = Relationship.new
-
     if @invoice.file.attached?
-      # Init a new client
-      mindee_client = Mindee::Client.new(api_key: ENV["MINDEE_URL"])
-      # Load a file from disk
-      input_source = mindee_client.source_from_path("/Users/maxime/Desktop/ICONO 1.pdf")
-      @result = mindee_client.parse(
-        input_source,
-        Mindee::Product::Invoice::InvoiceV4
-      )
-
-      # Print a full summary of the parsed data in RST format
-
-      # @invoice.emission_date = result.document.inference.prediction.date.value
-      # @invoice.due_date = result.document.inference.prediction.due_date.value
-      # @invoice.amount = result.document..inference.pages.first.prediction.total_amount.value
-      # @invoice.debtor.siren = result.document.inference.prediction.customer_name.value
-      # @invoice.number = result.document.inference.pages.first.prediction.total_amount.value
+      MindeeExtractor.new.perform
+      @user = current_user
+      @invoice = Invoice.new
+      @debtor = Debtor.new
+      @relationship = Relationship.new
+    else
+      @user = current_user
+      @invoice = Invoice.new
+      @debtor = Debtor.new
     end
+    @relationship = Relationship.new
   end
 
   def create
