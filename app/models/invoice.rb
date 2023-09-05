@@ -34,4 +34,27 @@ class Invoice < ApplicationRecord
     # self.relationship.save
     # self.relationship.calculate_average_rating(average_days)
   end
+
+  def self.total_sum_archive
+    Invoice.where("payment_date >= '#{Date.today - Date.today.day + 1}'").map(&:amount).sum
+  end
+
+  def self.total_sum_before_due_date
+    @a = Invoice.where("due_date >= '#{Date.today - Date.today.day + 1}'").where(progress: "Avant échéance").map(&:amount).sum
+  end
+
+  def self.total_sum_friendly_phase
+    @b = Invoice.where(progress: "Phase amiable").map(&:amount).sum
+  end
+
+  def self.total_sum_legal_phase
+    @c = Invoice.where(progress: "Juridique").map(&:amount).sum
+  end
+
+  def self.sum_collect_by_month
+    @a = Invoice.where("due_date >= '#{Date.today - Date.today.day + 1}'").where(progress: "Avant échéance").map(&:amount).sum
+    @b = Invoice.where(progress: "Phase amiable").map(&:amount).sum
+    @c = Invoice.where(progress: "Juridique").map(&:amount).sum
+    total = [@a, @b, @c].sum
+  end
 end

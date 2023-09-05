@@ -6,8 +6,8 @@
 
   <div class="col-4">
     <div class="card-blank info-perso">
-    <h3>Bonjour Iconoclass,</h3>
-    <p> Voici une vue d'ensemble de vos relances</p>
+    <h3>Bonjour <%= @user.first_name %>,</h3>
+    <p> Voici une vue d'ensemble de ta trésorerie</p>
     </div>
   </div>
 
@@ -16,7 +16,7 @@
     <div>
       <h3>64</h3>
       <p><strong>Relances efféctués ce mois ci</strong></p>
-      <p><strong>10 000€</strong> à collectés</p>
+      <p><strong><%= number_with_precision(current_user.invoices.sum_collect_by_month, precision: 2, separator: ',') %> €</strong> à collectés</p>
     </div>
     <button class="btnn btn-square btn-white btn-small">Voir mes factures --> </button>
     </div>
@@ -37,7 +37,7 @@
   <div class="col-4">
     <div class="card-blank card-white d-flex flex-column justify-content-between">
       <div>
-        <h4>54 000 €</h4>
+        <h4><%= number_with_precision(current_user.invoices.total_sum_archive, precision: 2, separator: ',')%> €</h4>
         <p>Colléctés ce mois ci</p>
       </div>
 
@@ -45,16 +45,16 @@
 
         <div>
           <p>Avant écheances</p>
-          <p><strong>20 000 €</strong></p>
+          <p><strong> <%= number_with_precision(current_user.invoices.total_sum_before_due_date, precision: 2, separator: ',')  %> €</strong></p>
         </div>
         <div>
           <p>Phase amiable</p>
-          <p><strong>24 000€</strong></p>
+          <p><strong><%= number_with_precision(current_user.invoices.total_sum_friendly_phase, precision: 2, separator: ',') %> €</strong></p>
         </div>
 
         <div>
           <p>Juridique</p>
-          <p><strong>10 000€</strong></p>
+          <p><strong><%= number_with_precision(current_user.invoices.total_sum_legal_phase, precision: 2, separator: ',') %> €</strong></p>
         </div>
       </div>
     </div>
