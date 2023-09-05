@@ -57,3 +57,21 @@ tr:last-child {
 .border-radius-right {
   border-radius: 0px 8px 0px 0px;
 }
+
+.graph-chart-card{
+  height: 200px !important;
+  width: 100% !important;
+}
+.graph-chart-big{
+  height: 400px !important;
+  width: 100% !important;
+}
+
+.display-company {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid grey;
+  padding-left: 0px;
+  padding-right: 0px;
+
+}

@@ -61,7 +61,7 @@
             <div class="cards my-3" data-toggle-target="togglableElem" >
               <% @invoices.each do |invoice|%>
                 <% if invoice.progress != "Payé" %>
-                  <div class="card card-white px-2"
+                  <div class="card card-white"
                   data-progress-search-target="card"
                   data-status="<%= invoice.progress.parameterize %>">
                     <div class="top-card d-flex row justify-content-center" style="width:100%">
@@ -92,9 +92,8 @@
                               <p><strong>Date d'échéance:</strong> <%= invoice.due_date.strftime("%d/%m/%y") %></p>
                           </div>
                         </div>
-                        <div class="d-flex justify-content-between w-100">
-                            <p><strong>Montant de l'encours :</strong></p>
-                            <p><i class="fa-solid fa-coins" style="color: #071425;"></i> <%= number_with_precision(invoice.amount, precision: 2, separator: ',') %>€</p>
+                        <div class="d-flex justify-content-center w-100 text-center">
+                            <p class="encour-size text-center"><i class="fa-solid fa-coins fa-lg" style="color: #071425;"></i>  <%= number_with_precision(invoice.amount, precision: 2, separator: ',') %> €</p>
                         </div>
                           <%= link_to "Voir plus", invoice_path(invoice), class: "btnn btn-square btn-blue btn-small btn-card" %>
                       </div>

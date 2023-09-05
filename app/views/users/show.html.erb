@@ -1,8 +1,328 @@
 <!-- Sommaire du tableau de bord -->
-<div data-controller="toggle">
-  <div class="container mt-2">
-    <h1>Tableau de bord</h1>
+<div class="container mt-4">
+
+
+  <div class="row">
+
+  <div class="col-4">
+    <div class="card-blank info-perso">
+    <h3>Bonjour Iconoclass,</h3>
+    <p> Voici une vue d'ensemble de vos relances</p>
+    </div>
   </div>
+
+  <div class="col-4">
+    <div class="card-blank card-blue d-flex flex-column justify-content-between">
+    <div>
+      <h3>64</h3>
+      <p><strong>Relances efféctués ce mois ci</strong></p>
+      <p><strong>10 000€</strong> à collectés</p>
+    </div>
+    <button class="btnn btn-square btn-white btn-small">Voir mes factures --> </button>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card-blank card-blue-strong  d-flex flex-column justify-content-between">
+    <div>
+    <h4>4</h4>
+    <p><strong>de vos clients ont une note en dessous de C</strong></p>
+    <p>Pour un total de 3 000€ d'encours</p>
+    </div>
+    <button class="btnn btn-square btn-white btn-small">Voir mes factures --> </button>
+
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card-blank card-white d-flex flex-column justify-content-between">
+      <div>
+        <h4>54 000 €</h4>
+        <p>Colléctés ce mois ci</p>
+      </div>
+
+      <div class="number d-flex justify-content-between">
+
+        <div>
+          <p>Avant écheances</p>
+          <p><strong>20 000 €</strong></p>
+        </div>
+        <div>
+          <p>Phase amiable</p>
+          <p><strong>24 000€</strong></p>
+        </div>
+
+        <div>
+          <p>Juridique</p>
+          <p><strong>10 000€</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="card-blank-statistique card-white d-flex justify-content-between">
+      <div class="d-flex flex-column align-items-center justify-content-evenly">
+          <div>
+            <h4>54 Jours</h4>
+            <p>DSO</p>
+          </div>
+          <div class="statistiques">
+            <p><i class="fa-solid fa-arrow-right transform-up"></i> 45 Jours </p>
+        </div>
+      </div>
+
+          <div class="graph-chart d-flex justify-content-between">
+              <!-- Graphique -->
+              <canvas
+                class="graph-chart-card"
+                data-controller="chart"
+                data-chart-type-value="line"
+                data-chart-data-value="<%= @chart_data2.to_json %>"
+              ></canvas>
+          </div>
+      </div>
+    </div>
+
+
+
+  <div class="col-4">
+    <div class="card-blank-statistique card-white d-flex justify-content-between">
+      <div class="d-flex flex-column align-items-center justify-content-evenly">
+          <div>
+            <h4>54 Jours</h4>
+            <p>DSO</p>
+          </div>
+          <div class="statistiques">
+            <p><i class="fa-solid fa-arrow-right transform-up"></i> 45 Jours </p>
+        </div>
+      </div>
+
+          <div class="graph-chart d-flex justify-content-between">
+              <!-- Graphique -->
+              <canvas
+                class="graph-chart-card"
+                data-controller="chart"
+                data-chart-type-value="line"
+                data-chart-data-value="<%= @chart_data2.to_json %>"
+              ></canvas>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-4">
+    <div class="card-blank-show-big card-white d-flex justify-content-between">
+
+    <div class="container mt-2">
+    <h4 class="my-4 text-center ">Analyses des débiteurs</h4>
+      <div class="row d-flex flex-column">
+        <% @debtor_analyzers[0..12].each do |debtor_analyzer| %>
+
+          <!-- Card avec les analyses pour chaque débiteur -->
+
+            <div class="display-company d-flex justify-content-between text-start">
+                <p class="card-title "><%= debtor_analyzer.debtor.company_name %> </p>
+
+
+
+
+
+
+                  <div class="text-color d-flex">
+                    <!-- Nombre de jours moyens de retard -->
+                    <div class="d-flex justify-content-between align-items-center px-3 <%= debtor_analyzer.relationship.rating.to_i >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                      <p class="<%= debtor_analyzer.relationship.rating >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+
+                      <p class="<%= debtor_analyzer.relationship.rating >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                      <strong><%= debtor_analyzer.relationship.payment_days %></strong></p>
+                    </div>
+
+                          <!-- Note calculée par l'équipe Surviv.Ai -->
+                    <div class="d-flex justify-content-between align-items-center px-3">
+                      <p class="mb-1 <%= debtor_analyzer.relationship.rating.to_i >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                      <p class= "<%= debtor_analyzer.relationship.rating.to_i >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                      <%= render "shared/ratings", rating: debtor_analyzer.relationship.rating %>
+                      <i class="fa-regular fa-star fa-solid"></i></p>
+                    </div>
+                  </div>
+            </div>
+
+
+        <% end %>
+
+
+         <!-- À suprimer plus tard -->
+
+                  <% @debtor_analyzers[0..12].each do |debtor_analyzer| %>
+
+          <!-- Card avec les analyses pour chaque débiteur -->
+
+            <div class="display-company d-flex justify-content-between text-start">
+                <p class="card-title "><%= debtor_analyzer.debtor.company_name %> </p>
+
+
+
+
+
+
+                  <div class="text-color d-flex">
+                    <!-- Nombre de jours moyens de retard -->
+                    <div class="d-flex justify-content-between align-items-center px-3 <%= debtor_analyzer.relationship.rating.to_i >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                      <p class="<%= debtor_analyzer.relationship.rating >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+
+                      <p class="<%= debtor_analyzer.relationship.rating >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                      <strong><%= debtor_analyzer.relationship.payment_days %></strong></p>
+                    </div>
+
+                          <!-- Note calculée par l'équipe Surviv.Ai -->
+                    <div class="d-flex justify-content-between align-items-center px-3">
+                      <p class="mb-1 <%= debtor_analyzer.relationship.rating.to_i >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                      <p class= "<%= debtor_analyzer.relationship.rating.to_i >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                      <%= render "shared/ratings", rating: debtor_analyzer.relationship.rating %>
+                      <i class="fa-regular fa-star fa-solid"></i></p>
+                    </div>
+                  </div>
+            </div>
+
+
+        <% end %>
+            <% @debtor_analyzers[0..12].each do |debtor_analyzer| %>
+
+          <!-- Card avec les analyses pour chaque débiteur -->
+
+            <div class="display-company d-flex justify-content-between text-start">
+                <p class="card-title "><%= debtor_analyzer.debtor.company_name %> </p>
+
+
+
+
+
+
+                  <div class="text-color d-flex">
+                    <!-- Nombre de jours moyens de retard -->
+                    <div class="d-flex justify-content-between align-items-center px-3 <%= debtor_analyzer.relationship.rating.to_i >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                      <p class="<%= debtor_analyzer.relationship.rating >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+
+                      <p class="<%= debtor_analyzer.relationship.rating >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                      <strong><%= debtor_analyzer.relationship.payment_days %></strong></p>
+                    </div>
+
+                          <!-- Note calculée par l'équipe Surviv.Ai -->
+                    <div class="d-flex justify-content-between align-items-center px-3">
+                      <p class="mb-1 <%= debtor_analyzer.relationship.rating.to_i >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                      <p class= "<%= debtor_analyzer.relationship.rating.to_i >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                      <%= render "shared/ratings", rating: debtor_analyzer.relationship.rating %>
+                      <i class="fa-regular fa-star fa-solid"></i></p>
+                    </div>
+                  </div>
+            </div>
+
+
+        <% end %>
+
+               <!-- juqu'ici -->
+
+
+      </div>
+  </div>
+
+
+
+
+      </div>
+
+  </div>
+
+  <div class="col-8">
+    <div class="row">
+    <div class="col-12">
+    <div class="card-blank-statistique-big card-white d-flex justify-content-between">
+      <div class="d-flex flex-column align-items-center justify-content-evenly">
+          <div>
+            <h4>32 Jours</h4>
+            <p>Moyens de paiements</p>
+          </div>
+          <div class="statistiques">
+            <p><i class="fa-solid fa-arrow-right transform-up"></i> 4 Jours </p>
+        </div>
+      </div>
+
+          <div class="graph-chart d-flex justify-content-between">
+              <!-- Graphique -->
+            <canvas
+              class="graph-chart-big"
+              data-controller="chart"
+              data-chart-type-value="bar"
+              data-chart-data-value="<%= @chart_data1.to_json %>"
+            ></canvas>
+          </div>
+
+      </div>
+      <div class="col-12">
+
+      <div class="card-blank-statistique-big card-white d-flex justify-content-between">
+      <div class="d-flex flex-column align-items-center justify-content-evenly">
+          <div>
+            <h4>8450 € </h4>
+            <p>Total des factures</p>
+          </div>
+          <div class="statistiques">
+            <p><i class="fa-solid fa-arrow-right transform-up"></i> 1200€ </p>
+        </div>
+      </div>
+
+          <div class="graph-chart d-flex justify-content-between">
+              <!-- Graphique -->
+             <canvas
+                class="graph-chart-big"
+                data-controller="chart"
+                data-chart-type-value="bar"
+                data-chart-data-value="<%= @chart_data.to_json %>"
+              ></canvas>
+          </div>
+      </div>
+    </div>
+    </div>
+
+
+    </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <!-- Section Analyses des débiteurs -->
   <div class="container mt-2">
