@@ -1,12 +1,21 @@
 .icon-manual {
-  height: 18px;
-  width: 18px;
-  border-radius: 50%;
+  height: 85px;
+  width: 15px;
+  border-radius: 0%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: transparent; /* Set the default background color to transparent */
+  background-color: transparent;
+  position: absolute;
+   /* Set the default background color to transparent */
+   top: -5%;
+   left: 5%;
+   transform: rotate(45deg);
+   overflow: clip;
+
 }
+
+
 
 .bg-color-black {
   background-color: black;

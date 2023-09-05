@@ -61,43 +61,43 @@
             <div class="cards my-3" data-toggle-target="togglableElem" >
               <% @invoices.each do |invoice|%>
                 <% if invoice.progress != "Payé" %>
-                  <div class="card card-white "
+                  <div class="card card-white px-2"
                   data-progress-search-target="card"
                   data-status="<%= invoice.progress.parameterize %>">
                     <div class="top-card d-flex row justify-content-center" style="width:100%">
-                      <div class="d-flex justify-content-around col-8">
-                        <p class="text-blue-light align-items-center"><strong><%= invoice.debtor.company_name %> </strong> </p>
-                        <div class="col-2 icon-manual bg-color-<%= invoice.progress === "À traiter"? 'black' :
+                      <div class="d-flex justify-content-around col-10">
+                        <h4 class="text-blue-light align-items-center"><strong><%= invoice.debtor.company_name %> </strong> </h4>
+                        <div class="col-1 icon-manual bg-color-<%= invoice.progress === "À traiter"? 'black' :
                                     invoice.progress === "Avant échéance"? 'blue' :
                                     invoice.progress === "Phase amiable"? 'yellow' :
                                     invoice.progress === "Juridique"? 'red' : ''
                                 %>">
-                          <div class="icon-manual col-2">
+                          <div class="icon-manual col-1">
                           </div>
                         </div>
                       </div>
+                            <p class=" w-100 num-invoice"><strong>Numéro de facture :</strong> <%= invoice.number %></p>
+                  <div class="border-blue-light">
+                  </div>
                 </div>
 
-                      <div class="middle-card">
 
-                        <div class="d-flex justify-content-between w-100">
-                            <p><strong>Numéro de facture :</strong> </p>
-                            <p><%= invoice.number %> </p>
+
+                      <div class="middle-card">
+                        <div class="date">
+                          <div class="d-flex justify-content-between text-center align-items-center w-100">
+                              <p><strong>Date d'émission:</strong> <%= invoice.emission_date.strftime("%d/%m/%y") %></p>
+                          </div>
+                          <div class="d-flex justify-content-between text-center align-items-center w-100">
+                              <p><strong>Date d'échéance:</strong> <%= invoice.due_date.strftime("%d/%m/%y") %></p>
+                          </div>
                         </div>
                         <div class="d-flex justify-content-between w-100">
                             <p><strong>Montant de l'encours :</strong></p>
-                            <p><%= number_with_precision(invoice.amount, precision: 2, separator: ',') %>€</p>
+                            <p><i class="fa-solid fa-coins" style="color: #071425;"></i> <%= number_with_precision(invoice.amount, precision: 2, separator: ',') %>€</p>
                         </div>
-                        <div class="d-flex justify-content-between w-100">
-                            <p><strong>Date d'émission:</strong></p>
-                            <p><%= invoice.emission_date.strftime("%d/%m/%y") %></p>
-                        </div>
-                        <div class="d-flex justify-content-between w-100">
-                            <p><strong>Date de l'échéance :</strong></p>
-                            <p><%= invoice.due_date.strftime("%d/%m/%y") %></p>
-                        </div>
+                          <%= link_to "Voir plus", invoice_path(invoice), class: "btnn btn-square btn-blue btn-small btn-card" %>
                       </div>
-                          <%= link_to "Voir plus", invoice_path(invoice), class: "btnn btn-square btn-blue btn-small" %>
                   </div>
 
                 <% end %>
@@ -105,53 +105,55 @@
             </div>
 
             <div data-toggle-target="togglableElement"  class="row-container d-none">
-            <div class="row row-header sticky-row">
-                <div class="col-3">
-                  <p><strong>Nom de l'entreprise :</strong> </p>
-                </div>
-                <div class="col-8 d-flex justify-content-between text-end">
-                  <p><strong>Numéro de facture :</strong> </p>
-                  <p><strong>Montant de l'encours :</strong></p>
-                  <p><strong>Date d'émission:</strong></p>
-                  <p><strong>Date de l'échéance :</strong></p>
-                </div>
-              </div>
-              <div class="col-1">
-              </div>
-            <div class="row">
-              <% @invoices.each do |invoice|%>
-                <% if invoice.progress != "Payé" %>
-                    <div class="d-flex justify-content-between row-content text-aligns-center"
-                      data-progress-search-target="card"
-                      data-status="<%= invoice.progress.parameterize %>">
-                    <div class="top-card col-3">
-                      <p class="text-blue-light"><strong><%= invoice.debtor.company_name %> </strong> </p>
+              <div class="row-width">
+                <div class="row row-header sticky-row">
+                    <div class="col-3">
+                      <p><strong>Nom de l'entreprise :</strong> </p>
                     </div>
-                    <div class="middle-row col-8 d-flex justify-content-between text-end ">
-                      <div class="w-100">
-                          <p><%= invoice.number %> </p>
-                      </div>
-                      <div class="w-100">
-                          <p><%= number_with_precision(invoice.amount, precision: 2, separator: ',') %>€</p>
-                      </div>
-                      <div class="w-100">
-                          <p><%= invoice.emission_date.strftime("%d/%m/%y") %></p>
-                      </div>
-                      <div class="w-100">
-                          <p><%= invoice.due_date.strftime("%d/%m/%y") %></p>
-                      </div>
-                    </div>
-                    <div class="col-1 bottom">
-                        <%= link_to  invoice_path(invoice), data:{:title => "Voir plus"}, class: "custom-tooltip-row position-relative"   do %>
-                          <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #071425;"></i>
-                        <% end %>
-
+                    <div class="col-8 d-flex justify-content-between text-end">
+                      <p><strong>Numéro de facture :</strong> </p>
+                      <p><strong>Montant de l'encours :</strong></p>
+                      <p><strong>Date d'émission:</strong></p>
+                      <p><strong>Date de l'échéance :</strong></p>
                     </div>
                   </div>
-                <% end %>
-              <% end %>
+                  <div class="col-1">
+                  </div>
+                <div class="row">
+                  <% @invoices.each do |invoice|%>
+                    <% if invoice.progress != "Payé" %>
+                        <div class="d-flex justify-content-between row-content text-aligns-center"
+                          data-progress-search-target="card"
+                          data-status="<%= invoice.progress.parameterize %>">
+                        <div class="top-card col-3">
+                          <p class="text-blue-light"><strong><%= invoice.debtor.company_name %> </strong> </p>
+                        </div>
+                        <div class="middle-row col-8 d-flex justify-content-between text-end ">
+                          <div class="w-100">
+                              <p><%= invoice.number %> </p>
+                          </div>
+                          <div class="w-100">
+                              <p><%= number_with_precision(invoice.amount, precision: 2, separator: ',') %>€</p>
+                          </div>
+                          <div class="w-100">
+                              <p><%= invoice.emission_date.strftime("%d/%m/%y") %></p>
+                          </div>
+                          <div class="w-100">
+                              <p><%= invoice.due_date.strftime("%d/%m/%y") %></p>
+                          </div>
+                        </div>
+                        <div class="col-1 bottom">
+                            <%= link_to  invoice_path(invoice), data:{:title => "Voir plus"}, class: "custom-tooltip-row position-relative"   do %>
+                              <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #071425;"></i>
+                            <% end %>
+
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
                 </div>
-            </div>
+              </div>
+              </div>
           </div>
     </div>
   </div>
