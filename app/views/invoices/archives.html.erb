@@ -1,11 +1,9 @@
 <div class="body-show">
   <div class="container">
     <h1 class="my-4">Liste des factures archivées</h1>
-
     <div class="center">
-
     <div class="col-sm-12 my-3">
-      <div class="search-bar-archives  my-2 ">
+      <div class="search-bar-archives my-2 ">
           <%= form_with url: invoices_path, method: :get, class: "d-flex bg-white" do %>
             <%= text_field_tag :query,
                   params[:query],
