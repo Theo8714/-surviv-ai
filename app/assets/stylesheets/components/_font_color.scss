@@ -12,10 +12,23 @@
   left: 5%;
   transform: rotate(45deg);
   overflow: clip;
-
-
 }
 
+.icon-manual-rev {
+  height: 35px;
+  width: 15px;
+  border-radius: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  position: absolute;
+   /* Set the default background color to transparent */
+  top: -5%;
+  right: 5%;
+  transform: rotate(-45deg);
+  overflow: clip;
+}
 
 
 .bg-color-black {

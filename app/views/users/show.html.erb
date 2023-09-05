@@ -1,5 +1,5 @@
 <!-- Sommaire du tableau de bord -->
-<div class="container mt-4">
+<div class="container mt-4" data-controller="modal">
 
 
   <div class="row">
@@ -13,22 +13,22 @@
 
   <div class="col-4">
     <div class="card-blank card-blue d-flex flex-column justify-content-between">
-    <div>
-      <h3>64</h3>
-      <p><strong>Relances efféctués ce mois ci</strong></p>
-      <p><strong>10 000€</strong> à collectés</p>
-    </div>
+      <div>
+        <h3>64</h3>
+        <p><strong>Relances efféctués ce mois ci</strong></p>
+        <p><strong>10 000€</strong> à collectés</p>
+      </div>
     <button class="btnn btn-square btn-white btn-small">Voir mes factures --> </button>
     </div>
   </div>
 
   <div class="col-4">
     <div class="card-blank card-blue-strong  d-flex flex-column justify-content-between">
-    <div>
-    <h4>4</h4>
-    <p><strong>de vos clients ont une note en dessous de C</strong></p>
-    <p>Pour un total de 3 000€ d'encours</p>
-    </div>
+      <div>
+      <h4>4</h4>
+      <p><strong>de vos clients ont une note en dessous de C</strong></p>
+      <p>Pour un total de 3 000€ d'encours</p>
+      </div>
     <button class="btnn btn-square btn-white btn-small">Voir mes factures --> </button>
 
     </div>
@@ -114,11 +114,97 @@
     <div class="card-blank-show-big card-white d-flex justify-content-between">
 
     <div class="container mt-2">
-    <h4 class="my-4 text-center ">Analyses des débiteurs</h4>
-      <div class="row d-flex flex-column">
-        <% @debtor_analyzers[0..12].each do |debtor_analyzer| %>
+    <h4 class="my-4 text-center">Analyses des débiteurs</h4>
 
-          <!-- Card avec les analyses pour chaque débiteur -->
+            <!-- Button trigger modal -->
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-primary" type="button" data-action="click->modal#show">
+                Voir plus
+              </button>
+            </div>
+
+              <!-- Modal -->
+              <div class="modal fade">
+                <div class="">
+                <!-- Section Analyses des débiteurs -->
+                  <div class="container mt-2 d-none" data-modal-target="togglableElement">
+                    <h2 class="my-3 ">Analyses des débiteurs</h2>
+                      <div class="row d-flex flex-column">
+                        <% @debtor_analyzers[0..1].each do |debtor_analyzer| %>
+
+                          <!-- Card avec les analyses pour chaque débiteur -->
+                          <div class="col-5 my-3">
+                            <h5 class="card-title ms-3">Analyses pour <%= debtor_analyzer.debtor.company_name %> :</h5>
+
+                            <div class="card-show-user card-large mb-4">
+
+                              <div class="card-body d-flex flex-column justify-content-center w-100">
+
+                                <!-- Note calculée par l'équipe Surviv.Ai -->
+                                <div class="text-color">
+                                  <div class="d-flex justify-content-between align-items-center px-3">
+                                    <strong><p class="mb-1 <%= debtor_analyzer.relationship.rating.to_i >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                                    <strong>Note calculée par l'équipe Surviv.Ai :</strong></p></strong>
+                                    <p class= "<%= debtor_analyzer.relationship.rating.to_i >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                                    <%= render "shared/ratings", rating: debtor_analyzer.relationship.rating %>
+                                    <i class="fa-regular fa-star fa-solid"></i></p>
+                                  </div>
+                                  <!-- Nombre de jours moyens de retard -->
+                                  <div class="d-flex justify-content-between align-items-center px-3 <%= debtor_analyzer.relationship.rating.to_i >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                                    <p class="<%= debtor_analyzer.relationship.rating >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                                    <strong>Jours de retard moyens :</strong></p>
+                                    <p class="<%= debtor_analyzer.relationship.rating >=4 ? 'text-green' : debtor_analyzer.relationship.rating.to_i === 3 ? 'text-blue' : 'text-warning' %>">
+                                    <strong><%= debtor_analyzer.relationship.payment_days %></strong></p>
+                                  </div>
+                                </div>
+                                <!-- Montant total des factures -->
+                                <div class="d-flex justify-content-between align-items-center text-green px-3">
+                                  <p class="mb-1"><strong>Montant total des factures :</strong></p>
+                                  <p><strong><%= number_with_precision(debtor_analyzer.total_invoices_amount, precision: 2, separator: ',') %> EUR</strong>
+                                  <i class="fas fa-coins ml-2"></i></p>
+                                </div>
+                                <!-- Montant total des factures impayées -->
+                                <div class="d-flex justify-content-between align-items-center px-3 text-red">
+                                  <strong><p class="mb-1"><strong>Montant total des factures impayées :</strong></p></strong>
+                                  <p><strong><%= number_with_precision(debtor_analyzer.unpaid_amount, precision: 2, separator: ',') %> EUR</strong>
+                                  <i class="fas fa-exclamation-triangle ml-2"></i></p>
+                                </div>
+                                <!-- Nombre de factures en retard de paiement -->
+                                <div class="d-flex justify-content-between align-items-center px-3 text-red">
+                                  <strong><p class="mb-1"><strong>Nombre de facture en retard de paiement :</strong></p></strong>
+                                  <p><strong><%= debtor_analyzer.overdue_invoices_count %></strong>
+                                  <i class="fas fa-exclamation-triangle ml-2"></i></p>
+                                </div>
+                                <!-- Nombre total de rappels envoyés -->
+                                <div class="d-flex justify-content-between align-items-center text-warning px-3 text-bold">
+                                  <p class="mb-1"><strong>Nombre total de rappels envoyés:</strong></p>
+                                    <p><strong><%= debtor_analyzer.reminders_sent %></strong>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
+                      </div>
+                      <div >
+                        <button class="btn-secondary d-none" data-modal-target="togglableElement">Quitter</button>
+                      </div>
+                  </div>
+                </div>
+                <div class="modal-body">
+                  <div class="col-md-12">
+
+
+                  </div>
+                </div>
+              </div>
+
+
+
+          <div class="row d-flex flex-column">
+            <% @debtor_analyzers[0..12].each do |debtor_analyzer| %>
+
+              <!-- Card avec les analyses pour chaque débiteur -->
 
             <div class="display-company d-flex justify-content-between text-start">
                 <p class="card-title "><%= debtor_analyzer.debtor.company_name %> </p>
@@ -145,7 +231,7 @@
                       <i class="fa-regular fa-star fa-solid"></i></p>
                     </div>
                   </div>
-            </div>
+          </div>
 
 
         <% end %>
@@ -263,7 +349,7 @@
       <div class="card-blank-statistique-big card-white d-flex justify-content-between">
       <div class="d-flex flex-column align-items-center justify-content-evenly">
           <div>
-            <h4>8450 € </h4>
+            <h4>8450 € </h4>
             <p>Total des factures</p>
           </div>
           <div class="statistiques">
@@ -297,35 +383,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <!-- Section Analyses des débiteurs -->
-  <div class="container mt-2">
+  <div class="container mt-2 modal-content-show d-none" data-modal-target="togglableElement">
     <h2 class="my-3 ">Analyses des débiteurs</h2>
       <div class="row d-flex flex-column">
         <% @debtor_analyzers[0..1].each do |debtor_analyzer| %>
@@ -385,6 +444,13 @@
         <% end %>
       </div>
   </div>
+
+
+
+
+
+
+
 
 
 
