@@ -43,7 +43,7 @@ class InvoicesController < ApplicationController
 
     if @invoice.file.attached?
       mindee_client = Mindee::Client.new(api_key: MINDEE_URL)
-      # input_source = mindee_client.source_from_path('/path/to/the/file.ext')
+      input_source = mindee_client.source_from_path('/path/to/the/file.ext')
       custom_endpoint = mindee_client.create_endpoint(
         account_name: 'maximeoudin',
         endpoint_name: 'surviv_invoices'
@@ -52,7 +52,8 @@ class InvoicesController < ApplicationController
         input_source,
         Mindee::Product::Invoice::InvoiceV4
       )
-      xputs result.document.inference.prediction
+      puts result.document.inference.prediction
+    end
   end
 
   def update
