@@ -38,13 +38,6 @@ class InvoicesController < ApplicationController
         Mindee::Product::Invoice::InvoiceV4
       )
 
-      # Print a full summary of the parsed data in RST format
-
-      # @invoice.emission_date = result.document.inference.prediction.date.value
-      # @invoice.due_date = result.document.inference.prediction.due_date.value
-      # @invoice.amount = result.document..inference.pages.first.prediction.total_amount.value
-      # @invoice.debtor.siren = result.document.inference.prediction.customer_name.value
-      # @invoice.number = result.document.inference.pages.first.prediction.total_amount.value
     end
   end
 
