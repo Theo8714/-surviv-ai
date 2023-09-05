@@ -26,6 +26,25 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new
     @debtor = Debtor.new
     @relationship = Relationship.new
+
+    if @invoice.file.attached?
+      # Init a new client
+      mindee_client = Mindee::Client.new(api_key: MINDEE_URL)
+      # Load a file from disk
+      input_source = mindee_client.source_from_blob(:file)
+      result = mindee_client.parse(
+        input_source,
+        Mindee::Product::Invoice::InvoiceV4
+      )
+
+      # Print a full summary of the parsed data in RST format
+      puts result.document
+      @invoice.emission_date = result.document.inference.prediction.date.value
+      @invoice.due_date = result.document.inference.prediction.due_date.value
+      @invoice.amount = result.document.inference.prediction.total_amount.value
+      @invoice.debtor.siren = result.document.inference.prediction.customer_name.value
+      @invoice.number = result.document.inference.prediction.invoice_number.value
+    end
   end
 
   def create
@@ -39,20 +58,6 @@ class InvoicesController < ApplicationController
       redirect_to invoices_path
     else
       render :new, status: :unprocessable_entity
-    end
-
-    if @invoice.file.attached?
-      mindee_client = Mindee::Client.new(api_key: MINDEE_URL)
-      input_source = mindee_client.source_from_path('/path/to/the/file.ext')
-      custom_endpoint = mindee_client.create_endpoint(
-        account_name: 'maximeoudin',
-        endpoint_name: 'surviv_invoices'
-      )
-      result = mindee_client.parse(
-        input_source,
-        Mindee::Product::Invoice::InvoiceV4
-      )
-      puts result.document.inference.prediction
     end
   end
 
