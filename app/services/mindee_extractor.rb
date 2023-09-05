@@ -1,54 +1,59 @@
 class MindeeExtractor
   attr_reader :extractor_hash
 
+  def initialize(filepath)
+    @filepath = filepath
+  end
+
   def perform
     call_api
     invoice_number
     total_amount
     invoice_emission_date
     invoice_due_date
-    company_name
-    extractor_data
+    company
+    construct_hash
   end
 
   private
 
   def call_api
-      mindee_client = Mindee::Client.new(api_key: ENV["MINDEE_URL"])
-      input_source = mindee_client.source_from_path("/Users/theochatonnet/Desktop/PANOPLI 2.pdf")
-      @result = mindee_client.parse(
-        input_source,
-        Mindee::Product::Invoice::InvoiceV4
-      )
-      @doc_result = @result.document.inference.pages.first.prediction
-    end
+    mindee_client = Mindee::Client.new(api_key: ENV["MINDEE_URL"])
+    input_source = mindee_client.source_from_path(@filepath)
+    @result = mindee_client.parse(
+      input_source,
+      Mindee::Product::Invoice::InvoiceV4
+    )
+    @doc_result = @result.document.inference.pages.first.prediction
+  end
 
-    def invoice_number
-      @invoice_number_f = @doc_result.invoice_number.value
-    end
+  def invoice_number
+    @invoice_number_f = @doc_result.invoice_number.value
+  end
 
-    def total_amount
-      @total_amount = @doc_result.total_amount.value
-    end
+  def total_amount
+    @total_amount = @doc_result.total_amount.value
+  end
 
-    def invoice_emission_date
-      @invoice_emission_date = @doc_result.date.value
-    end
+  def invoice_emission_date
+    @invoice_emission_date = @doc_result.date.value
+  end
 
-    def invoice_due_date
-      @invoice_due_date = @doc_result.due_date.value
-    end
-    def company_name
-      @company_name = @doc_result.customer_name.value
-    end
+  def invoice_due_date
+    @invoice_due = @doc_result.due_date.value
+  end
 
-    def extractor_data
-      @extractor_hash = {
-        invoice_number: @invoice_number_f,
-        total_amount: @total_amount,
-        invoice_emission_date: @invoice_emission_date,
-        invoice_due_date: @invoice_due_date,
-        company_name: @company_name
-      }
-    end
+  def company
+    @invoice_company_name = @doc_result.customer_name.value
+  end
+
+  def construct_hash
+    @extractor_hash = {
+      number: @invoice_number_f,
+      amount: @total_amount,
+      emission_date: @invoice_emission_date,
+      due_date: @invoice_due,
+      company_name: @invoice_company_name
+    }
+  end
 end

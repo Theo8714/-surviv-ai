@@ -209,7 +209,7 @@ boris = User.create!(
 puts "user done"
 
 debtor1 = Debtor.create!(
-  company_name: "Anderson, Barrows and Boehm",
+  company_name: "TIKTOK SAS",
   siren: "000000000"
 )
 

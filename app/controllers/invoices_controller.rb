@@ -27,24 +27,30 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new
     @debtor = Debtor.new
     @relationship = Relationship.new
+    @mindee = MindeeExtractor.new
   end
 
   def create
-    @invoice = Invoice.new(invoice_params)
-    # @debtor = Debtor.find_by(siren: params[:invoice][:siren])
-    # @debtor ||= Debtor.create(siren: params[:invoice][:siren], company_name: "Entreprise à créer")
-    # @relationship = Relationship.find_or_initialize_by(debtor: @debtor, user: current_user)
-    # @relationship.save
-    # @invoice.relationship = @relationship
-    existing_debtor = Debtor.last
-    @invoice.debtor = existing_debtor
-    @invoice.relationship = existing_debtor.relationships.first
-    mindee_extractor = MindeeExtractor.new
-    mindee_extractor.perform
-    @invoice.number = mindee_extractor.extractor_hash[:invoice_number]
-    @invoice.amount = mindee_extractor.extractor_hash[:total_amount]
-    @invoice.emission_date = mindee_extractor.extractor_hash[:invoice_emission_date]
-    @invoice.due_date = mindee_extractor.extractor_hash[:invoice_due_date]
+    @mindee = MindeeExtractor.new(params[:invoice][:file].tempfile.path)
+    @mindee.perform
+    extractor_hash = @mindee.extractor_hash
+
+    @debtor = Debtor.find_by(company_name: extractor_hash[:company_name])
+    @debtor ||= Debtor.create(company_name: extractor_hash[:company_name])
+    @relationship = Relationship.find_or_initialize_by(debtor: @debtor, user: current_user)
+    @relationship.save
+
+    @invoice = Invoice.new(
+      number: extractor_hash[:number],
+      amount: extractor_hash[:amount],
+      emission_date: extractor_hash[:emission_date],
+      due_date: extractor_hash[:due_date],
+      progress: "À traiter"
+    )
+
+    @invoice.file = invoice_params[:file]
+    @invoice.relationship = @relationship
+    
     if @invoice.save
       redirect_to invoices_path
     else
@@ -76,6 +82,7 @@ class InvoicesController < ApplicationController
   private
 
   def invoice_params
-    params.require(:invoice).permit(:number, :amount, :emission_date, :due_date, :comment, :progress, :relationship_id, :file, :payment_date)
+    params.require(:invoice).permit(:number, :amount, :emission_date, :siren, :due_date, :comment, :progress, :relationship_id, :file, :payment_date)
   end
+
 end
