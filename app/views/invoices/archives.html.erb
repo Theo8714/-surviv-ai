@@ -13,47 +13,44 @@
             <%= submit_tag "Filtrer", name: "", class: "btnn btn-square-filter btn-blue ml-2" %>
           <% end %>
         </div>
+
       <div class="cards my-3">
-        <% @invoices_paid.each do |invoice|%>
-          <div class="card card-white">
-            <div class="top-card">
-              <p class="text-blue-light"><strong><%= invoice.debtor.company_name %> </strong> </p>
-            </div>
-            <div class="middle-card">
-              <%# <div class="d-flex justify-content-between w-100">
-                  <p><strong>Note calculée par Surviv.Ai :</strong></p>
-                  <%= render "shared/ratings", rating: invoice.relationship.rating %>
-              <%# </div> %>
-              <div class="d-flex justify-content-between w-100">
-                  <p><strong>Numéro de facture :</strong> </p>
-                  <p><%= invoice.number %> </p>
+          <% @invoices_paid.each do |invoice|%>
+            <div class="card-invoice card-white">
+              <div class="top-card">
+                <h4 class="text-blue-light"><strong><%= invoice.debtor.company_name %> </strong> </h4>
+                <p class="num-invoice"><strong>Numéro de facture :</strong> <%= invoice.number %> </p>
               </div>
-              <div class="d-flex justify-content-between w-100">
-                  <p><strong>Montant de facture :</strong></p>
-                  <p><%= number_with_precision(invoice.amount, precision: 2, separator: ',') %>€</p>
-              </div>
-              <div class="d-flex justify-content-between w-100">
-                  <p><strong>Jours de retard :</strong></p>
-                  <% unless invoice.payment_date.nil? %>
-                  <% days_until_paid = (invoice.payment_date - invoice.due_date)%>
-                  <p><%= days_until_paid.to_i %></p>
-                  <% end %>
-              </div>
-              <div class="d-flex justify-content-between w-100">
-                  <p><strong>Jours de retard moyen du client :</strong></p>
-                  <%= invoice.relationship.payment_days %>
-              </div>
-              <div class="d-flex justify-content-between w-100">
-                  <p><strong>Date de paiement :</strong></p>
-                  <p><%= invoice.payment_date&.strftime("%d/%m/%y") %></p>
-              </div>
-            </div>
+                  <div class="border-blue-light">
+                  </div>
 
-                <%= link_to "Voir plus", invoice_path(invoice), class: "btnn btn-round btn-purple btn-small" %>
+              <div class="middle-card">
+                <%# <div class="d-flex justify-content-between w-100">
+                    <p><strong>Note calculée par Surviv.Ai :</strong></p>
+                    <%= render "shared/ratings", rating: invoice.relationship.rating %>
+                <%# </div> %>
+                <div class="retard">
+                  <div class="d-flex justify-content-between w-100">
+                      <p>
+                      <strong>Jours de retard :<br> </strong>                        <% unless invoice.payment_date.nil? %>
+                      <% days_until_paid = (invoice.payment_date - invoice.due_date)%>
+                      <%= days_until_paid.to_i %>
+                      <% end %>
+                      </p>
+                  </div>
+                  <div class="d-flex justify-content-between  text-center align-items-center w-100">
+                      <p><strong>Date de paiement :</strong> <%= invoice.payment_date&.strftime("%d/%m/%y") %></p>
+                  </div>
+                </div>
 
-          </div>
-        <% end %>
-          </div>
+                <div class="d-flex justify-content-center w-100 text-center">
+                  <p class="encour-size text-center"><i class="fa-solid fa-coins fa-lg" style="color: #071425;"></i>  <%= number_with_precision(invoice.amount, precision: 2, separator: ',') %> €</p>
+                </div>
+                  <%= link_to "Voir plus", invoice_path(invoice), class: "btnn btn-round btn-blue btn-small btn-card" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
   </div>
 </div>
