@@ -8,15 +8,15 @@ class UsersController < ApplicationController
       deb_analyze
     end
     invoices = @user.invoices
-    @month_analyzers = (1.year.ago.to_date..Date.today).map do |date|
+    date_months = (1.year.ago.to_date..Date.today).map { |d| Date.new(d.year, d.month, 1) }.uniq
+    @month_analyzers = date_months.map do |date|
       month = date.month
       year = date.year
       MonthAnalyzer.new(@user, month, year)
     end
 
-    months = (1.year.ago.to_date..Date.today).map { |date| "#{date.month} #{date.year}" }
+    months = date_months.map { |date| "#{date.month} #{date.year}" }
     days_of_payment = @month_analyzers.map { |analyzer| analyzer.perform }
-
     data_points = months.each_with_index.map do |month, index|
       {
         x: month,
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     @chart_data2 = {
       labels: months,
       datasets: [{
-        label: 'Moyenne des Jours de Paiement',
+        label: 'DSO Mensuel',
         backgroundColor: '#3B82F6',
         borderColor: '#3B82F6',
         data: data_points,
@@ -61,29 +61,6 @@ class UsersController < ApplicationController
         position: 'bottom'
       }
     }
-
-    # @chart_data2 = {
-    #   labels: (1.year.ago.to_date..Date.today).map { |date| "#{date.month} #{date.year}" },
-    #   datasets: [{
-    #     label: 'Moyenne des Jours de Paiement',
-    #     backgroundColor: '#3B82F6',
-    #     data: @month_analyzers.map { |analyzer| analyzer.perform }
-    #   }]
-    # }
-
-    # @chart_options2 = {
-    #   scales: {
-    #     yAxes: [{
-    #       ticks: {
-    #         beginAtZero: true
-    #       }
-    #     }]
-    #   },
-    #   legend: {
-    #     display: true,
-    #     position: 'bottom'
-    #   }
-    # }
 
     @chart_data = {
       labels: @debtor_analyzers.map { |analyzer| analyzer.debtor.company_name },
