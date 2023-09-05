@@ -1,5 +1,5 @@
 class MindeeExtractor
-  attr_reader :invoice_number_f
+  attr_reader :extractor_hash
 
   def perform
     call_api
@@ -7,6 +7,8 @@ class MindeeExtractor
     total_amount
     invoice_emission_date
     invoice_due_date
+    company_name
+    extractor_data
   end
 
   private
@@ -36,5 +38,17 @@ class MindeeExtractor
     def invoice_due_date
       @invoice_due_date = @doc_result.due_date.value
     end
-    # company_name = @doc_result.customer_name.value
+    def company_name
+      @company_name = @doc_result.customer_name.value
+    end
+
+    def extractor_data
+      @extractor_hash = {
+        invoice_number: @invoice_number_f,
+        total_amount: @total_amount,
+        invoice_emission_date: @invoice_emission_date,
+        invoice_due_date: @invoice_due_date,
+        company_name: @company_name
+      }
+    end
 end
