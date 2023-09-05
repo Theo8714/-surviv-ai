@@ -66,6 +66,45 @@ width: 120%;
 }
 
 }
+
+
+.search-bar-archives
+{
+  margin-left: 38px;
+  margin-top: 8px;
+  top: 1000px;
+
+  border-radius: 10px;
+  width: 1140px;
+
+
+  .btn-blue.btn-blue {
+  background-color: #90CBFE;
+  border: none;
+  border-radius: 10px;
+  width: 150px;
+  padding: 12px 20px;
+  font-size: 16px;
+  transition: background-color 0.2s ease-in-out;
+  margin: 0px;
+}
+ .form-control {
+  border: none;
+  border-radius: 10px;
+
+  background-color: white;
+  color: #90CBFE;
+
+ }
+.btnn:hover{
+  background-color: #D1D4FF;
+}
+
+::placeholder {
+  color: #90CBFE;
+}
+
+}
 .forms-edit {
   width: 100%;
 }
