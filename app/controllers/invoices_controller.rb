@@ -1,4 +1,5 @@
 require 'mindee'
+require 'open-uri'
 
 class InvoicesController < ApplicationController
   # before_action :authenticate_user!
@@ -29,21 +30,21 @@ class InvoicesController < ApplicationController
 
     if @invoice.file.attached?
       # Init a new client
-      mindee_client = Mindee::Client.new(api_key: MINDEE_URL)
+      mindee_client = Mindee::Client.new(api_key: ENV["MINDEE_URL"])
       # Load a file from disk
-      input_source = mindee_client.source_from_blob(:file)
-      result = mindee_client.parse(
+      input_source = mindee_client.source_from_path("/Users/maxime/Desktop/ICONO 1.pdf")
+      @result = mindee_client.parse(
         input_source,
         Mindee::Product::Invoice::InvoiceV4
       )
 
       # Print a full summary of the parsed data in RST format
-      puts result.document
-      @invoice.emission_date = result.document.inference.prediction.date.value
-      @invoice.due_date = result.document.inference.prediction.due_date.value
-      @invoice.amount = result.document.inference.prediction.total_amount.value
-      @invoice.debtor.siren = result.document.inference.prediction.customer_name.value
-      @invoice.number = result.document.inference.prediction.invoice_number.value
+
+      # @invoice.emission_date = result.document.inference.prediction.date.value
+      # @invoice.due_date = result.document.inference.prediction.due_date.value
+      # @invoice.amount = result.document..inference.pages.first.prediction.total_amount.value
+      # @invoice.debtor.siren = result.document.inference.prediction.customer_name.value
+      # @invoice.number = result.document.inference.pages.first.prediction.total_amount.value
     end
   end
 
