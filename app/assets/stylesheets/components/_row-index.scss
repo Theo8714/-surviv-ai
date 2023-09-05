@@ -2,12 +2,14 @@
   background-color: black;
   position: sticky;
   color: white;
-  box-shadow: 1px 1px 5px #081325;
+
   margin-bottom: 2px;
 }
 .row-container{
   margin-top: 32px;
-  box-shadow: 1px 3px 5px #081325;
+  display: flex;
+  justify-content: center;
+
 }
 
 .row-content {
@@ -34,7 +36,11 @@
   //border: 1px solid black;
   //box-shadow: 3px 3px 1px #D1D4FF;
   position: absolute;
-  top: 40%;
-  left: -150%;
+  top: 0%;
+  right: 110%;
   text-align: center;
+}
+
+.row-width {
+  width: 94%;
 }
