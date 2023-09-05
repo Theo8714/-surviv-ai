@@ -23,27 +23,28 @@ class InvoicesController < ApplicationController
   end
 
   def new
-    if @invoice.file.attached?
-      MindeeExtractor.new.perform
-      @user = current_user
-      @invoice = Invoice.new
-      @debtor = Debtor.new
-      @relationship = Relationship.new
-    else
-      @user = current_user
-      @invoice = Invoice.new
-      @debtor = Debtor.new
-    end
+    @user = current_user
+    @invoice = Invoice.new
+    @debtor = Debtor.new
     @relationship = Relationship.new
   end
 
   def create
     @invoice = Invoice.new(invoice_params)
-    @debtor = Debtor.find_by(siren: params[:invoice][:siren])
-    @debtor ||= Debtor.create(siren: params[:invoice][:siren], company_name: "Entreprise à créer")
-    @relationship = Relationship.find_or_initialize_by(debtor: @debtor, user: current_user)
-    @relationship.save
-    @invoice.relationship = @relationship
+    # @debtor = Debtor.find_by(siren: params[:invoice][:siren])
+    # @debtor ||= Debtor.create(siren: params[:invoice][:siren], company_name: "Entreprise à créer")
+    # @relationship = Relationship.find_or_initialize_by(debtor: @debtor, user: current_user)
+    # @relationship.save
+    # @invoice.relationship = @relationship
+    existing_debtor = Debtor.last
+    @invoice.debtor = existing_debtor
+    @invoice.relationship = existing_debtor.relationships.first
+    mindee_extractor = MindeeExtractor.new
+    mindee_extractor.perform
+    @invoice.number = mindee_extractor.extractor_hash[:invoice_number]
+    @invoice.amount = mindee_extractor.extractor_hash[:total_amount]
+    @invoice.emission_date = mindee_extractor.extractor_hash[:invoice_emission_date]
+    @invoice.due_date = mindee_extractor.extractor_hash[:invoice_due_date]
     if @invoice.save
       redirect_to invoices_path
     else
