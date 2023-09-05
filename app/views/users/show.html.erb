@@ -127,12 +127,12 @@
   </div>
 
 <div class="graph-container container mt-4">
-    <h2 class="mt-2 mb-4">Graphique récapitulatif</h2>
+    <h2 class="mt-2 mb-4">DSO Mensuel</h2>
     <!-- Graphique -->
     <canvas
       class="graph-chart"
       data-controller="chart"
-      data-chart-type-value="bar"
+      data-chart-type-value="line"
       data-chart-data-value="<%= @chart_data2.to_json %>"
     ></canvas>
   </div>
