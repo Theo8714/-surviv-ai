@@ -198,7 +198,7 @@ User.destroy_all
 puts "creation ongoing"
 
 boris = User.create!(
-  email: "boris@toto.com",
+  email: "theo.chatonnet@gmail.com",
   password: "azeaze",
   company_name: "Bistrot Groupe",
   first_name: "Boris",
