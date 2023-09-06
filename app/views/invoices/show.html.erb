@@ -1,8 +1,8 @@
 
 
-<div class="container" data-controller="toggle">
+<div class="container"  data-controller="toggle">
   <div class="row">
-      <div class="col-12 d-flex align-items-center justify-content-center">
+      <div class="col-6 d-flex align-items-center justify-content-center">
           <div class="card-show card-bg-white">
               <div class="display-info">
                 <h3 class="my-3 text-blue-light align-items-center"><strong> <%= @invoice.debtor.company_name %> </strong></h3>
@@ -33,23 +33,7 @@
               </div>
           </div>
        </div>
-  </div>
-
-  <div class="offcanvas offcanvas-end canva-blue" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-    <div class="offcanvas-header">
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-
-    <div class="offcanvas-body">
-      <div class="my-3 d-flex justify-content-center " >
-            <div data-toggle-target="togglableElement" class="">
-              <%= render 'form_edit', user: @user, invoice: @invoice %>
-            </div>
-      </div>
-    </div>
-  </div>
-  <% if @invoice.reminders.exists? %>
-  <div class="mt-5 mx-3">
+         <div class="mt-5 col-6 mx-3">
     <div class="reminders">
       <h3>Relances :</h3>
       <div class="title-reminders d-flex justify-content-between">
@@ -74,6 +58,23 @@
       <% end %>
     </div>
   </div>
+  </div>
+
+  <div class="offcanvas offcanvas-end canva-blue" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <div class="my-3 d-flex justify-content-center " >
+            <div data-toggle-target="togglableElement" class="">
+              <%= render 'form_edit', user: @user, invoice: @invoice %>
+            </div>
+      </div>
+    </div>
+  </div>
+  <% if @invoice.reminders.exists? %>
+
 <% else %>
   <div class="mt-5 ms-5">
     <h5>Cette facture n'a pas encore été traitée</h5>
