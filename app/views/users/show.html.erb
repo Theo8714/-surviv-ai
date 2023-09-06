@@ -18,7 +18,7 @@
       <p><strong>Relances efféctués ce mois ci</strong></p>
       <p><strong><%= number_with_precision(current_user.invoices.sum_collect_by_month, precision: 2, separator: ',') %> €</strong> à collectés</p>
     </div>
-      
+
     <button class="btnn btn-square btn-white btn-small">Voir mes factures --> </button>
     </div>
   </div>
@@ -61,35 +61,14 @@
     </div>
   </div>
 
-  <div class="col-4">
+
+
+
+
+  <div class="col-8">
     <div class="card-blank-statistique card-white d-flex justify-content-between">
-      <div class="d-flex flex-column align-items-center justify-content-evenly">
-          <div>
-            <h4><%= @average_payment_days %></h4>
-            <p>DSO</p>
-          </div>
-          <div class="statistiques">
-            <p><i class="fa-solid fa-arrow-right transform-up"></i> 45 Jours </p>
-        </div>
-      </div>
-
-          <div class="graph-chart d-flex justify-content-between">
-              <!-- Graphique -->
-              <canvas
-                class="graph-chart-card"
-                data-controller="chart"
-                data-chart-type-value="line"
-                data-chart-data-value="<%= @chart_data2.to_json %>"
-              ></canvas>
-          </div>
-      </div>
-    </div>
-
-
-
-  <div class="col-4">
-    <div class="card-blank-statistique card-white d-flex justify-content-between">
-      <div class="d-flex flex-column align-items-center justify-content-evenly">
+      <div class="d-flex flex-column align-items-start justify-content-evenly" style="
+    width: 160px;">
           <div>
             <h4>54 Jours</h4>
             <p>DSO</p>
@@ -449,36 +428,3 @@
         <% end %>
       </div>
   </div>
-
-  <!-- Section Analyses récapitulatives des débiteurs -->
-  <div class="container mt-4">
-    <h2 class="my-4">Analyses récapitulatives des débiteurs</h2>
-    <!-- Tableau récapitulatif -->
-    <div class="container-table" >
-    <table class="table table-rounded">
-      <thead>
-        <tr>
-          <th class=" ">Entreprise</th>
-          <th>Montant total des factures</th>
-          <th>Montant total des factures impayées</th>
-          <th>Nombre de factures en retard</th>
-          <th >Nombre total de rappels envoyés</th>
-          <th class="border-radius-right">DSO moyen</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @debtor_analyzers.each do |debtor_analyzer| %>
-          <tr>
-            <td><%= debtor_analyzer.debtor.company_name %></td>
-            <td><%= number_with_precision(debtor_analyzer.total_invoices_amount, precision: 2, separator: ',') %> EUR</td>
-            <td><%= number_with_precision(debtor_analyzer.unpaid_amount, precision: 2, separator: ',') %> EUR</td>
-            <td><%= debtor_analyzer.overdue_invoices_count %></td>
-            <td><%= debtor_analyzer.reminders_sent %></td>
-            <td><%= debtor_analyzer.relationship.payment_days.to_i %>j</td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    </div>
-  </div>
-</div>
