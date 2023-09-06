@@ -7,7 +7,7 @@
   <div class="col-4">
     <div class="card-blank info-perso">
     <h3>Bonjour <%= @user.first_name %>,</h3>
-    <p> Voici une vue d'ensemble de ta trésorerie</p>
+    <p> Voici une vue d'ensemble de votre trésorerie</p>
     </div>
   </div>
 
@@ -19,7 +19,7 @@
       <p><strong><%= number_with_precision(current_user.invoices.sum_collect_by_month, precision: 2, separator: ',') %> €</strong> à collecter</p>
     </div>
 
-    <button class="btnn btn-square btn-white btn-small">Voir mes factures --> </button>
+    <button class="btnn btn-square btn-white btn-small">Voir mes factures <i class="fa-solid fa-arrow-right" style="color: #000000;"></i> </button>
     </div>
   </div>
 
@@ -37,7 +37,7 @@
         <% end %>
       <p>Pour un total de <%= number_with_precision((total - paid), precision: 2, separator: ',') %> € d'encours</p>
       </div>
-    <button class="btnn btn-square btn-white btn-small">Voir mes factures --> </button>
+    <button class="btnn btn-square btn-white btn-small">Voir mes factures <i class="fa-solid fa-arrow-right" style="color: #000000;"></i> </button>
 
     </div>
   </div>
@@ -335,12 +335,7 @@
       <div class="col-12">
 
       <div class="card-blank-statistique-big card-white d-flex justify-content-between">
-      <div class="d-flex flex-column align-items-center justify-content-evenly">
-          <div>
-          </div>
-          <div class="statistiques">
-        </div>
-      </div>
+
 
           <div class="graph-chart d-flex justify-content-between">
               <!-- Graphique -->
