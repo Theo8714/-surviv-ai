@@ -1,4 +1,6 @@
 class MonthAnalyzer
+  attr_reader :average_payment_days
+
   def initialize(user, month, year)
     @user = user
     @month = month

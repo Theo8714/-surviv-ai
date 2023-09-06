@@ -14,7 +14,7 @@
   <div class="col-4">
     <div class="card-blank card-blue d-flex flex-column justify-content-between">
     <div>
-      <h3>64</h3>
+      <h3><%= current_user.reminders.total_reminders_by_month %></h3>
       <p><strong>Relances efféctués ce mois ci</strong></p>
       <p><strong><%= number_with_precision(current_user.invoices.sum_collect_by_month, precision: 2, separator: ',') %> €</strong> à collectés</p>
     </div>
@@ -64,7 +64,7 @@
     <div class="card-blank-statistique card-white d-flex justify-content-between">
       <div class="d-flex flex-column align-items-center justify-content-evenly">
           <div>
-            <h4>54 Jours</h4>
+            <h4><%= @average_payment_days %></h4>
             <p>DSO</p>
           </div>
           <div class="statistiques">

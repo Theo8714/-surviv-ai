@@ -55,6 +55,6 @@ class Invoice < ApplicationRecord
     @a = Invoice.where("due_date >= '#{Date.today - Date.today.day + 1}'").where(progress: "Avant échéance").map(&:amount).sum
     @b = Invoice.where(progress: "Phase amiable").map(&:amount).sum
     @c = Invoice.where(progress: "Juridique").map(&:amount).sum
-    total = [@a, @b, @c].sum
+    @total = [@a, @b, @c].sum
   end
 end
