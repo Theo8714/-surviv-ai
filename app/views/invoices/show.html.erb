@@ -3,21 +3,22 @@
 <div class="container" data-controller="toggle">
   <div class="row">
       <div class="col-12 d-flex align-items-center justify-content-center">
-          <div class="card-show card-grey">
+          <div class="card-show card-bg-white">
               <div class="display-info">
-                <h4 class="mb-3"><strong> <%= @invoice.debtor.company_name %> </strong></h4>
+                <h3 class="my-3 text-blue-light align-items-center"><strong> <%= @invoice.debtor.company_name %> </strong></h3>
+                <p class="num-invoice-show pb-3"><strong>Numéro de facture : </strong><%= @invoice.number %> </strong></p>
               </div>
-              <div class="display-info row">
-                <p><div class="col-6 text-start"><strong>Numéro de facture : </strong></div><div class="col-6 text-end "><%= @invoice.number %> </strong></div></p>
+
+              <div class="middle-card">
+              <div class="date py-4">
+                <div class="d-flex justify-content-center text-center align-items-center w-100">
+                    <p class="size-text"><strong>Date d'émission:</strong> <br><%= @invoice.emission_date.strftime("%d/%m/%y") %></p>
+                </div>
+                <div class="d-flex justify-content-center text-center align-items-center w-100">
+                    <p class="size-text"><strong>Date d'échéance:</strong> <br><%= @invoice.due_date.strftime("%d/%m/%y") %></p>
+                </div>
               </div>
-              <div class="display-info row">
-                <p><div class="col-6 text-start"><strong> Montant de l'encours : </strong></div><div class="col-6 text-end "><%= number_with_precision(@invoice.amount, precision: 2, separator: ',') %>€ </strong></div></p>
-              </div>
-              <div class="row display-info ">
-                <p><div class="col-6 text-start"><strong>Date d'émission: </strong></div><div class="col-6 text-end "> <%= @invoice.emission_date.strftime("%d/%m/%y") %></strong></div></p>
-              </div>
-              <div class="display-info row">
-                <p><div class="col-6 text-start"><strong>Date de l'échéance :</strong> </div><div class="col-6 text-end "><%= @invoice.due_date.strftime("%d/%m/%y") %> </strong></div></p>
+                <p class="encour-size-show text-center"><i class="fa-solid fa-coins fa-lg" style="color: #FFFFF;"></i>  <%= number_with_precision(@invoice.amount, precision: 2, separator: ',') %> €</p>
               </div>
               <div class="bottom-cards-show ">
                 <% if @invoice.file.attached? %>
@@ -26,8 +27,8 @@
                 </div>
                 <% end %>
                 <div class="button-container">
-                  <button data-action="" class="btnn btn-round btn-medium btn-purple " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" >Edit ta facture </button>
-                  <%= link_to "Liste des factures", invoices_path, class: "btnn btn-round btn-medium btn-beige" %>
+                  <button data-action="" class="btnn btn-square btn-medium btn-purple " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" >Édit ta facture </button>
+                  <%= link_to "Liste des factures", invoices_path, class: "btnn btn-square btn-medium btn-blue" %>
                 </div>
               </div>
           </div>

@@ -12,30 +12,37 @@
   margin-bottom: 8px;
   text-align: center;
   border: none;
+  font-family: 'Montserrat', sans-serif;
+
 }
 .btn-blue {
 background-color: #90CBFE;
-border: 1px solid #D1D4FF;
-color: white;
+color: black;
+font-family: 'Montserrat', sans-serif;
+font-weight: 600;
  &:hover {
-  background-color: #D1D4FF;
-  transition: 1s;
+  background-color: black;
+  color: #90CBFE;
+  transition: 0.5s;
 
  }
 }
+
 .btn-purple {
   background-color: #D1D4FF;
-  border: 1px solid #D1D4FF;
   color: black;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+
    &:hover {
-    background-color: #90CBFE;
-    transition: 1s;
+    background-color: black;
+  color: #D1D4FF;
+  transition: 0.5s;
    }
   }
 
 .btn-beige {
   background-color: #FEEFE7;
-  border: 1px  solid #D1D4FF;
   color: black;
     &:hover {
     background-color: #E5EEFE;
@@ -70,6 +77,9 @@ color: white;
   font-size: 20px;
   width: 15em;
   height: 40px;
+  display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .btn-large {
