@@ -29,7 +29,7 @@
                 </div>
                 <% end %>
                 <div class="button-container">
-                  <button data-action="" class="btnn btn-square btn-medium btn-purple " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" >Édit ta facture </button>
+                  <button data-action="" class="btnn btn-square btn-medium btn-purple " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" >Édites ta facture </button>
                   <%= link_to "Liste des factures", invoices_path, class: "btnn btn-square btn-medium btn-blue" %>
                 </div>
               </div>
@@ -77,7 +77,7 @@
     </div>
 
     <div class="offcanvas-body">
-      <div class="my-3 d-flex justify-content-center " >
+      <div class="d-flex justify-content-center " >
             <div data-toggle-target="togglableElement" class="">
               <%= render 'form_edit', user: @user, invoice: @invoice %>
             </div>

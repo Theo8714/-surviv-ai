@@ -26,9 +26,16 @@
   <div class="col-4">
     <div class="card-blank card-blue-strong  d-flex flex-column justify-content-between">
       <div>
-      <h4>4</h4>
+      <h4><%= current_user.relationships.where('rating <= ?', 2).count %></h4>
       <p><strong>de vos clients ont une note en dessous de C</strong></p>
-      <p>Pour un total de 3 000€ d'encours</p>
+      <% total = 0 %>
+      <% paid = 0 %>
+      <% bad_clients = current_user.relationships.where('rating <= ?', 2) %>
+      <% bad_clients.each do |relation| %>
+        <% total += relation.invoices.sum(:amount) %>
+        <% paid += relation.invoices.where(progress: 'Payé').sum(:amount) %>
+        <% end %>
+      <p>Pour un total de <%= number_with_precision((total - paid), precision: 2, separator: ',') %> € d'encours</p>
       </div>
     <button class="btnn btn-square btn-white btn-small">Voir mes factures --> </button>
 
@@ -63,18 +70,16 @@
 
 
 
-
-
   <div class="col-8">
     <div class="card-blank-statistique card-white d-flex justify-content-between">
       <div class="d-flex flex-column align-items-start justify-content-evenly" style="
     width: 160px;">
           <div>
             <h4><%= @average_payment_days_current_month %> Jours</h4>
-            <p>DSO</p>
+            <p>DSO du mois en cours</p>
           </div>
           <div class="statistiques">
-            <p><i class="fa-solid fa-arrow-right transform-up"></i> 45 Jours </p>
+            <p><i class="fa-solid fa-arrow-trend-down"></i> 8 Jours </p>
         </div>
       </div>
 
@@ -313,7 +318,6 @@
             <p>Moyen par client</p>
           </div>
           <div class="statistiques">
-            <p><i class="fa-solid fa-arrow-right transform-up"></i> 4 Jours </p>
         </div>
       </div>
 
@@ -333,11 +337,8 @@
       <div class="card-blank-statistique-big card-white d-flex justify-content-between">
       <div class="d-flex flex-column align-items-center justify-content-evenly">
           <div>
-            <h4>8450 € </h4>
-            <p>Total des factures</p>
           </div>
           <div class="statistiques">
-            <p><i class="fa-solid fa-arrow-right transform-up"></i> 1200€ </p>
         </div>
       </div>
 
