@@ -3,6 +3,9 @@ require 'open-uri'
 
 class InvoicesController < ApplicationController
   # before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token, only: [:incoming_invoice]
+  skip_before_action :authenticate_user!, only: [:incoming_invoice]
+
   def index
     @invoices = current_user.invoices.order(created_at: :desc)
     # if params[:query].present?
@@ -77,6 +80,12 @@ class InvoicesController < ApplicationController
     @invoices_paid.each do |invoice|
       invoice.calculate_average_days_late
     end
+  end
+
+  def incoming_invoice
+    puts "---------"
+    puts params
+    puts "---------"
   end
 
   private
