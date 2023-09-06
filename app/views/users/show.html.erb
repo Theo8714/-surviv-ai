@@ -26,9 +26,16 @@
   <div class="col-4">
     <div class="card-blank card-blue-strong  d-flex flex-column justify-content-between">
       <div>
-      <h4>4</h4>
+      <h4><%= current_user.relationships.where('rating <= ?', 2).count %></h4>
       <p><strong>de vos clients ont une note en dessous de C</strong></p>
-      <p>Pour un total de 3 000€ d'encours</p>
+      <% total = 0 %>
+      <% paid = 0 %>
+      <% bad_clients = current_user.relationships.where('rating <= ?', 2) %>
+      <% bad_clients.each do |relation| %>
+        <% total += relation.invoices.sum(:amount) %>
+        <% paid += relation.invoices.where(progress: 'Payé').sum(:amount) %>
+        <% end %>
+      <p>Pour un total de <%= number_with_precision((total - paid), precision: 2, separator: ',') %> d'encours</p>
       </div>
     <button class="btnn btn-square btn-white btn-small">Voir mes factures --> </button>
 
