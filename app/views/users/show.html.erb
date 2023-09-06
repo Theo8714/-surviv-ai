@@ -75,7 +75,7 @@
       <div class="d-flex flex-column align-items-start justify-content-evenly" style="
     width: 160px;">
           <div>
-            <h4><%= @average_payment_days_current_month %> Jours</h4>
+            <h4><%= number_with_precision(@average_payment_days_current_month, precision: 0) %> Jours</h4>
             <p>DSO du mois en cours</p>
           </div>
           <div class="statistiques">
