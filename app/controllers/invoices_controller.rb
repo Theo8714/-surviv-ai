@@ -3,6 +3,9 @@ require 'open-uri'
 
 class InvoicesController < ApplicationController
   # before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token, only: [:incoming_invoice]
+  skip_before_action :authenticate_user!, only: [:incoming_invoice]
+
   def index
     @invoices = current_user.invoices.order(created_at: :desc)
     # if params[:query].present?
@@ -28,6 +31,7 @@ class InvoicesController < ApplicationController
     @debtor = Debtor.new
     @relationship = Relationship.new
     @mindee = MindeeExtractor.new
+    @mindee_url = MindeeExtractorUrl.new
   end
 
   def create
@@ -79,10 +83,43 @@ class InvoicesController < ApplicationController
     end
   end
 
+  def incoming_invoice
+    puts "---------"
+    puts params
+    puts "---------"
+    @user = User.find_by(email: params[:sender])
+
+    pdf_url = params[:invoice]
+    @mindee_url = MindeeExtractorUrl.new(pdf_url)
+    @mindee_url.perform
+    extractor_hash = @mindee_url.extractor_hash
+
+    @debtor = Debtor.find_by(company_name: extractor_hash[:company_name])
+    @debtor ||= Debtor.create(company_name: extractor_hash[:company_name])
+    @relationship = Relationship.find_or_initialize_by(debtor: @debtor, user: @user)
+    @relationship.save
+
+    @invoice = Invoice.new(
+      number: extractor_hash[:number],
+      amount: extractor_hash[:amount],
+      emission_date: extractor_hash[:emission_date],
+      due_date: extractor_hash[:due_date],
+      progress: "À traiter"
+    )
+    @invoice.relationship = @relationship
+
+    if @invoice.save
+      puts "all is good"
+      redirect_to invoices_path
+    else
+      puts @invoice.errors.full_messages
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def invoice_params
     params.require(:invoice).permit(:number, :amount, :emission_date, :siren, :due_date, :comment, :progress, :relationship_id, :file, :payment_date)
   end
-
 end

@@ -7,4 +7,6 @@ Rails.application.routes.draw do
       get :archives
     end
   end
+
+  post "incoming_invoice", to: "invoices#incoming_invoice"
 end
