@@ -29,7 +29,7 @@ class DebtorAnalyzer
   # end
 
   def calculate_total_unpaid_amount
-    unpaid_invoices = @invoices.where(progress: ["Phase amiable", "Juridique"])
+    unpaid_invoices = @invoices.where(progress: ["À traiter", "Phase amiable", "Juridique"])
     @unpaid_amount = unpaid_invoices.sum(:amount)
   end
 
@@ -51,7 +51,7 @@ class DebtorAnalyzer
   end
 
   def calculate_overdue_invoices_count
-    @overdue_invoices_count = @invoices.where("due_date < ? AND progress = ?", Date.today, "Phase amiable").count
+    @overdue_invoices_count = @invoices.where("due_date < ? AND progress IN (?)", Date.today, ["À traiter", "Phase amiable", "Juridique"]).count
   end
 
   def total_reminders_sent
