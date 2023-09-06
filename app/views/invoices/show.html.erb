@@ -1,9 +1,11 @@
 
 
-<div class="container"  data-controller="toggle">
-  <div class="row">
+<div class="container" style="
+    height: 100%;"  data-controller="toggle">
+  <div class="row" style="
+    height: 100%;" >
       <div class="col-6 d-flex align-items-center justify-content-center">
-          <div class="card-show card-bg-white">
+          <div class="card-show card-bg-white" >
               <div class="display-info">
                 <h3 class="my-3 text-blue-light align-items-center"><strong> <%= @invoice.debtor.company_name %> </strong></h3>
                 <p class="num-invoice-show pb-3"><strong>Numéro de facture : </strong><%= @invoice.number %> </strong></p>
@@ -33,30 +35,39 @@
               </div>
           </div>
        </div>
-         <div class="mt-5 col-6 mx-3">
-    <div class="reminders">
-      <h3>Relances :</h3>
-      <div class="title-reminders d-flex justify-content-between">
 
-          <div class=""><strong>Type de relance :</strong></div>
-          <div class=" text-center"><strong>Date de la relance :</strong></div>
-          <div class=" text-end"><strong>État de la relance :</strong></div>
 
-      </div>
-      <% @invoice.reminders.each do |reminder| %>
-        <div class="info-reminders d-flex justify-content-between">
-          <div class="col-4 text-start">
-            <p><%= reminder.reminder_type %></p>
-          </div>
-          <div class="col-4 text-center">
-            <p><%= reminder.action_date.strftime("%d/%m/%y") %></p>
-          </div>
-          <div class="col-4 text-end">
-            <p><%= reminder.progress %></p>
-          </div>
+  <div class="mt-6 col-6 d-flex align-items-center" style="width=100%">
+    <% if @invoice.reminders.exists? %>
+      <div class="reminders" style="
+    width: 100%;">
+        <h3 class="my-3">Relances :</h3>
+        <div class="title-reminders d-flex justify-content-between">
+
+            <div class=""><strong>Type de relance :</strong></div>
+            <div class=" text-center"><strong>Date de la relance :</strong></div>
+            <div class=" text-end"><strong>État de la relance :</strong></div>
+
         </div>
-      <% end %>
-    </div>
+        <% @invoice.reminders.each do |reminder| %>
+          <div class="info-reminders d-flex justify-content-between">
+            <div class="col-4 text-start">
+              <p><%= reminder.reminder_type %></p>
+            </div>
+            <div class="col-4 text-center">
+              <p><%= reminder.action_date.strftime("%d/%m/%y") %></p>
+            </div>
+            <div class="col-4 text-end">
+              <p><%= reminder.progress %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+  <div class="mt-5 col-6">
+    <h5>Cette facture n'a pas encore été traitée</h5>
+  </div>
+    <% end %>
   </div>
   </div>
 
@@ -73,10 +84,3 @@
       </div>
     </div>
   </div>
-  <% if @invoice.reminders.exists? %>
-
-<% else %>
-  <div class="mt-5 ms-5">
-    <h5>Cette facture n'a pas encore été traitée</h5>
-  </div>
-<% end %>
