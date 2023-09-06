@@ -3,7 +3,7 @@
   height: 200px;
   padding: 20px;
   border-radius: 3px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   p{
     font-size: 13px;
     margin: 0px;
@@ -17,6 +17,11 @@
     padding-right: 4px;
     border: none;
   }
+}
+.info-perso{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .card-blue {
   color: white;
@@ -49,7 +54,7 @@
     padding: 20px;
     padding-top: 0px;
     border-radius: 3px;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     p{
       font-size: 13px;
       margin: 0px;
@@ -74,7 +79,7 @@
   padding: 20px;
   padding-top: 0px;
   border-radius: 3px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   p{
     font-size: 13px;
     margin: 0px;
@@ -109,7 +114,7 @@
   padding: 20px;
   padding-top: 0px;
   border-radius: 3px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   overflow: scroll;
   p{
     font-size: 13px;
