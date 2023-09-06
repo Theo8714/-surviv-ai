@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
     months = date_months.map { |date| "#{date.month} #{date.year}" }
     days_of_payment = @month_analyzers.map { |analyzer| analyzer.perform }
+    @average_payment_days_current_month = @month_analyzers.last.average_payment_days
     data_points = months.each_with_index.map do |month, index|
       {
         x: month,
@@ -89,7 +90,7 @@ class UsersController < ApplicationController
     @chart_data1 = {
       labels: @debtor_analyzers.map { |analyzer| analyzer.debtor.company_name },
       datasets: [{
-        label: 'Moyenne des Jours de Paiement',
+        label: 'DSO en jours',
         backgroundColor: '#3B82F6',
         data: @debtor_analyzers.map { |analyzer| analyzer.relationship.payment_days.to_i }
       }]

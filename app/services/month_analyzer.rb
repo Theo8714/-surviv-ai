@@ -5,6 +5,7 @@ class MonthAnalyzer
     @user = user
     @month = month
     @year = year
+    @average_payment_days = nil
   end
 
   def perform
@@ -27,8 +28,8 @@ class MonthAnalyzer
       total_days += days
       valid_invoices_count += 1
     end
-    average_payment_days = valid_invoices_count > 0 ? total_days / valid_invoices_count.to_f : 0
+    @average_payment_days = valid_invoices_count > 0 ? total_days / valid_invoices_count.to_f : 0
 
-    return average_payment_days
+    return @average_payment_days
   end
 end
