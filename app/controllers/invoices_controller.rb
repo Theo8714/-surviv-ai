@@ -4,7 +4,7 @@ require 'open-uri'
 class InvoicesController < ApplicationController
   # before_action :authenticate_user!
   def index
-    @invoices = current_user.invoices.order(emission_date: :desc)
+    @invoices = current_user.invoices.order(created_at: :desc)
     # if params[:query].present?
     #   sql_subquery_number = "number ILIKE :query"
     #   sql_subquery_company = "debtors.company_name ILIKE :query"
@@ -50,7 +50,7 @@ class InvoicesController < ApplicationController
 
     @invoice.file = invoice_params[:file]
     @invoice.relationship = @relationship
-    
+
     if @invoice.save
       redirect_to invoices_path
     else
