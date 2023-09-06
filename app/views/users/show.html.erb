@@ -124,17 +124,17 @@
             </div>
 
               <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade custom-modal" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <!-- Section Analyses des débiteurs -->
-                <div class="container mt-2 modal-content" data-modal-target="togglableElement">
+                <div class="mt-2 modal-content" data-modal-target="togglableElement">
                   <h2 class="my-3 modal-header">Analyses des débiteurs</h2>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   <div class="row d-flex flex-column">
                     <% @debtor_analyzers[0..1].each do |debtor_analyzer| %>
 
                     <!-- Card avec les analyses pour chaque débiteur -->
-                    <div class="col-5 my-3">
+                    <div class="col-4 my-3">
                       <h5 class="card-title ms-3">Analyses pour <%= debtor_analyzer.debtor.company_name %> :</h5>
 
                       <div class="card-show-user card-large mb-4 modal-body">
