@@ -48,7 +48,7 @@
 
 }
 .card-large {
-width: 600px;
+width: 465px;
   height: 250px;
 }
 
@@ -70,4 +70,15 @@ width: 600px;
   i {
     transform: rotate(310deg);
   }
+}
+.modal-header {
+  border: none !important;
+}
+
+.modal-header-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid #dee2e6;
 }

@@ -101,6 +101,9 @@ background-color: #E5EEFE;
 
 .custom-modal .modal-dialog {
   max-width: 1000px !important;
-  width: 80% !important;
+  width: 100% !important;
   left: auto !important;
+}
+.modal-content {
+  width: 105%;
 }
