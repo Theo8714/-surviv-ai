@@ -12,7 +12,6 @@ export default class extends Controller {
     this.togglableElementTargets.forEach(element => {
       element.classList.toggle("d-none");
     });
-    document.body.classList.toggle("body-show");
   }
 
 }
