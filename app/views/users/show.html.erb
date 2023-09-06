@@ -115,13 +115,20 @@
     <div class="card-blank-show-big card-white d-flex justify-content-between">
 
     <div class="container mt-2">
-    <h4 class="my-4 text-center">Analyses des débiteurs</h4>
-
+    <div class="row sticky bg-white">
+      <div class="col-2"></div>
+      <div class="col-7">
+        <h4 class="my-4 text-center">Analyses des débiteurs</h4>
+      </div>
+        <div class="col-3">
             <!-- Button trigger modal -->
-            <div class="d-flex justify-content-end">
-              <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#myModal">
-                Voir détails
+
+            <div class="d-flex justify-content-end align-items-center " style="height: 100%;">
+              <button class="btnn-modal" type="button" data-bs-toggle="modal" data-bs-target="#myModal">
+                Voir plus
               </button>
+            </div>
+            </div>
             </div>
 
               <!-- Modal -->
@@ -129,19 +136,21 @@
               <div class="modal-dialog">
                 <!-- Section Analyses des débiteurs -->
                 <div class="mt-2 modal-content" data-modal-target="togglableElement">
-                  <h2 class="my-3 modal-header">Analyses des débiteurs</h2>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  <div class="row d-flex flex-column">
-                    <% @debtor_analyzers[0..1].each do |debtor_analyzer| %>
+                  <div class="modal-header-div">
+                    <h2 class="my-3 modal-header">Analyses des débiteurs</h2>
+                    <button type="button" class="btn-close card-blank-show-big-modal " data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="row ">
+                    <% @debtor_analyzers[0..12].each do |debtor_analyzer| %>
 
                     <!-- Card avec les analyses pour chaque débiteur -->
-                    <div class="col-4 my-3">
-                      <h5 class="card-title ms-3">Analyses pour <%= debtor_analyzer.debtor.company_name %> :</h5>
+                    <div class="col-6 my-3">
 
                       <div class="card-show-user card-large mb-4 modal-body">
 
                         <div class="card-body d-flex flex-column justify-content-center w-100">
 
+                      <h5 class="card-title ms-3 mt-2 mb-4 text-blue-light"> <%= debtor_analyzer.debtor.company_name %> :</h5>
                           <!-- Note calculée par l'équipe Surviv.Ai -->
                           <div class="text-color">
                             <div class="d-flex justify-content-between align-items-center px-3">
@@ -441,28 +450,6 @@
       </div>
   </div>
 
-
-
-
-
-
-
-
-
-
-
-  <!-- Section Graphique -->
-  <div class="graph-container container mt-4">
-    <h2 class="mt-2 mb-4">Graphique récapitulatif</h2>
-    <!-- Graphique -->
-    <canvas
-      class="graph-chart"
-      data-controller="chart"
-      data-chart-type-value="bar"
-      data-chart-data-value="<%= @chart_data.to_json %>"
-    ></canvas>
-  </div>
-
   <!-- Section Analyses récapitulatives des débiteurs -->
   <div class="container mt-4">
     <h2 class="my-4">Analyses récapitulatives des débiteurs</h2>
@@ -495,26 +482,3 @@
     </div>
   </div>
 </div>
-
-
-<div class="graph-container container mt-4">
-    <h2 class="mt-2 mb-4">Graphique récapitulatif</h2>
-    <!-- Graphique -->
-    <canvas
-      class="graph-chart"
-      data-controller="chart"
-      data-chart-type-value="bar"
-      data-chart-data-value="<%= @chart_data1.to_json %>"
-    ></canvas>
-  </div>
-
-<div class="graph-container container mt-4">
-    <h2 class="mt-2 mb-4">DSO Mensuel</h2>
-    <!-- Graphique -->
-    <canvas
-      class="graph-chart"
-      data-controller="chart"
-      data-chart-type-value="line"
-      data-chart-data-value="<%= @chart_data2.to_json %>"
-    ></canvas>
-  </div>
