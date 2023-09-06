@@ -10,28 +10,45 @@ background-color: #E5EEFE;
   border-bottom: 1px solid black;
 
 }
+.card-beige {
+  background-color: #FEEFE7;
+}
+.card-bg-white{
+  background-color: #1C2536;
+}
 
 .card-show {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
+
   border-radius: 3px;
   width: 700px;
-  box-shadow: 1px 1px 2px black;
+
   margin: 16px;
   text-align: center;
   padding: 8px;
   padding-top: 16px;
   padding-bottom: 16px;
+  p{
+    color: white;
+  }
+  }
 
-
+  .size-text {
+    font-size: 21px;
+  }
+  .encour-size-show{
+    font-size: 25px;
+  }
+  .num-invoice-show {
+    font-size: 16px;
   }
 
   .display-info{
 
     width: 100%;
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid #E5EEFE;
 
   }
 
@@ -57,3 +74,33 @@ background-color: #E5EEFE;
   }
 .info-reminders{
   width: 100%;}
+
+// .modal-content-show {
+//   position: fixed;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   background-color: white;
+//   padding: 20px;
+//   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+//   z-index: 1000; /* Assurez-vous que le z-index est supérieur à celui du contenu existant */
+//   opacity: 1;
+//   transition: opacity 0.3s ease-in-out;
+// }
+
+// .modal-content.d-none {
+//   opacity: 1;
+//   pointer-events: none; /* Empêche les interactions avec l'élément caché */
+// }
+
+// .body-show-user {
+//   overflow: hidden; /* Empêche le défilement du contenu existant lorsque la modal est ouverte */
+//   opacity: 0.5; /* Opacité réduite */
+//   pointer-events: none; /* Empêche les interactions avec le contenu existant */
+// }
+
+.custom-modal .modal-dialog {
+  max-width: 1000px !important;
+  width: 80% !important;
+  left: auto !important;
+}
