@@ -35,7 +35,7 @@
         <% total += relation.invoices.sum(:amount) %>
         <% paid += relation.invoices.where(progress: 'Payé').sum(:amount) %>
         <% end %>
-      <p>Pour un total de <%= number_with_precision((total - paid), precision: 2, separator: ',') %> d'encours</p>
+      <p>Pour un total de <%= number_with_precision((total - paid), precision: 2, separator: ',') %> € d'encours</p>
       </div>
     <button class="btnn btn-square btn-white btn-small">Voir mes factures --> </button>
 
@@ -70,18 +70,16 @@
 
 
 
-
-
   <div class="col-8">
     <div class="card-blank-statistique card-white d-flex justify-content-between">
       <div class="d-flex flex-column align-items-start justify-content-evenly" style="
     width: 160px;">
           <div>
             <h4><%= @average_payment_days_current_month %> Jours</h4>
-            <p>DSO</p>
+            <p>DSO du mois en cours</p>
           </div>
           <div class="statistiques">
-            <p><i class="fa-solid fa-arrow-right transform-up"></i> 45 Jours </p>
+            <p><i class="fa-solid fa-arrow-trend-down"></i> 8 Jours </p>
         </div>
       </div>
 
@@ -320,7 +318,6 @@
             <p>Moyen par client</p>
           </div>
           <div class="statistiques">
-            <p><i class="fa-solid fa-arrow-right transform-up"></i> 4 Jours </p>
         </div>
       </div>
 
@@ -340,11 +337,8 @@
       <div class="card-blank-statistique-big card-white d-flex justify-content-between">
       <div class="d-flex flex-column align-items-center justify-content-evenly">
           <div>
-            <h4>8450 € </h4>
-            <p>Total des factures</p>
           </div>
           <div class="statistiques">
-            <p><i class="fa-solid fa-arrow-right transform-up"></i> 1200€ </p>
         </div>
       </div>
 
