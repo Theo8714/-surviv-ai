@@ -18,7 +18,7 @@
       <p><strong>Relances efféctués ce mois ci</strong></p>
       <p><strong><%= number_with_precision(current_user.invoices.sum_collect_by_month, precision: 2, separator: ',') %> €</strong> à collectés</p>
     </div>
-      
+
     <button class="btnn btn-square btn-white btn-small">Voir mes factures --> </button>
     </div>
   </div>
@@ -91,7 +91,7 @@
     <div class="card-blank-statistique card-white d-flex justify-content-between">
       <div class="d-flex flex-column align-items-center justify-content-evenly">
           <div>
-            <h4>54 Jours</h4>
+            <h4><%= @average_payment_days_current_month %> Jours</h4>
             <p>DSO</p>
           </div>
           <div class="statistiques">
@@ -321,8 +321,8 @@
     <div class="card-blank-statistique-big card-white d-flex justify-content-between">
       <div class="d-flex flex-column align-items-center justify-content-evenly">
           <div>
-            <h4>32 Jours</h4>
-            <p>Moyens de paiements</p>
+            <h4>DSO</h4>
+            <p>Moyen par client</p>
           </div>
           <div class="statistiques">
             <p><i class="fa-solid fa-arrow-right transform-up"></i> 4 Jours </p>
