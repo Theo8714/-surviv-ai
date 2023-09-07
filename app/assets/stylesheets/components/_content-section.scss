@@ -150,7 +150,8 @@ height: 120px;
 
 .youtube-video {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  padding-right: 85px;
   align-items: center;
 }
 .youtube {
