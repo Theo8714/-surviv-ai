@@ -132,7 +132,7 @@
                               <p><%= invoice.number %> </p>
                           </div>
                           <div class="w-100">
-                              <p><%= number_with_precision(invoice.amount, precision: 2, separator: ',') %>€</p>
+                              <p><%= number_with_precision(invoice.amount, precision: 2, separator: ',') %> €</p>
                           </div>
                           <div class="w-100">
                               <p><%= invoice.emission_date.strftime("%d/%m/%y") %></p>
@@ -145,7 +145,6 @@
                             <%= link_to  invoice_path(invoice), data:{:title => "Voir plus"}, class: "custom-tooltip-row position-relative"   do %>
                               <i class="fa-solid fa-magnifying-glass fa-lg" style="color: #071425;"></i>
                             <% end %>
-
                         </div>
                       </div>
                     <% end %>
