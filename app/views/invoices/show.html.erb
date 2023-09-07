@@ -14,10 +14,10 @@
               <div class="middle-card">
               <div class="date py-4">
                 <div class="d-flex justify-content-center text-center align-items-center w-100">
-                    <p class="size-text"><strong>Date d'émission:</strong> <br><%= @invoice.emission_date.strftime("%d/%m/%y") %></p>
+                    <p class="size-text"><strong>Date d'émission</strong> <br><%= @invoice.emission_date.strftime("%d/%m/%y") %></p>
                 </div>
                 <div class="d-flex justify-content-center text-center align-items-center w-100">
-                    <p class="size-text"><strong>Date d'échéance:</strong> <br><%= @invoice.due_date.strftime("%d/%m/%y") %></p>
+                    <p class="size-text"><strong>Date d'échéance</strong> <br><%= @invoice.due_date.strftime("%d/%m/%y") %></p>
                 </div>
               </div>
                 <p class="encour-size-show text-center"><i class="fa-solid fa-coins fa-lg" style="color: #FFFFF;"></i>  <%= number_with_precision(@invoice.amount, precision: 2, separator: ',') %> €</p>
