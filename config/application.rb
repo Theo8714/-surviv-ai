@@ -15,7 +15,7 @@ module SurvivAi
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-    config.hosts << "fae7-2a01-cb19-74f-1f00-4144-8dd8-d2d4-8cab.ngrok-free.app"
+    #config.hosts << "fae7-2a01-cb19-74f-1f00-4144-8dd8-d2d4-8cab.ngrok-free.app"
     # config.i18n.default_locale = :fr
     # Configuration for the application, engines, and railties goes here.
     #
