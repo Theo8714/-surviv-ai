@@ -10,3 +10,4 @@ export default class extends Controller {
     $('#staticBackdrop').modal('show');
   }
 }
+
