@@ -1,56 +1,39 @@
 <div class="sidebar sticky">
-
   <div class="container-sidebar">
-    <div class="top">
-      <%= link_to "/", class: "navbar-brand" do %>
-        <%= image_tag "logo_survivai.png" %>
-      <% end %>
-
-      <% if user_signed_in? %>
-      <%= link_to user_path(current_user), data:{:title => "Tableau de bord"}, class: "custom-tooltip position-relative"   do %>
-        <i class="fa-solid fa-house fa-2xl" ></i>
-      <% end %>
-
-      <%= link_to  invoices_path,  data:{:title => "Mes factures"}, class: "custom-tooltip position-relative"   do %>
-        <i class="fa-solid fa-file fa-2xl"></i>
-      <% end %>
-
-      <%= link_to new_invoice_path, data: { title: "Ajouter une facture", bs_toggle:"offcanvas", bs_target: "#offcanvasnew" }, class: "custom-tooltip position-relative", aria: {controls: "offcanvasExample"} do %>
-        <i class="fa-solid fa-plus fa-2xl"></i>
-      <% end %>
-
-  <div class="offcanvas offcanvas-end canva-blue canva-size" tabindex="-1" id="offcanvasnew" aria-labelledby="offcanvasnew">
-
-      <button type="button" class="btn-close ps-3 pt-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-
-
-    <div class="offcanvas-body">
-      <div class="my-3 d-flex justify-content-center " >
-            <div data-toggle-target="togglableElement" class="size-form">
-              <%= render 'invoices/form_new', invoice: Invoice.new %>
+    <% if user_signed_in? %>
+      <div class="top">
+        <%= link_to "/", class: "navbar-brand" do %>
+          <%= image_tag "logo_survivai.png" %>
+        <% end %>
+        <%= link_to user_path(current_user), data:{:title => "Tableau de bord"}, class: "custom-tooltip position-relative"   do %>
+          <i class="fa-solid fa-house fa-2xl" ></i>
+        <% end %>
+        <%= link_to  invoices_path,  data:{:title => "Mes factures"}, class: "custom-tooltip position-relative"   do %>
+          <i class="fa-solid fa-file fa-2xl"></i>
+        <% end %>
+        <%= link_to new_invoice_path, data: { title: "Ajouter une facture", bs_toggle:"offcanvas", bs_target: "#offcanvasnew" }, class: "custom-tooltip position-relative", aria: {controls: "offcanvasExample"} do %>
+          <i class="fa-solid fa-plus fa-2xl"></i>
+        <% end %>
+        <div class="offcanvas offcanvas-end canva-blue canva-size" tabindex="-1" id="offcanvasnew" aria-labelledby="offcanvasnew">
+          <button type="button" class="btn-close ps-3 pt-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          <div class="offcanvas-body">
+            <div class="my-3 d-flex justify-content-center " >
+              <div data-toggle-target="togglableElement" class="size-form">
+                <%= render 'invoices/form_new', invoice: Invoice.new %>
+              </div>
             </div>
+          </div>
+        </div>
+        <%= link_to  archives_invoices_path,  data:{:title => "Mes archives"}, class: "custom-tooltip position-relative" do %>
+          <i class="fa-solid fa-box-archive fa-2xl"></i>
+        <% end %>
       </div>
-    </div>
-  </div>
-      <%= link_to  archives_invoices_path,  data:{:title => "Mes archives"}, class: "custom-tooltip position-relative" do %>
-        <i class="fa-solid fa-box-archive fa-2xl"></i>
-      <% end %>
-
-
-
-
-    </div>
-
-    <div class="bottom">
-
+      <div class="bottom">
         <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <%= image_tag "https://d1muf25xaso8hp.cloudfront.net/https%3A%2F%2F28134ce868f2f8a62916a0e24f8ed9de.cdn.bubble.io%2Ff1642684538982x678164592866763900%2FLOGO%2520NOIR%2526BLANC%2520LISERET.png?w=&h=&auto=compress&dpr=1&fit=max", class: "avatar", alt: "dropdown menu" %>
         </a>
-
         <div class="link-navbar-space">
           <div class="dropdown-navbar" >
-
-
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Ajouter une facture", new_invoice_path, class: "dropdown-item" %>
               <%= link_to "Mes factures", invoices_path, class: "dropdown-item" %>
@@ -60,13 +43,9 @@
             </div>
           </div>
         </div>
-    </div>
-
+      </div>
     <% else %>
         <%= link_to "Connexion", new_user_session_path, class: "nav-link" %>
-
     <% end %>
-
   </div>
-
 </div>

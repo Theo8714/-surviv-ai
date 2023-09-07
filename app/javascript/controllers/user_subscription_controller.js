@@ -13,7 +13,7 @@ export default class extends Controller {
         { received: (data) => {
           console.log(data)
           console.log(data.notification);
-          this.notificationTarget.insertAdjacentHTML('beforeend', data.notification)
+          this.notificationTarget.insertAdjacentHTML('afterbegin', data.notification)
         }}
       )
       console.log(`Subscribed to the user with the id ${this.userIdValue}.`)

@@ -18,6 +18,7 @@
   </head>
 
   <body class="<%= @show_invoice ? 'body-show' : '' %>"   data-controller="user-subscription" data-user-subscription-user-id-value="<%= current_user&.id %>" data-target="user-subscription.notification">
+
   <div class="app-show">
   <div class="sidebar-app" data-user-subscription-target="notification">
     <%= render "shared/navbar" %>
