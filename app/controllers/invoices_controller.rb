@@ -23,6 +23,7 @@ class InvoicesController < ApplicationController
   def show
     @show_invoice = true
     @invoice = Invoice.find(params[:id])
+    @invoice.reminders.order(action_date: :desc)
   end
 
   def new

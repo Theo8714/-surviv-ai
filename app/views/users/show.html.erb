@@ -79,7 +79,7 @@
             <p>DSO du mois en cours</p>
           </div>
           <div class="statistiques">
-            <p class="padding-none"><i class="fa-solid fa-arrow-trend-down"></i> 8 Jours </p>
+            <p class="padding-none"><i class="fa-solid fa-arrow-trend-down"></i> <%= number_with_precision((@first_average - @average_payment_days_current_month), precision: 0)%> jours</p>
         </div>
       </div>
 
