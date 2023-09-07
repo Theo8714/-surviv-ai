@@ -1,4 +1,4 @@
-<div class="body-show">
+<div class="body-show" >
   <div class="container">
     <h1 class="my-4">Liste des factures archivées</h1>
     <div class="center">
@@ -12,9 +12,11 @@
               %>
             <%= submit_tag "Filtrer", name: "", class: "btnn btn-square-filter btn-blue ml-2" %>
           <% end %>
+
+
         </div>
 
-      <div class="cards my-3">
+      <div class="cards my-3" >
           <% @invoices_paid.each do |invoice|%>
             <div class="card-invoice card-white">
               <div class="top-card">
