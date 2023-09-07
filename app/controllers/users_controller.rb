@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
     months = date_months.map { |date| "#{date.month} #{date.year}" }
     days_of_payment = @month_analyzers.map { |analyzer| analyzer.perform }
+    @first_average = @month_analyzers.first.average_payment_days
     @average_payment_days_current_month = @month_analyzers.last.average_payment_days
     data_points = months.each_with_index.map do |month, index|
       {
