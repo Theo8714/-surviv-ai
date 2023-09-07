@@ -6,7 +6,7 @@ export default class extends Controller {
     console.log("hello load");
   }
 
-  loadmodal() {
-    $('#modal-loading').modal('show');
+  loadmodal(event) {
+    $('#staticBackdrop').modal('show');
   }
 }
