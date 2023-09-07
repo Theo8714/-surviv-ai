@@ -3,13 +3,13 @@
     <div class="forms">
       <%= simple_form_for [invoice], html: { class: 'custom-form' }, multipart: true do |f| %>
         <h1 class="text-start mb-4 ">Déposez une facture</h1>
-        <%= f.input :file, as: :file,
-                    label: "Déposer ma pièce jointe" %>
+          <%= f.input :file, as: :file, label: "Déposer ma pièce jointe" %>
         <div id="pdf-info" style="display: ">
-            <%= f.input :comment, label: "Commentaires"%>
+          <%= f.input :comment, label: "Commentaires"%>
         </div>
         <div class="d-flex justify-content-end">
         <%= f.submit "Dépose ta facture", class: "btnn btn-square btn-medium  btn-purple my-3 ", data: { action: "click->loading#loadmodal" } %>
+
         </div>
       <% end %>
     </div>
