@@ -3,8 +3,8 @@ border: 1px solid black;
 border-radius: 8px;
 width: 70px;
 position: absolute;
-top: 14%;
-left: 8%;
+top: 16%;
+left: 9%;
 
   button{
     background: none;
@@ -18,9 +18,10 @@ left: 8%;
   .clicked{
 
     background-size: contain;
-    height: 100%;
+    background-color: white;
     padding: 0px;
     margin: 0px;
+    border-radius: 8px;
   }
 }
 
