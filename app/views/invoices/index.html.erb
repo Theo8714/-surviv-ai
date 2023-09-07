@@ -132,7 +132,7 @@
                               <p><%= invoice.number %> </p>
                           </div>
                           <div class="w-100">
-                              <p><%= number_with_precision(invoice.amount, precision: 2, separator: ',') %> €</p>
+                              <p><%= number_with_precision(invoice.amount, precision: 2, separator: ',', delimiter: ' ') %> €</p>
                           </div>
                           <div class="w-100">
                               <p><%= invoice.emission_date.strftime("%d/%m/%y") %></p>

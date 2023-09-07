@@ -20,7 +20,7 @@
                     <p class="size-text"><strong>Date d'échéance:</strong> <br><%= @invoice.due_date.strftime("%d/%m/%y") %></p>
                 </div>
               </div>
-                <p class="encour-size-show text-center"><i class="fa-solid fa-coins fa-lg" style="color: #FFFFF;"></i>  <%= number_with_precision(@invoice.amount, precision: 2, separator: ',') %> €</p>
+                <p class="encour-size-show text-center"><i class="fa-solid fa-coins fa-lg" style="color: #FFFFF;"></i>  <%= number_with_precision(@invoice.amount, precision: 2, separator: ',', delimiter: ' ') %> €</p>
               </div>
               <div class="bottom-cards-show ">
                 <% if @invoice.file.attached? %>

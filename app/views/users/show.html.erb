@@ -16,7 +16,7 @@
     <div>
       <h3><%= current_user.reminders.total_reminders_by_month %></h3>
       <p><strong>Relances efféctués ce mois ci</strong></p>
-      <p><strong><%= number_with_precision(current_user.invoices.sum_collect_by_month, precision: 2, separator: ',') %> €</strong> à collecter</p>
+      <p><strong><%= number_with_precision(current_user.invoices.sum_collect_by_month, precision: 2, separator: ',', delimiter: ' ') %> €</strong> à collecter</p>
     </div>
 
     <button class="btnn btn-square btn-white btn-small">Mes factures <i class="fa-solid fa-arrow-right" style="color: #000000;"></i> </button>
@@ -35,7 +35,7 @@
         <% total += relation.invoices.sum(:amount) %>
         <% paid += relation.invoices.where(progress: 'Payé').sum(:amount) %>
         <% end %>
-      <p>Pour un total de <%= number_with_precision((total - paid), precision: 2, separator: ',') %> € d'encours</p>
+      <p>Pour un total de <%= number_with_precision((total - paid), precision: 2, separator: ',', delimiter: ' ') %> € d'encours</p>
       </div>
     <button class="btnn btn-square btn-white btn-small">Mes factures  <i class="fa-solid fa-arrow-right" style="color: #000000;"></i> </button>
 
@@ -45,7 +45,7 @@
   <div class="col-4">
     <div class="card-blank card-white d-flex flex-column justify-content-between">
       <div>
-        <h4><%= number_with_precision(current_user.invoices.total_sum_archive, precision: 2, separator: ',')%> €</h4>
+        <h4><%= number_with_precision(current_user.invoices.total_sum_archive, precision: 2, separator: ',', delimiter: ' ')%> €</h4>
         <p>Colléctés ce mois ci</p>
       </div>
 
@@ -53,16 +53,16 @@
 
         <div>
           <p>Avant écheance</p>
-          <p><strong> <%= number_with_precision(current_user.invoices.total_sum_before_due_date, precision: 2, separator: ',')  %> €</strong></p>
+          <p><strong> <%= number_with_precision(current_user.invoices.total_sum_before_due_date, precision: 2, separator: ',', delimiter: ' ')  %> €</strong></p>
         </div>
         <div>
           <p>Phase amiable</p>
-          <p><strong><%= number_with_precision(current_user.invoices.total_sum_friendly_phase, precision: 2, separator: ',') %> €</strong></p>
+          <p><strong><%= number_with_precision(current_user.invoices.total_sum_friendly_phase, precision: 2, separator: ',', delimiter: ' ') %> €</strong></p>
         </div>
 
         <div>
           <p>Juridique</p>
-          <p><strong><%= number_with_precision(current_user.invoices.total_sum_legal_phase, precision: 2, separator: ',') %> €</strong></p>
+          <p><strong><%= number_with_precision(current_user.invoices.total_sum_legal_phase, precision: 2, separator: ',', delimiter: ' ') %> €</strong></p>
         </div>
       </div>
     </div>
@@ -155,13 +155,13 @@
                           <!-- Montant total des factures -->
                           <div class="d-flex justify-content-between align-items-center text-green px-3">
                             <p class="mb-1"><strong>Montant total des factures :</strong></p>
-                            <p><strong><%= number_with_precision(debtor_analyzer.total_invoices_amount, precision: 2, separator: ',') %> EUR</strong>
+                            <p><strong><%= number_with_precision(debtor_analyzer.total_invoices_amount, precision: 2, separator: ',', delimiter: ' ') %> EUR</strong>
                               <i class="fas fa-coins ml-2"></i></p>
                           </div>
                           <!-- Montant total des factures impayées -->
                           <div class="d-flex justify-content-between align-items-center px-3 text-red">
                             <strong><p class="mb-1"><strong>Montant total des factures impayées :</strong></p></strong>
-                            <p><strong><%= number_with_precision(debtor_analyzer.unpaid_amount, precision: 2, separator: ',') %> EUR</strong>
+                            <p><strong><%= number_with_precision(debtor_analyzer.unpaid_amount, precision: 2, separator: ',', delimiter: ' ') %> EUR</strong>
                               <i class="fas fa-exclamation-triangle ml-2"></i></p>
                           </div>
                           <!-- Nombre de factures en retard de paiement -->
