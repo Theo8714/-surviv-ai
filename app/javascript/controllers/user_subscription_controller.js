@@ -12,8 +12,8 @@ export default class extends Controller {
         { channel: "UserChannel", id: this.userIdValue },
         { received: (data) => {
           console.log(data)
-          console.log(data.notification);
-          this.notificationTarget.insertAdjacentHTML('afterbegin', data.notification)
+          // console.log(data.notification);
+          this.notificationTarget.insertAdjacentHTML('afterbegin', data)
         }}
       )
       console.log(`Subscribed to the user with the id ${this.userIdValue}.`)
