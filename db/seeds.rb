@@ -366,10 +366,10 @@ end
 
 puts "relationships creation done"
 
-5.times do
+6.times do
   invoice = Invoice.new(
     number: Faker::Number.between(from: 100000, to: 999999),
-    amount: Faker::Number.between(from: 150, to: 500),
+    amount: Faker::Number.between(from: 200, to: 700),
     emission_date: Faker::Date.between(from: '2023-08-30', to: '2023-09-07'),
     progress: "À traiter"
   )
@@ -378,10 +378,10 @@ puts "relationships creation done"
   invoice.save
 end
 
-5.times do
+6.times do
   invoice = Invoice.new(
     number: Faker::Number.between(from: 100000, to: 999999),
-    amount: Faker::Number.between(from: 150, to: 500),
+    amount: Faker::Number.between(from: 200, to: 700),
     emission_date: Faker::Date.between(from: '2023-08-01', to: '2023-08-30'),
     progress: "Avant échéance"
   )
