@@ -234,6 +234,15 @@ relationship1.save
   invoice.due_date = due_date(invoice.emission_date)
   invoice.relationship = relationship1
   invoice.save
+  3.times do
+    remind = Reminder.new(
+      reminder_type: "email",
+      action_date: Faker::Date.between(from: invoice.emission_date + 20, to: invoice.emission_date + 50),
+      progress: ["En cours", "Terminé"].sample
+    )
+    remind.invoice = invoice
+    remind.save
+  end
 end
 
 4.times do
@@ -244,10 +253,61 @@ end
     progress: "Payé"
   )
   invoice.due_date = due_date(invoice.emission_date)
-  invoice.payment_date = invoice.due_date + 5
+  invoice.payment_date = invoice.due_date + rand(3..10)
   invoice.relationship = relationship1
   invoice.save
+  3.times do
+    remind = Reminder.new(
+      reminder_type: "email",
+      action_date: Faker::Date.between(from: '2022-10-23', to: '2023-09-05'),
+      progress: ["En cours", "Terminé"].sample
+    )
+    remind.invoice = invoice
+    remind.save
+  end
 end
+
+4.times do
+  invoice = Invoice.new(
+    number: Faker::Number.between(from: 100000, to: 999999),
+    amount: Faker::Number.between(from: 200, to: 1000),
+    emission_date: Faker::Date.between(from: '2022-09-23', to: '2023-09-05'),
+    progress: ["À traiter", "Avant échéance"].sample
+  )
+  invoice.due_date = due_date(invoice.emission_date)
+  invoice.relationship = relationship1
+  invoice.save
+  3.times do
+    remind = Reminder.new(
+      reminder_type: "email",
+      action_date: Faker::Date.between(from: invoice.emission_date + 20, to: invoice.emission_date + 50),
+      progress: ["En cours", "Terminé"].sample
+    )
+    remind.invoice = invoice
+    remind.save
+  end
+end
+
+invoice2 = Invoice.new(
+  number: '123456',
+  amount: 490,
+  emission_date: '2023-07-23',
+  progress: "Phase amiable"
+)
+invoice2.due_date = due_date(invoice2.emission_date)
+invoice2.relationship = relationship1
+invoice2.save
+3.times do
+  remind = Reminder.new(
+    reminder_type: "email",
+    action_date: Faker::Date.between(from: '2023-08-23', to: '2023-09-07'),
+    progress: "Terminé"
+  )
+  remind.invoice = invoice2
+  remind.save
+end
+
+puts "debtor1 and invoices done"
 
 debtor2 = Debtor.new(
   company_name: "JOHNSON",
@@ -371,16 +431,16 @@ puts "relationships creation done"
 #   relation.save
 # end
 
-puts "invoices creation done"
+# puts "invoices creation done"
 
-50.times do
-  remind = Reminder.new(
-    reminder_type: "email",
-    action_date: Faker::Date.between(from: '2022-01-01', to: '2023-12-31'),
-    progress: ["En cours", "Terminé"].sample
-  )
-  remind.invoice = Invoice.all.sample
-  remind.save
-end
+# 50.times do
+#   remind = Reminder.new(
+#     reminder_type: "email",
+#     action_date: Faker::Date.between(from: '2022-01-01', to: '2023-12-31'),
+#     progress: ["En cours", "Terminé"].sample
+#   )
+#   remind.invoice = Invoice.all.sample
+#   remind.save
+# end
 
-puts "reminders creation done"
+# puts "reminders creation done"
