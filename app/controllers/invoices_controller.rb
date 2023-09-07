@@ -110,6 +110,9 @@ class InvoicesController < ApplicationController
 
     if @invoice.save
       puts "all is good"
+      UserChannel.broadcast_to(
+        @invoice.user, { notification: render_to_string(partial: "shared/notification") }
+      )
       redirect_to invoices_path
     else
       puts @invoice.errors.full_messages

@@ -1,0 +1,22 @@
+.notification {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.notification-content {
+  text-align: center;
+}
+
+.notification h3 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.notification p {
+  font-size: 14px;
+  margin: 0;
+}
