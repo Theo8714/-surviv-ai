@@ -6,7 +6,6 @@
 }
 .btnn {
   text-decoration: none;
-  box-shadow: 0px 0px 1px black;
   text-shadow: 0px 0px 1px white;
   margin-top: 8px;
   margin-bottom: 8px;
@@ -45,7 +44,7 @@ font-family: 'Montserrat', sans-serif;
 font-weight: 600;
  &:hover {
   background-color: black;
-  color: #90CBFE;
+  color: #90CBFE !important;
   transition: 0.5s;
 
  }
